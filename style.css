@@ -1,0 +1,21 @@
+/*
+Theme Name: Avada Child NavNorth
+Description: NN Child theme for Avada theme
+Author: ThemeFusion
+Author URI: https://theme-fusion.com
+Template: Avada
+Version: 0.1.1
+Text Domain:  Avada
+*/
+.wpcf7 .wpcf7-form .wpcf7-submit {
+    border-width: 0px !important;
+    border-color: #ffffff !important;
+    background: #333333;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-sizing: border-box;
+    color: #fff;
+    transition: all .2s;
+}
+.wpcf7 .wpcf7-form .wpcf7-submit:hover, .wpcf7 .wpcf7-form .wpcf7-submit:active { color:#ffffff; background: #222222; }
