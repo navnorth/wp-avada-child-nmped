@@ -25,7 +25,7 @@ function nmped_add_tinymce_button() {
  * Add tinymce plugin
  **/
 function nmped_add_tinymce_plugin($plugin_array) {
-   	$plugin_array['oet_tinymce_plugin'] = get_stylesheet_directory_uri().'/theme-functions/tinymce_button/shortcode_button.js'; 
+   	$plugin_array['nmped_tinymce_plugin'] = get_stylesheet_directory_uri().'/theme-functions/tinymce_button/shortcode_button.js'; 
    	return $plugin_array;
 }
 
@@ -33,7 +33,7 @@ function nmped_add_tinymce_plugin($plugin_array) {
  * Register Tinymce Button
  **/
 function nmped_register_tinymce_button($buttons) {
-   array_push($buttons, "oet_tinymce_button");
+   array_push($buttons, "nmped_tinymce_button");
    return $buttons;
 }
 

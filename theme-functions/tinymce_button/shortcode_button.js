@@ -2,7 +2,7 @@
     tinymce.PluginManager.add('nmped_tinymce_plugin', function( editor, url ) {
 	var popup_generator = url+"/popup_generator.php";
         editor.addButton( 'nmped_tinymce_button', {
-            title: 'Add Theme Shortcodes',
+            title: 'Custom Shortcode',
 		image : '../wp-includes/images/smilies/icon_question.gif',
 		both: true,
             onclick : function() {
