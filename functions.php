@@ -3,7 +3,7 @@
 /**
  * Add Shortcode
  **/
-require_once( get_stylesheet_directory() . 'theme-functions/shortcode.php' );
+require_once( get_stylesheet_directory() . '/theme-functions/shortcode.php' );
 
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'avada-stylesheet' ) );
