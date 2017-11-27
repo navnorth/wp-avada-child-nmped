@@ -5,6 +5,11 @@
  **/
 require_once( get_stylesheet_directory() . '/theme-functions/shortcode.php' );
 
+/**
+ * Shortcode Button.
+ */
+ require_once( get_stylesheet_directory() . '/theme-functions/tinymce_button/shortcode_button.php' );
+
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'avada-stylesheet' ) );
 }
