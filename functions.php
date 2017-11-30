@@ -64,3 +64,26 @@ function my_NEWS_rewrite_flush() {
     my_NEWS_default_post_type();
     flush_rewrite_rules();
 }
+
+// Add Categories and Tags on Pages
+add_action( 'init' , 'add_categories_taxonomies_to_pages' );
+function add_categories_taxonomies_to_pages() {
+    register_taxonomy_for_object_type( 'post_tag' , 'page' );
+    register_taxonomy_for_object_type( 'category' , 'page' );
+}
+
+// Include pages to category and tag archives
+if ( ! is_admin() ) {
+    add_action( 'pre_get_posts' , 'category_tag_archives' );
+}
+function category_tag_archives( $wp_query ) {
+    $my_post_types = array( 'post', 'page' );
+    
+    // add page to category archive
+    if ( $wp_query->get( 'category_name' ) || $wp_query->get( 'cat' ) )
+	$wp_query->set( 'post_type' , $my_post_types );
+    
+    // add page to tag archive
+    if ( $wp_query->get( 'tag' ) )
+	$wp_query->set( 'post_type' , $my_post_types );
+}
