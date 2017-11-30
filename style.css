@@ -34,17 +34,23 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
 
 /*All heading text transform to uppercase - home page*/
 
-/*Main Menu Texts*/
-.fusion-main-menu ul li a span{
-    text-transform: uppercase !important;
-}
+    /*Main Menu Texts*/
+    .fusion-main-menu ul li a span{
+        text-transform: uppercase !important;
+    }
 
-/*Footer Widget heading text transform to uppercase*/
-.fusion-footer-widget-column .widget-title{
-    text-transform: uppercase !important;
-}
+    /*Footer Widget heading text transform to uppercase*/
+    .fusion-footer-widget-column .widget-title{
+        text-transform: uppercase !important;
+    }
 
-/*Top menu bar text trasnform to uppercase*/
-.fusion-secondary-menu ul li a span.menu-text{
-    text-transform: uppercase !important;
-}
+    /*Top menu bar text trasnform to uppercase*/
+    .fusion-secondary-menu ul li a span.menu-text{
+        text-transform: uppercase !important;
+    }
+
+
+/*Underline text links in page and post contents*/
+    .post-content a{
+        text-decoration: underline !important;
+    }
