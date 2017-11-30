@@ -21,3 +21,13 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     transition: all .2s;
 }
 .wpcf7 .wpcf7-form .wpcf7-submit:hover, .wpcf7 .wpcf7-form .wpcf7-submit:active { color:#ffffff; background: #222222; }
+
+/*Removing carrots (arrow before text in li) from footer widget*/
+.fusion-footer-widget-area .widget .recentcomments:before, .fusion-footer-widget-area .widget_archive li a:before, .fusion-footer-widget-area .widget_categories li a:before, .fusion-footer-widget-area .widget_links li a:before, .fusion-footer-widget-area .widget_meta li a:before, .fusion-footer-widget-area .widget_nav_menu li a:before, .fusion-footer-widget-area .widget_pages li a:before, .fusion-footer-widget-area .widget_recent_entries li a:before{
+    content: '' !important;
+}
+
+/*Remove spacing of footer li */
+.fusion-widget-area .widget .recentcomments, .fusion-widget-area .widget_archive li, .fusion-widget-area .widget_categories li, .fusion-widget-area .widget_layered_nav li, .fusion-widget-area .widget_links li, .fusion-widget-area .widget_meta li, .fusion-widget-area .widget_nav_menu li, .fusion-widget-area .widget_pages li, .fusion-widget-area .widget_product_categories li, .fusion-widget-area .widget_recent_entries li{
+    padding: 0 !important;
+}
