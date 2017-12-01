@@ -11,6 +11,14 @@ if ( ! function_exists( 'nmped_display_sidenav' ) ) {
 		if ( is_page_template( 'side-navigation.php' ) && 0 !== get_queried_object_id() ) {
 			$html = '<ul class="side-nav">';
 
+			// Display thumbnail on the top side navigation
+			if (has_post_thumbnail($post_id)) {
+				$post_thumbnail = get_the_post_thumbnail($post_id);
+				echo $post_thumbnail;
+			} else {
+				echo '<img src="'.get_stylesheet_directory_uri().'/images/nmped.png" class="default-post-thumbnail size-post-thumbnail" alt="'.get_the_title($post_id).'" />';
+			}
+			
 			$parent = false;
 			$post_ancestors = get_ancestors( $post_id, 'page' );
 			$post_parent    = reset( $post_ancestors );
