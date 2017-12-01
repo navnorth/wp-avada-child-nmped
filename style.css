@@ -32,6 +32,11 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     padding: 0 !important;
 }
 
+/*change current page link color*/
+#wrapper .fusion-footer-widget-area .current-menu-item a{
+    color: #fff !important;
+}
+
 /*All heading text transform to uppercase - home page*/
 
     /*Main Menu Texts*/
