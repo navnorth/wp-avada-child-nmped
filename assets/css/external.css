@@ -1,0 +1,11 @@
+.modal-backdrop { background:#000033 !important; }
+.modal-backdrop.in { opacity:0.9 !important; }
+#dataConfirmModal { width:60%; margin:5% auto; overflow:hidden; }
+#dataConfirmModal .modal-header { border-bottom:none; }
+#dataConfirmModal .modal-body { color:#ffffff; }
+#dataConfirmModal .modal-body p.href { color:#e6d54b; }
+#dataConfirmModal .modal-body h4 { font-size:20px; }
+#dataConfirmModal .modal-footer { border-top:none; }
+#dataConfirmModal .modal-footer .btn { text-transform:uppercase; color:#000000; padding:10px 20px; border-style:solid; font-size:16px; cursor:pointer; }
+#dataConfirmModal .modal-footer .btn-white { background:#ffffff; }
+#dataConfirmModal .modal-footer .btn-yellow { background:#e6d54b; border-color:#e6d54b; }

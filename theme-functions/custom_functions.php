@@ -16,7 +16,7 @@ if ( ! function_exists( 'nmped_display_sidenav' ) ) {
 				$post_thumbnail = get_the_post_thumbnail($post_id);
 				echo $post_thumbnail;
 			} else {
-				echo '<img src="'.get_stylesheet_directory_uri().'/images/nmped.png" class="default-post-thumbnail size-post-thumbnail" alt="'.get_the_title($post_id).'" />';
+				echo '<img src="'.get_stylesheet_directory_uri().'/assets/images/nmped.png" class="default-post-thumbnail size-post-thumbnail" alt="'.get_the_title($post_id).'" />';
 			}
 			
 			$parent = false;
