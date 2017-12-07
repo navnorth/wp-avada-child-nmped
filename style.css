@@ -91,3 +91,34 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     -webkit-transition: top .1s ease-in, background .5s linear;
     transition: top .1s ease-in, background .5s linear;
 }
+
+/*wonderplugin pdf css styling*/
+
+    /*for width 100%*/
+    .wonderplugin-pdf-iframe{
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /*for height by default height of the window itself*/
+    .wonderplugin-pdf-iframe{
+        max-height: 100%;
+        height: 100vh;
+    }
+
+/*Styling for video container*/
+    .video-container {
+        position:relative;
+        padding-bottom:56.25%;
+        padding-top:30px;
+        height:0;
+        overflow:hidden;
+    }
+
+    .video-container iframe {
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+    }
