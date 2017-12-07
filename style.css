@@ -57,6 +57,20 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: none !important;
     }
 
+
+    /*Page title bar heading*/
+    .fusion-page-title-captions .entry-title{
+        text-transform: uppercase !important;
+    }
+
+    .fusion-column-content h2{
+        text-transform: uppercase !important;
+    }
+
+    .post-content h1, h2, h3, h4, h5, h6{
+        text-transform: uppercase !important;
+    }
+
 /*Underline text links in page and post contents*/
     .fusion-post-wrapper .fusion-post-content-wrapper .entry-title a{
         text-decoration: none !important;
@@ -121,6 +135,10 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         left:0;
         width:100%;
         height:100%;
+    }
+
+    .fusion-main-menu > ul > li > a, .side-nav li a{
+        font-size: 18px !important;
     }
 
 /*CSS for mobile*/
