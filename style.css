@@ -146,6 +146,18 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: underline !important;
     }
 
+    /*when tabbed via keyboard focus link in header menu*/
+    .fusion-body .fusion-main-menu li a:focus{
+        color: #e64900 !important;
+        outline: none !important;
+    }
+    .fusion-secondary-menu li a:focus{
+        color: #e64900 !important;
+        outline: none !important;
+    }
+
+    
+
 /*CSS for mobile*/
 
     /*color for menu icon in mobile*/
