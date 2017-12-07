@@ -15,6 +15,11 @@ require_once( get_stylesheet_directory() . '/theme-functions/tinymce_button/shor
  **/
 require_once( get_stylesheet_directory() . '/theme-functions/custom_functions.php' );
 
+/**
+ * Include NMPED SubPages Widget
+ */
+include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widget/class-nmped-subpages-widget.php' );
+
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'avada-stylesheet' ) );
     wp_enqueue_script( 'external-script', get_stylesheet_directory_uri() . '/assets/js/external.js', array( 'jquery', 'underscore' ) );
@@ -93,4 +98,10 @@ function category_tag_archives( $wp_query ) {
     // add page to tag archive
     if ( $wp_query->get( 'tag' ) )
 	$wp_query->set( 'post_type' , $my_post_types );
+}
+
+// Load Custom Widget
+add_action( 'widgets_init' , 'load_nmped_widget' );
+function load_nmped_widget() {
+    register_widget('NMPED_Subpages_Widget');
 }
