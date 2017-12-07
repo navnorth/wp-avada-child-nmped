@@ -85,12 +85,41 @@ if ( ! is_admin() ) {
 }
 function category_tag_archives( $wp_query ) {
     $my_post_types = array( 'post', 'page' );
-    
+
     // add page to category archive
     if ( $wp_query->get( 'category_name' ) || $wp_query->get( 'cat' ) )
 	$wp_query->set( 'post_type' , $my_post_types );
-    
+
     // add page to tag archive
     if ( $wp_query->get( 'tag' ) )
 	$wp_query->set( 'post_type' , $my_post_types );
 }
+
+//Sidebar Display : to add css if sidebar contains image and align image just below main menu as mockup
+function add_css_for_featured_image_in_sidebar(){
+    global $post;
+
+    if(isset($post->ID)) {
+        $templateName =get_post_meta( $post->ID, '_wp_page_template', true );
+
+        if("side-navigation.php" == strtolower($templateName)){
+
+            $parentPageId = wp_get_post_parent_id($post->ID);
+
+            if(has_post_thumbnail($post) || ( isset($parentPageId) && has_post_thumbnail($parentPageId) ) ){ ?>
+                <style>
+                    .fusion-page-title-bar{
+                        width:75%;
+                    }
+                    #sidebar{
+                        margin-top: -120px;
+                    }
+                    #main .sidebar{
+                        padding: 0 !important;
+                    }
+                </style>
+            <?php }
+        }
+    }
+ }
+add_action('wp_head','add_css_for_featured_image_in_sidebar');
