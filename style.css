@@ -164,6 +164,12 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: underline;
     }
 
+    /*Set hover for submit button*/
+    .wpcf7 .wpcf7-form .wpcf7-submit:hover{
+        color: #e64900 !important;
+    }
+
+
 
 /*CSS for mobile*/
 
