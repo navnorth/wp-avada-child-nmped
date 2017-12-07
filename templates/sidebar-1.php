@@ -16,6 +16,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 $sticky_sidebar = in_array( 'fusion-sticky-sidebar', apply_filters( 'fusion_sidebar_1_class', array() ) );
 ?>
 <aside id="sidebar" role="complementary" <?php Avada()->layout->add_class( 'sidebar_1_class' ); ?> <?php Avada()->layout->add_style( 'sidebar_1_style' ); ?> <?php Avada()->layout->add_data( 'sidebar_1_data' ); ?>>
+	<?php
+	// Display thumbnail on the top side navigation
+	if (has_post_thumbnail($post->ID)) {
+		$post_thumbnail = get_the_post_thumbnail($post->ID);
+		echo $post_thumbnail;
+	} else {
+		echo '<img src="'.get_stylesheet_directory_uri().'/assets/images/nmped.png" class="default-post-thumbnail size-post-thumbnail" alt="'.get_the_title($post->ID).'" />';
+	}
+	?>
 	<?php if ( $sticky_sidebar ) : ?>
 		<div class="fusion-sidebar-inner-content">
 	<?php endif; ?>
