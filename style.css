@@ -81,30 +81,30 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     }
 
 /* Skip Content Style */
-#skipcontent a {
-    padding:5px 10px;
-    position: absolute;
-    top:-40px;
-    left:0px;
-    color:white;
-    border-right:1px solid white;
-    border-bottom:1px solid white;
-    background:transparent;
-    -webkit-transition: top 1s ease-out, background 1s linear;
-    transition: top 1s ease-out, background 1s linear;
-    z-index: 99999;
-    font-size:0.9em;
-}
+    #skipcontent a {
+        padding:5px 10px;
+        position: absolute;
+        top:-40px;
+        left:0px;
+        color:white;
+        border-right:1px solid white;
+        border-bottom:1px solid white;
+        background:transparent;
+        -webkit-transition: top 1s ease-out, background 1s linear;
+        transition: top 1s ease-out, background 1s linear;
+        z-index: 99999;
+        font-size:0.9em;
+    }
 
-#skipcontent a:focus {
-    position:absolute;
-    left:0px;
-    top:0px;
-    background:#294179;
-    outline:0;
-    -webkit-transition: top .1s ease-in, background .5s linear;
-    transition: top .1s ease-in, background .5s linear;
-}
+    #skipcontent a:focus {
+        position:absolute;
+        left:0px;
+        top:0px;
+        background:#294179;
+        outline:0;
+        -webkit-transition: top .1s ease-in, background .5s linear;
+        transition: top .1s ease-in, background .5s linear;
+    }
 
 /*wonderplugin pdf css styling*/
 
@@ -139,6 +139,11 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
 
     .fusion-main-menu > ul > li > a, .side-nav li a{
         font-size: 18px !important;
+    }
+
+    /*on hover underline links in footer*/
+    .fusion-widget-area .fusion-footer-widget-column li a:hover{
+        text-decoration: underline !important;
     }
 
 /*CSS for mobile*/
