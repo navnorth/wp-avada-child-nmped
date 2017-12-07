@@ -143,6 +143,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
 
     /*on hover underline links in footer*/
     .fusion-widget-area .fusion-footer-widget-column li a:hover{
+        color: #e64900 !important;
         text-decoration: underline !important;
     }
 
@@ -156,7 +157,13 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         outline: none !important;
     }
 
-    
+    /*when tabbed via keyboard focus link for footer menu*/
+    .fusion-widget-area .fusion-footer-widget-column li a:focus{
+        color: #e64900 !important;
+        outline: none !important;
+        text-decoration: underline;
+    }
+
 
 /*CSS for mobile*/
 
