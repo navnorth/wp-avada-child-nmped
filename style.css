@@ -122,3 +122,85 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         width:100%;
         height:100%;
     }
+
+/*CSS for mobile*/
+
+    /*color for menu icon in mobile*/
+    .fusion-mobile-menu-icons a:before{
+        color: #003162 !important;
+    }
+
+    /*menu icon bar fix*/
+    .fusion-icon-bars{
+        margin-top: 20px;
+    }
+
+    /*Mobile menu expanded fixes*/
+    .fusion-mobile-menu .fusion-mobile-nav-item a {
+        background: #060031 !important;
+        color: #fff;
+        border: none !important;
+        font-weight: 600;
+    }
+    .fusion-mobile-menu .fusion-mobile-current-nav-item a{
+        background: #003162 !important;
+    }
+
+    .fusion-secondary-menu li a{
+        font-weight: 600;
+    }
+
+/*Media queries for Tablet & Mobile Mockups*/
+
+    /*Media queries for 320px width mobile screen*/
+    @media(max-width:320px) and (min-width:320px) {
+        /*blue bar top navigation hide on mobile screen */
+        .fusion-header-wrapper .fusion-secondary-menu{
+            display: none;
+        }
+
+    }
+
+    /*Media queries for 360px width mobile screen*/
+    @media(max-width:360px) and (min-width:360px) {
+        .fusion-header-wrapper .fusion-secondary-menu{
+            display: none;
+        }
+
+    }
+
+    /*Media queries for 375px width mobile screen*/
+    @media(max-width:375px) and (min-width:375px) {
+        .fusion-header-wrapper .fusion-secondary-menu{
+            display: none;
+        }
+
+    }
+
+    /*Media queries for 412px width mobile screen*/
+    @media(max-width:412px) and (min-width:412px) {
+        .fusion-header-wrapper .fusion-secondary-menu{
+            display: none;
+        }
+    }
+
+    /*Media queries for 414px width mobile screen*/
+    @media(max-width:414px) and (min-width:414px) {
+        .fusion-header-wrapper .fusion-secondary-menu{
+            display: none;
+        }
+    }
+
+    /*Media queries for 480px width mobile screen*/
+    @media(max-width:480px) and (min-width:480px) {
+        .fusion-header-wrapper .fusion-secondary-menu{
+            display: none;
+        }
+    }
+
+    /*Media queries for 568px width mobile screen*/
+    @media(max-width:568px) and (min-width:568px) {
+        .fusion-header-wrapper .fusion-secondary-menu{
+            display: none;
+        }
+    }
