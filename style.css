@@ -168,6 +168,10 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .wpcf7 .wpcf7-form .wpcf7-submit:hover{
         background: #e64900 !important;
     }
+    /*set */
+    .wpcf7 .wpcf7-form .wpcf7-submit:focus{
+        background: #e64900 !important;
+    }
 
     /*update home page buttons to have no underline*/
     .fusion-button-wrapper .fusion-button{
@@ -181,6 +185,9 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     /*breadcrumbs links hover styling*/
     .fusion-breadcrumbs a:hover{
         color: #e64900 !important;
+    }
+    /*breadcrumbs links hover styling underline*/
+    .fusion-breadcrumbs a span:hover{
         text-decoration: underline !important;
     }
 
