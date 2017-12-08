@@ -252,3 +252,14 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
             display: none;
         }
     }
+
+/* Side Navigation Widget */
+#wrapper .side-nav-widget li a { display:block; }
+#wrapper .side-nav-widget li.current_page_item>a {
+    padding-left: 23px;
+    border-left: 3px solid #a0ce4e;
+}
+#wrapper .side-nav-widget li a {
+    padding-left: 25px;
+}
+#wrapper .side-nav-widget li ul.children { display:block; padding-left:25px; }
