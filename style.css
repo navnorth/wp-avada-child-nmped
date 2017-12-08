@@ -205,6 +205,12 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: underline !important;
     }
 
+    /*visible focus for links in page - */
+    .post-content a:focus{
+        color: #e64900;
+        text-decoration: underline;
+    }
+
 /*CSS for mobile*/
 
     /*color for menu icon in mobile*/
