@@ -191,6 +191,20 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: underline !important;
     }
 
+    /*Nav Menus on hover underline*/
+    .fusion-body .fusion-main-menu .current_page_item > a{
+        color: #e64900 !important;
+    }
+    .fusion-body .fusion-main-menu a:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+    /*top navigation hover styles - blue bar*/
+    .fusion-secondary-menu li a:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
 /*CSS for mobile*/
 
     /*color for menu icon in mobile*/
