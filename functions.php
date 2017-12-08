@@ -24,6 +24,8 @@ function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'avada-stylesheet' ) );
     wp_enqueue_script( 'external-script', get_stylesheet_directory_uri() . '/assets/js/external.js', array( 'jquery', 'underscore' ) );
     wp_enqueue_style( 'external-style', get_stylesheet_directory_uri() . '/assets/css/external.css', array() );
+
+    wp_enqueue_script( 'custom-child-avada', get_stylesheet_directory_uri() . '/assets/js/custom-child-avada.js', '','',true);
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 
@@ -105,6 +107,7 @@ function add_css_for_featured_image_in_sidebar(){
     global $post;
 
     if(isset($post->ID)) {
+
         $templateName =get_post_meta( $post->ID, '_wp_page_template', true );
 
         if("side-navigation.php" == strtolower($templateName)){
@@ -123,14 +126,56 @@ function add_css_for_featured_image_in_sidebar(){
                         padding: 0 !important;
                     }
                 </style>
+
             <?php }
         }
     }
  }
-add_action('wp_head','add_css_for_featured_image_in_sidebar');
+add_action('wp_footer','add_css_for_featured_image_in_sidebar');
 
 // Load Custom Widget
 add_action( 'widgets_init' , 'load_nmped_widget' );
 function load_nmped_widget() {
     register_widget('NMPED_Subpages_Widget');
+}
+
+//replace footer widget titles h4(heading tag) to p
+add_filter( 'dynamic_sidebar_params', 'custom_footer_widget_titles', 20 );
+function custom_footer_widget_titles( array $params ) {
+
+    $widget = &$params[0];
+
+    if (preg_match('/avada-footer-widget/',$widget["id"])) {
+
+        $footer_heading_fontsize = '';
+        $footer_heading_lineheight = '';
+
+        $fusion_options = get_option('fusion_options');
+
+        if (isset($fusion_options['footer_headings_typography']) && is_array($fusion_options['footer_headings_typography']) && !empty($fusion_options['footer_headings_typography'])) {
+
+            $arrFooter_headings_typography = $fusion_options['footer_headings_typography'];
+
+            if (isset($arrFooter_headings_typography['font-size']) && !empty($arrFooter_headings_typography['font-size'])) {
+
+                $footer_heading_fontsize = filter_var($arrFooter_headings_typography['font-size'],
+                    FILTER_SANITIZE_NUMBER_INT);
+            }
+
+            if (isset($arrFooter_headings_typography['line-height']) && !empty($arrFooter_headings_typography['line-height'])) {
+
+                $footer_heading_lineheight = $arrFooter_headings_typography['line-height'];
+            }
+        }
+
+        $fontsizestyle = (false == empty($footer_heading_fontsize)) ? 'data-fontsize="' . $footer_heading_fontsize . '"' : '';
+        $fontlineheightstyle = (false == empty($footer_heading_fontsize)) ? 'data-lineheight="' . $footer_heading_lineheight . '"' : '';
+
+        // $params will ordinarily be an array of 2 elements, we're only interested in the first element
+        $widget['before_title'] = '<p class="widget-title" ' . $fontsizestyle . ' ' . $fontlineheightstyle . '>';
+        $widget['after_title'] = '</p>';
+
+        return $params;
+    }
+    return $params;
 }

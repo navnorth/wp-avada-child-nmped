@@ -1,0 +1,20 @@
+#sidebar{
+    float: left !important;
+    width: 20% !important;
+    padding: 0px 5px 0 10px !important;
+}
+#main{
+    width: 80%;
+    float: left;
+}
+body.has-sidebar #content{
+    width: 100% !important;
+}
+.widget_media_image img{
+    width: 100%;
+}
+.fusion-footer {
+    float: left;
+    clear: both;
+    width: 100%;
+}

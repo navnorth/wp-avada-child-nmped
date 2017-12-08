@@ -168,7 +168,75 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .wpcf7 .wpcf7-form .wpcf7-submit:hover{
         background: #e64900 !important;
     }
+    /*set */
+    .wpcf7 .wpcf7-form .wpcf7-submit:focus{
+        background: #e64900 !important;
+    }
 
+    /*update home page buttons to have no underline*/
+    .fusion-button-wrapper .fusion-button{
+        text-decoration: none !important;
+    }
+    /*update home page buttons to have underline on hover*/
+    .fusion-button-wrapper .fusion-button:hover{
+        text-decoration: underline !important;
+    }
+
+    /*breadcrumbs links hover styling*/
+    .fusion-breadcrumbs a:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
+    /*breadcrumbs links focus styling*/
+    .fusion-breadcrumbs a:focus{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+    .fusion-breadcrumbs span{
+        display: inline;
+    }
+
+    /*Nav Menus on hover underline*/
+    .fusion-body .fusion-main-menu .current_page_item > a{
+        color: #e64900 !important;
+    }
+    .fusion-body .fusion-main-menu a:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+    /*top navigation hover styles - blue bar*/
+    .fusion-secondary-menu li a:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
+    /*visible focus for links in page - */
+    #wrapper #content a:focus{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
+    .fusion-image-wrapper:focus .fusion-rollover{
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+        -webkit-transform-style: preserve-3d;
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+        -webkit-transform-style: preserve-3d;
+        background-image: linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(160,206,78,0.8)), color-stop(1, #a0ce4e));
+        background-image: filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#a0ce4e, endColorstr=#a0ce4e), progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+        background-image: -webkit-linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
+        background-image: -moz-linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
+        background-image: -ms-linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
+        background-image: -o-linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
+
+    }
 
 
 /*CSS for mobile*/
