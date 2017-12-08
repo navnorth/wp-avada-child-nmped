@@ -24,6 +24,8 @@ function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'avada-stylesheet' ) );
     wp_enqueue_script( 'external-script', get_stylesheet_directory_uri() . '/assets/js/external.js', array( 'jquery', 'underscore' ) );
     wp_enqueue_style( 'external-style', get_stylesheet_directory_uri() . '/assets/css/external.css', array() );
+
+    wp_enqueue_script( 'custom-child-avada', get_stylesheet_directory_uri() . '/assets/js/custom-child-avada.js', '','',true);
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 
@@ -105,6 +107,7 @@ function add_css_for_featured_image_in_sidebar(){
     global $post;
 
     if(isset($post->ID)) {
+
         $templateName =get_post_meta( $post->ID, '_wp_page_template', true );
 
         if("side-navigation.php" == strtolower($templateName)){
@@ -124,13 +127,6 @@ function add_css_for_featured_image_in_sidebar(){
                     }
                 </style>
 
-                <script>
-                    jQuery(document).ready(function(){
-                        jQuery("p.widget-title").each(function() {
-                            jQuery(this).prop("style")["font-size"] && jQuery(this).attr("data-inline-fontsize", !0), jQuery(this).prop("style")["font-size"] && jQuery(this).attr("data-inline-lineheight", !0), jQuery(this).attr("data-fontsize", parseInt(jQuery(this).css("font-size"))), jQuery(this).attr("data-lineheight", parseInt(jQuery(this).css("line-height")));
-                        });
-                    });
-                </script>
             <?php }
         }
     }

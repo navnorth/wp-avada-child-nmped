@@ -185,10 +185,16 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     /*breadcrumbs links hover styling*/
     .fusion-breadcrumbs a:hover{
         color: #e64900 !important;
-    }
-    /*breadcrumbs links hover styling underline*/
-    .fusion-breadcrumbs a span:hover{
         text-decoration: underline !important;
+    }
+
+    /*breadcrumbs links focus styling*/
+    .fusion-breadcrumbs a:focus{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+    .fusion-breadcrumbs span{
+        display: inline;
     }
 
     /*Nav Menus on hover underline*/
@@ -206,10 +212,32 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     }
 
     /*visible focus for links in page - */
-    .post-content a:focus{
-        color: #e64900;
-        text-decoration: underline;
+    #wrapper #content a:focus{
+        color: #e64900 !important;
+        text-decoration: underline !important;
     }
+
+    .fusion-image-wrapper:focus .fusion-rollover{
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+        -webkit-transform-style: preserve-3d;
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+        -webkit-transform-style: preserve-3d;
+        background-image: linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(160,206,78,0.8)), color-stop(1, #a0ce4e));
+        background-image: filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#a0ce4e, endColorstr=#a0ce4e), progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+        background-image: -webkit-linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
+        background-image: -moz-linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
+        background-image: -ms-linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
+        background-image: -o-linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
+
+    }
+
 
 /*CSS for mobile*/
 
