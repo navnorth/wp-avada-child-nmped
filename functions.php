@@ -134,3 +134,38 @@ add_action( 'widgets_init' , 'load_nmped_widget' );
 function load_nmped_widget() {
     register_widget('NMPED_Subpages_Widget');
 }
+
+//replace footer widget titles h4(heading tag) to p
+add_filter( 'dynamic_sidebar_params', 'custom_footer_widget_titles', 20 );
+function custom_footer_widget_titles( array $params ) {
+
+    $footer_heading_fontsize   = '';
+    $footer_heading_lineheight = '';
+
+    $fusion_options = get_option('fusion_options');
+
+    if(isset($fusion_options['footer_headings_typography']) && is_array($fusion_options['footer_headings_typography']) && !empty($fusion_options['footer_headings_typography'])){
+
+        $arrFooter_headings_typography = $fusion_options['footer_headings_typography'];
+
+        if(isset($arrFooter_headings_typography['font-size']) && !empty($arrFooter_headings_typography['font-size'])){
+
+            $footer_heading_fontsize = filter_var($arrFooter_headings_typography['font-size'], FILTER_SANITIZE_NUMBER_INT);
+        }
+
+        if(isset($arrFooter_headings_typography['line-height']) && !empty($arrFooter_headings_typography['line-height'])){
+
+            $footer_heading_lineheight = $arrFooter_headings_typography['line-height'];
+        }
+    }
+
+    $fontsizestyle       = (false == empty($footer_heading_fontsize)) ? 'data-fontsize="'.$footer_heading_fontsize.'"': '';
+    $fontlineheightstyle = (false == empty($footer_heading_fontsize)) ? 'data-lineheight="'.$footer_heading_lineheight.'"': '';
+
+    // $params will ordinarily be an array of 2 elements, we're only interested in the first element
+    $widget = & $params[0];
+    $widget['before_title'] = '<p class="widget-title" '.$fontsizestyle.' '.$fontlineheightstyle.'>';
+    $widget['after_title'] = '</p>';
+
+    return $params;
+}
