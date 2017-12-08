@@ -123,11 +123,19 @@ function add_css_for_featured_image_in_sidebar(){
                         padding: 0 !important;
                     }
                 </style>
+
+                <script>
+                    jQuery(document).ready(function(){
+                        jQuery("p.widget-title").each(function() {
+                            jQuery(this).prop("style")["font-size"] && jQuery(this).attr("data-inline-fontsize", !0), jQuery(this).prop("style")["font-size"] && jQuery(this).attr("data-inline-lineheight", !0), jQuery(this).attr("data-fontsize", parseInt(jQuery(this).css("font-size"))), jQuery(this).attr("data-lineheight", parseInt(jQuery(this).css("line-height")));
+                        });
+                    });
+                </script>
             <?php }
         }
     }
  }
-add_action('wp_head','add_css_for_featured_image_in_sidebar');
+add_action('wp_footer','add_css_for_featured_image_in_sidebar');
 
 // Load Custom Widget
 add_action( 'widgets_init' , 'load_nmped_widget' );
@@ -139,33 +147,39 @@ function load_nmped_widget() {
 add_filter( 'dynamic_sidebar_params', 'custom_footer_widget_titles', 20 );
 function custom_footer_widget_titles( array $params ) {
 
-    $footer_heading_fontsize   = '';
-    $footer_heading_lineheight = '';
+    $widget = &$params[0];
 
-    $fusion_options = get_option('fusion_options');
+    if (preg_match('/avada-footer-widget/',$widget["id"])) {
 
-    if(isset($fusion_options['footer_headings_typography']) && is_array($fusion_options['footer_headings_typography']) && !empty($fusion_options['footer_headings_typography'])){
+        $footer_heading_fontsize = '';
+        $footer_heading_lineheight = '';
 
-        $arrFooter_headings_typography = $fusion_options['footer_headings_typography'];
+        $fusion_options = get_option('fusion_options');
 
-        if(isset($arrFooter_headings_typography['font-size']) && !empty($arrFooter_headings_typography['font-size'])){
+        if (isset($fusion_options['footer_headings_typography']) && is_array($fusion_options['footer_headings_typography']) && !empty($fusion_options['footer_headings_typography'])) {
 
-            $footer_heading_fontsize = filter_var($arrFooter_headings_typography['font-size'], FILTER_SANITIZE_NUMBER_INT);
+            $arrFooter_headings_typography = $fusion_options['footer_headings_typography'];
+
+            if (isset($arrFooter_headings_typography['font-size']) && !empty($arrFooter_headings_typography['font-size'])) {
+
+                $footer_heading_fontsize = filter_var($arrFooter_headings_typography['font-size'],
+                    FILTER_SANITIZE_NUMBER_INT);
+            }
+
+            if (isset($arrFooter_headings_typography['line-height']) && !empty($arrFooter_headings_typography['line-height'])) {
+
+                $footer_heading_lineheight = $arrFooter_headings_typography['line-height'];
+            }
         }
 
-        if(isset($arrFooter_headings_typography['line-height']) && !empty($arrFooter_headings_typography['line-height'])){
+        $fontsizestyle = (false == empty($footer_heading_fontsize)) ? 'data-fontsize="' . $footer_heading_fontsize . '"' : '';
+        $fontlineheightstyle = (false == empty($footer_heading_fontsize)) ? 'data-lineheight="' . $footer_heading_lineheight . '"' : '';
 
-            $footer_heading_lineheight = $arrFooter_headings_typography['line-height'];
-        }
+        // $params will ordinarily be an array of 2 elements, we're only interested in the first element
+        $widget['before_title'] = '<p class="widget-title" ' . $fontsizestyle . ' ' . $fontlineheightstyle . '>';
+        $widget['after_title'] = '</p>';
+
+        return $params;
     }
-
-    $fontsizestyle       = (false == empty($footer_heading_fontsize)) ? 'data-fontsize="'.$footer_heading_fontsize.'"': '';
-    $fontlineheightstyle = (false == empty($footer_heading_fontsize)) ? 'data-lineheight="'.$footer_heading_lineheight.'"': '';
-
-    // $params will ordinarily be an array of 2 elements, we're only interested in the first element
-    $widget = & $params[0];
-    $widget['before_title'] = '<p class="widget-title" '.$fontsizestyle.' '.$fontlineheightstyle.'>';
-    $widget['after_title'] = '</p>';
-
     return $params;
 }
