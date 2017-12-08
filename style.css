@@ -178,6 +178,11 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: underline !important;
     }
 
+    /*breadcrumbs links hover styling*/
+    .fusion-breadcrumbs a:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
 
 /*CSS for mobile*/
 
