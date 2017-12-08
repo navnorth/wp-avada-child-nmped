@@ -169,6 +169,14 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         background: #e64900 !important;
     }
 
+    /*update home page buttons to have no underline*/
+    .fusion-button-wrapper .fusion-button{
+        text-decoration: none !important;
+    }
+    /*update home page buttons to have underline on hover*/
+    .fusion-button-wrapper .fusion-button:hover{
+        text-decoration: underline !important;
+    }
 
 
 /*CSS for mobile*/
