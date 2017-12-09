@@ -1,0 +1,84 @@
+#nmped-table
+{
+    width: 100%;
+    overflow:hidden;
+}
+.nmped_sngltinyrow
+{
+    width: 100%;
+    float: left;
+    height: auto;
+    padding: 10px 0;
+}
+.nmped_sngltinyclm
+{
+    cursor: pointer;
+    float: left;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+    width: 140px;
+    border-radius: 5px;
+    margin-left: 10px;
+    box-sizing:border-box;
+}
+.nmped_sngltinyclm .nmped_snglimgtiny
+{
+    width: 100%;
+    margin:0 ;
+    padding: 0;
+    text-align: center;
+    box-sizing:border-box;
+}
+.nmped_sngltinyclm .nmped_snglimgtiny img
+{
+    width: 75px;
+    float: none;
+    margin: 0 auto;
+}
+.nmped_sngltinyclm .nmped_snglttltiny
+{
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+.nmped_sngltinyclm:hover
+{
+    border: 2px solid #ccc;
+    height: auto;
+    width: 136px;
+}
+.nmped_sngltinyclm.nmped_snglslctd
+{
+    border: 2px solid #ccc;
+    height: 96px;
+    width: 136px;
+}
+.nmped_bs_row {
+    height: 28px;
+    width: 100%;
+    background: #808080;
+    border: none;
+    margin-top: 0;
+}
+.nmped_bs_column {
+    height:58px;
+    width:35px;
+    background:#808080;
+    border:2px solid #979797;
+    margin:0 auto;
+}
+.nmped_bs_col {
+    height: 40px;
+    width: 31.5%;
+    background: #808080;
+    border: 1px solid #979797;
+    margin: 0 auto;
+    display: inline-block;
+}
+#nmped-shortcode-form .submit {
+    margin:10px 0;
+    text-align:center;
+}

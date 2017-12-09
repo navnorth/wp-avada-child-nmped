@@ -16,8 +16,8 @@ if($action == "show_popup")
                                     </div>
                                 </div>
                             </div>
-		</div>
-		</div>
+                        </div>
+                    </div>
 		<script type="text/javascript">
 			function nmped_clicked(ref)
 			{
@@ -25,6 +25,7 @@ if($action == "show_popup")
                                     jQuery(this).removeClass("nmped_snglslctd");
 				});
 				jQuery(ref).addClass("nmped_snglslctd");
+                                placeshortcode();
 			}
 			function placeshortcode(){
 				var shortcode_type = jQuery(".nmped_sngltinyclm.nmped_snglslctd").attr("data-shortcode");
