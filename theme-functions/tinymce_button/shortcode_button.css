@@ -80,6 +80,7 @@
 }
 .nmped_spacer { height:32px; }
 .nmped_top35 { margin-top:35px; }
+.nmped_button { height:80px; }
 #nmped-shortcode-form .submit {
     margin:10px 0;
     text-align:center;
