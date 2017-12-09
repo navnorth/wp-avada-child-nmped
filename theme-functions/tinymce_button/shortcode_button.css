@@ -78,6 +78,8 @@
     margin: 0 auto;
     display: inline-block;
 }
+.nmped_spacer { height:32px; }
+.nmped_top35 { margin-top:35px; }
 #nmped-shortcode-form .submit {
     margin:10px 0;
     text-align:center;
