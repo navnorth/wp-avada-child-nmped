@@ -52,6 +52,16 @@ if($action == "show_popup")
                                     </div>
                                 </div>
                             </div>
+                            <div class="nmped_sngltinyrow">
+                                <div class="nmped_sngltinyclm" onclick="nmped_clicked(this);" data-shortcode="subpages">
+                                    <div class="nmped_snglimgtiny nmped_button">
+                                            <i class="fa fa-file-text fa-4x" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="nmped_snglttltiny">
+                                            SubPages
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 		<script type="text/javascript">
@@ -99,6 +109,9 @@ if($action == "show_popup")
                                             break;
                                     case "button":
 					   var shortcode = "[nmped_button text=\'\' button_color=\'\' text_color=\'\' font_face=\'\' font_size=\'\' font_weight=\'\' url=\'\' new_window=\'yes/no\']";
+					   break;
+                                    case "subpages":
+					   var shortcode = "[nmped_subpages title=\'\' id=\'\']";
 					   break;
                                     default:
 				   	   var shortcode = "";
