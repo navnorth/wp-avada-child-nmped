@@ -249,7 +249,7 @@ $group_id = "accordion";
       $html = "";
       
       if (! empty($title)){
-       $html.= $args['before_title'] . $title . $args['after_title'];
+       $html.= '<h4 class="widget-title">' . $title . '</h4>';
       }
       
       if (! empty($id)){

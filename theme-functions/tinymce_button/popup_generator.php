@@ -61,6 +61,14 @@ if($action == "show_popup")
                                             SubPages
                                     </div>
                                 </div>
+                                <div class="nmped_sngltinyclm" onclick="nmped_clicked(this);" data-shortcode="table">
+                                    <div class="nmped_snglimgtiny nmped_button">
+                                            <i class="fa fa-table fa-4x" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="nmped_snglttltiny">
+                                            Table
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -112,6 +120,9 @@ if($action == "show_popup")
 					   break;
                                     case "subpages":
 					   var shortcode = "[nmped_subpages title=\'\' id=\'\']";
+					   break;
+                                    case "table":
+                                           var shortcode = "[fusion_table]<div class=\'table-2\'><table width=\'100%\'><thead><tr><th align=\'left\'>Column 0</th><th align=\'left\'>Column 1</th><th align=\'left\'>Column 2</th></tr></thead><tbody><tr><td align=\'left\'>Column 0 Value</td><td align=\'left\'>Column 1 Value</td><td align=\'left\'>Column 2 Value</td></tr></tbody></table></div>[/fusion_table]";
 					   break;
                                     default:
 				   	   var shortcode = "";
