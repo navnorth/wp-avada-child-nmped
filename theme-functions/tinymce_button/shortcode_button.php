@@ -21,6 +21,29 @@ function nmped_add_tinymce_button() {
     }
 }
 
+add_action('media_buttons', 'nmped_media_buttons_context');
+//fallback if media_buttons fail
+add_action('media_buttons_context', 'nmped_media_buttons_context');
+function nmped_media_buttons_context($context)
+{
+	global $post_ID, $temp_ID;
+	$iframe_ID = (int) (0 == $post_ID ? $temp_ID : $post_ID);
+	$out = '<a id="add_shortcode" style="display:none" href="'.get_stylesheet_directory_uri().'/theme-functions/tinymce_button/popup_generator.php?action=show_popup&width=800&height=550" class="hide-if-no-js thickbox" title="Add shortcode"><img src="'.get_stylesheet_directory_uri().'/theme-functions/tinymce_button/images/shortcode.png" alt="Add Shortcode" /></a>';
+	return $context . $out;
+}
+
+add_action('admin_print_footer_scripts', 'nmped_add_quicktags');
+function nmped_add_quicktags()
+{
+	?>
+	<script type="text/javascript">
+	if ( window.QTags !== undefined ) {
+		QTags.addButton( 'shortcodes', '</>', function(){ jQuery('#add_shortcode').click() } );
+	}
+	</script>
+<?php
+}
+
 /**
  * Add tinymce plugin
  **/
