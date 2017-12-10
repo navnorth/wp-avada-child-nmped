@@ -1,0 +1,140 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Tablet & Small Desktop Stylesheet
+
+Here's where you can start getting into the good stuff.
+This size will work on iPads, other tablets, and desktops.
+So you can start working with more styles, background images,
+and other resources. You'll also notice the grid starts to
+come into play. Have fun!
+
+******************************************************************/
+
+.callout {
+  @include display-flex;
+  @include flex-wrap(wrap);
+  @include flex-direction(row);
+
+  min-height: 400px;
+
+  &--small {
+	width: 100%;
+	min-height: 50%;
+	float: left;
+  }
+
+  &--small-reverse {
+	@include flex-direction(row-reverse);
+  }
+
+  &--large {
+	width: 50%;
+	float: left;
+	.callout__wrap--text {
+	  width: 100%;
+	  @include display-flex;
+	  @include flex-direction(column);
+	  @include justify-content(center);
+	}
+	.callout__button {
+	  @include align-self(baseline);
+	}
+  }
+
+  &--bg-image {
+  }
+
+  &__wrap {
+	&--text {
+	  width: 50%;
+	}
+	&--image {
+	  width: 50%;
+	  padding: 0;
+	}
+  }
+
+  &__image {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+
+	&--small {
+	  display: block;
+	}
+
+	img {
+	  width: 100%;
+	  height: 100%;
+	  @include transition(1000ms linear transform);
+	  @include transform(scale(1.12));
+	  @include transform-origin(center, center);
+
+	  &:hover {
+		@include transform(scale(1));
+	  }
+	}
+  }
+
+  &__title {
+  }
+  &__text {
+  }
+  &__button {
+
+  }
+}
+
+.homepage-rows {
+  &__row {
+	&--reverse {
+	}
+  }
+  &__small-row {
+	display: block;
+	width: 50%;
+  }
+}
+
+.category {
+  width: 33.33%;
+  width: calc(33.33% - ( ( 4% + 4% ) * 0.3333 ) );
+  margin-right: 4%;
+  float: left;
+  padding: 0;
+  min-height: 275px;
+
+  &:nth-child(even) {
+	padding-left: 0;
+  }
+
+  &:nth-child(odd) {
+	padding-right: 0;
+  }
+
+  &:nth-child(3n) {
+	margin-right: 0;
+  }
+
+  &__img {
+  }
+  &__title {
+	font-size: 18px;
+  }
+}
+
+
+
+.search-section {
+
+  &__wrap {
+  }
+  &__title {
+	padding-top: 160px;
+  }
+  &__searchform {
+	padding-bottom: 160px;
+  }
+}

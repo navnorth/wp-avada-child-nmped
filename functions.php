@@ -81,6 +81,7 @@ function add_categories_taxonomies_to_pages() {
 if ( ! is_admin() ) {
     add_action( 'pre_get_posts' , 'category_tag_archives' );
 }
+
 function category_tag_archives( $wp_query ) {
     $my_post_types = array( 'post', 'page' );
     
@@ -91,4 +92,27 @@ function category_tag_archives( $wp_query ) {
     // add page to tag archive
     if ( $wp_query->get( 'tag' ) )
 	$wp_query->set( 'post_type' , $my_post_types );
+}
+
+add_image_size( 'homepage-tile-small', 400, 400, array( 'center', 'center' ) ); // Hard crop center
+add_image_size( 'homepage-tile-large', 800, 800, array( 'center', 'center' ) ); // Hard crop center - large
+
+function get_target_from_acf_link_field($link_field){
+	if($link_field){
+		return '_blank';
+	}else{
+		return '_self';
+	}
+}
+
+if( function_exists('acf_add_options_page') ) {
+
+	acf_add_options_page(array(
+		'page_title' 	=> 'Category Template Search',
+		'menu_title'	=> 'Category Search',
+		'menu_slug' 	=> 'category-search',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+
 }
