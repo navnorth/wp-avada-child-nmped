@@ -15,10 +15,24 @@ require_once( get_stylesheet_directory() . '/theme-functions/tinymce_button/shor
  **/
 require_once( get_stylesheet_directory() . '/theme-functions/custom_functions.php' );
 
+/**
+ * Include NMPED SubPages Widget
+ */
+include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widget/class-nmped-subpages-widget.php' );
+
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'avada-stylesheet' ) );
+    wp_enqueue_script( 'external-script', get_stylesheet_directory_uri() . '/assets/js/external.js', array( 'jquery', 'underscore' ) );
+    wp_enqueue_style( 'external-style', get_stylesheet_directory_uri() . '/assets/css/external.css', array() );
+
+    wp_enqueue_script( 'custom-child-avada', get_stylesheet_directory_uri() . '/assets/js/custom-child-avada.js', '','',true);
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
+
+function nmpedadmin_enqueue_styles() {
+    wp_enqueue_style( 'shortcode-styles', get_stylesheet_directory_uri() . '/theme-functions/tinymce_button/shortcode_button.css', array() );
+}
+add_action( 'admin_enqueue_scripts' , 'nmpedadmin_enqueue_styles' );
 
 function avada_lang_setup() {
 	$lang = get_stylesheet_directory() . '/languages';
@@ -84,14 +98,96 @@ if ( ! is_admin() ) {
 
 function category_tag_archives( $wp_query ) {
     $my_post_types = array( 'post', 'page' );
-    
+
     // add page to category archive
     if ( $wp_query->get( 'category_name' ) || $wp_query->get( 'cat' ) )
 	$wp_query->set( 'post_type' , $my_post_types );
-    
+
     // add page to tag archive
     if ( $wp_query->get( 'tag' ) )
 	$wp_query->set( 'post_type' , $my_post_types );
 }
 
 include 'functions-custom.php';
+
+//Sidebar Display : to add css if sidebar contains image and align image just below main menu as mockup
+function add_css_for_featured_image_in_sidebar(){
+    global $post;
+
+    if(isset($post->ID)) {
+
+        $templateName =get_post_meta( $post->ID, '_wp_page_template', true );
+
+        if("side-navigation.php" == strtolower($templateName)){
+
+            $parentPageId = wp_get_post_parent_id($post->ID);
+
+            if(has_post_thumbnail($post) || ( isset($parentPageId) && has_post_thumbnail($parentPageId) ) ){ ?>
+                <style>
+                    .fusion-page-title-bar{
+                        width:75%;
+                    }
+                    #sidebar{
+                        margin-top: -120px;
+                    }
+                    #main .sidebar{
+                        padding: 0 !important;
+                    }
+                    /*side nav display fixes*/
+                    .fusion-content-widget-area .widget {
+                        padding: 9px 15px !important;
+                    }
+                </style>
+
+            <?php }
+        }
+    }
+ }
+add_action('wp_footer','add_css_for_featured_image_in_sidebar');
+
+// Load Custom Widget
+add_action( 'widgets_init' , 'load_nmped_widget' );
+function load_nmped_widget() {
+    register_widget('NMPED_Subpages_Widget');
+}
+
+//replace footer widget titles h4(heading tag) to p
+add_filter( 'dynamic_sidebar_params', 'custom_footer_widget_titles', 20 );
+function custom_footer_widget_titles( array $params ) {
+
+    $widget = &$params[0];
+
+    if (preg_match('/avada-footer-widget/',$widget["id"])) {
+
+        $footer_heading_fontsize = '';
+        $footer_heading_lineheight = '';
+
+        $fusion_options = get_option('fusion_options');
+
+        if (isset($fusion_options['footer_headings_typography']) && is_array($fusion_options['footer_headings_typography']) && !empty($fusion_options['footer_headings_typography'])) {
+
+            $arrFooter_headings_typography = $fusion_options['footer_headings_typography'];
+
+            if (isset($arrFooter_headings_typography['font-size']) && !empty($arrFooter_headings_typography['font-size'])) {
+
+                $footer_heading_fontsize = filter_var($arrFooter_headings_typography['font-size'],
+                    FILTER_SANITIZE_NUMBER_INT);
+            }
+
+            if (isset($arrFooter_headings_typography['line-height']) && !empty($arrFooter_headings_typography['line-height'])) {
+
+                $footer_heading_lineheight = $arrFooter_headings_typography['line-height'];
+            }
+        }
+
+        $fontsizestyle = (false == empty($footer_heading_fontsize)) ? 'data-fontsize="' . $footer_heading_fontsize . '"' : '';
+        $fontlineheightstyle = (false == empty($footer_heading_fontsize)) ? 'data-lineheight="' . $footer_heading_lineheight . '"' : '';
+
+        // $params will ordinarily be an array of 2 elements, we're only interested in the first element
+        $widget['before_title'] = '<p class="widget-title" ' . $fontsizestyle . ' ' . $fontlineheightstyle . '>';
+        $widget['after_title'] = '</p>';
+
+        return $params;
+    }
+    return $params;
+}

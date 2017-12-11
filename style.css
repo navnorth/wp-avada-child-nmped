@@ -32,25 +32,363 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     padding: 0 !important;
 }
 
+/*change current page link color*/
+#wrapper .fusion-footer-widget-area .current-menu-item a{
+    color: #fff !important;
+}
+
 /*All heading text transform to uppercase - home page*/
 
     /*Main Menu Texts*/
     .fusion-main-menu ul li a span{
         text-transform: uppercase !important;
+        text-decoration: none !important;
     }
 
     /*Footer Widget heading text transform to uppercase*/
     .fusion-footer-widget-column .widget-title{
         text-transform: uppercase !important;
+        text-decoration: none !important;
     }
 
     /*Top menu bar text trasnform to uppercase*/
     .fusion-secondary-menu ul li a span.menu-text{
         text-transform: uppercase !important;
+        text-decoration: none !important;
     }
 
+
+    /*Page title bar heading*/
+    .fusion-page-title-captions .entry-title{
+        text-transform: uppercase !important;
+    }
+
+    .fusion-column-content h2{
+        text-transform: uppercase !important;
+    }
+
+    .post-content h1, h2, h3, h4, h5, h6{
+        text-transform: uppercase !important;
+    }
 
 /*Underline text links in page and post contents*/
-    .post-content a{
+    .fusion-post-wrapper .fusion-post-content-wrapper .entry-title a{
+        text-decoration: none !important;
+    }
+
+    /*#wrapper #content a{*/
+        /*text-decoration: underline;*/
+    /*}*/
+
+    .post-content a:hover{
+        color: #e64900 !important;
         text-decoration: underline !important;
     }
+
+    .fusion-posts-container a:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
+    /*underline side nav current page link on hover*/
+    .side-nav li a:hover{
+        text-decoration: underline !important;
+        color: #e64900;
+    }
+
+/* Skip Content Style */
+    #skipcontent a {
+        padding:5px 10px;
+        position: absolute;
+        top:-40px;
+        left:0px;
+        color:white;
+        border-right:1px solid white;
+        border-bottom:1px solid white;
+        background:transparent;
+        -webkit-transition: top 1s ease-out, background 1s linear;
+        transition: top 1s ease-out, background 1s linear;
+        z-index: 99999;
+        font-size:0.9em;
+    }
+
+    #skipcontent a:focus {
+        position:absolute;
+        left:0px;
+        top:0px;
+        background:#294179;
+        outline:0;
+        -webkit-transition: top .1s ease-in, background .5s linear;
+        transition: top .1s ease-in, background .5s linear;
+    }
+
+/*wonderplugin pdf css styling*/
+
+    /*for width 100%*/
+    .wonderplugin-pdf-iframe{
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /*for height by default height of the window itself*/
+    .wonderplugin-pdf-iframe{
+        max-height: 100%;
+        height: 100vh;
+    }
+
+/*Styling for video container*/
+    .video-container {
+        position:relative;
+        padding-bottom:56.25%;
+        padding-top:30px;
+        height:0;
+        overflow:hidden;
+    }
+
+    .video-container iframe {
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+    }
+
+    .fusion-main-menu > ul > li > a, .side-nav li a{
+        font-size: 18px !important;
+    }
+
+    /*on hover underline links in footer*/
+    .fusion-widget-area .fusion-footer-widget-column li a:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
+    /*when tabbed via keyboard focus link in header menu*/
+    .fusion-body .fusion-main-menu li a:focus{
+        color: #e64900 !important;
+        outline: none !important;
+    }
+    .fusion-secondary-menu li a:focus{
+        color: #e64900 !important;
+        outline: none !important;
+    }
+
+    /*when tabbed via keyboard focus link for footer menu*/
+    .fusion-widget-area .fusion-footer-widget-column li a:focus{
+        color: #e64900 !important;
+        outline: none !important;
+        text-decoration: underline;
+    }
+
+    /*Set hover for submit button*/
+    .wpcf7 .wpcf7-form .wpcf7-submit:hover{
+        background: #e64900 !important;
+    }
+    /*set focus for submit button*/
+    .wpcf7 .wpcf7-form .wpcf7-submit:focus{
+        background: #e64900 !important;
+    }
+
+    /*update home page buttons to have no underline*/
+    .fusion-button-wrapper .fusion-button{
+        text-decoration: none !important;
+    }
+    /*update home page buttons to have underline on hover*/
+    .fusion-button-wrapper .fusion-button:hover{
+        text-decoration: underline !important;
+    }
+
+    /*remove underline for breadcrumbs a link*/
+    #wrapper .fusion-page-title-bar .fusion-breadcrumbs a{
+        text-decoration: none !important;
+    }
+
+    /*breadcrumbs links hover styling*/
+    #wrapper .fusion-page-title-bar .fusion-breadcrumbs a:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
+    /*breadcrumbs links focus styling*/
+    #wrapper .fusion-page-title-bar .fusion-breadcrumbs a:focus{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+    #wrapper .fusion-page-title-bar .fusion-breadcrumbs span{
+        display: inline;
+    }
+
+    /*Nav Menus on hover underline*/
+    .fusion-body .fusion-main-menu .current_page_item > a{
+        color: #e64900 !important;
+    }
+    .fusion-body .fusion-main-menu a:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+    /*top navigation hover styles - blue bar*/
+    .fusion-secondary-menu li a:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
+    /*visible focus for links in page - */
+    #wrapper #content a:focus{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
+    .fusion-image-wrapper:focus .fusion-rollover{
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+        -webkit-transform-style: preserve-3d;
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+        -webkit-transform-style: preserve-3d;
+        background-image: linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(160,206,78,0.8)), color-stop(1, #a0ce4e));
+        background-image: filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#a0ce4e, endColorstr=#a0ce4e), progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+        background-image: -webkit-linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
+        background-image: -moz-linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
+        background-image: -ms-linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
+        background-image: -o-linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
+
+    }
+
+    /*increase p links font weight to 600*/
+    #wrapper .post-content a{
+        font-weight: 600;
+    }
+    .fusion-post-wrapper a.fusion-read-more{
+        font-weight: 600;
+    }
+    #posts-container .fusion-meta-info a{
+        font-weight: 600;
+    }
+
+    /*Default Sidebar Menu Styling */
+    .fusion-content-widget-area .widget{
+        padding: 0px 0px !important;
+    }
+
+    .sidebar .widget .heading .widget-title, .sidebar .widget .widget-title{
+        padding: 0 !important;
+    }
+
+    .side-nav-widget .page_item{
+        padding: 0 0 0 15px !important;
+    }
+
+    #wrapper .side-nav-widget li ul.children{
+        padding-left: 15px !important;
+        margin-left: 0;
+    }
+
+    /*main menu submenu color change to while on hover*/
+    .fusion-main-menu .sub-menu li a:hover{
+        color: #fff !important;
+    }
+    .fusion-main-menu .sub-menu li a{
+        color: #fff !important;
+    }
+    .fusion-main-menu .sub-menu .current_page_item > a{
+        color: #fff !important;
+    }
+
+
+/*CSS for mobile*/
+
+    /*color for menu icon in mobile*/
+    .fusion-mobile-menu-icons a:before{
+        color: #003162 !important;
+    }
+
+    /*menu icon bar fix*/
+    .fusion-icon-bars{
+        margin-top: 20px;
+    }
+
+    /*Mobile menu expanded fixes*/
+    .fusion-mobile-menu .fusion-mobile-nav-item a {
+        background: #060031 !important;
+        color: #fff;
+        border: none !important;
+        font-weight: 600;
+    }
+    .fusion-mobile-menu .fusion-mobile-current-nav-item a{
+        background: #003162 !important;
+    }
+
+    .fusion-secondary-menu li a{
+        font-weight: 600;
+    }
+
+/*Media queries for Tablet & Mobile Mockups*/
+
+    /*Media queries for 320px width mobile screen*/
+    @media(max-width:320px) and (min-width:320px) {
+        /*blue bar top navigation hide on mobile screen */
+        .fusion-header-wrapper .fusion-secondary-menu{
+            display: none;
+        }
+
+    }
+
+    /*Media queries for 360px width mobile screen*/
+    @media(max-width:360px) and (min-width:360px) {
+        .fusion-header-wrapper .fusion-secondary-menu{
+            display: none;
+        }
+
+    }
+
+    /*Media queries for 375px width mobile screen*/
+    @media(max-width:375px) and (min-width:375px) {
+        .fusion-header-wrapper .fusion-secondary-menu{
+            display: none;
+        }
+
+    }
+
+    /*Media queries for 412px width mobile screen*/
+    @media(max-width:412px) and (min-width:412px) {
+        .fusion-header-wrapper .fusion-secondary-menu{
+            display: none;
+        }
+    }
+
+    /*Media queries for 414px width mobile screen*/
+    @media(max-width:414px) and (min-width:414px) {
+        .fusion-header-wrapper .fusion-secondary-menu{
+            display: none;
+        }
+    }
+
+    /*Media queries for 480px width mobile screen*/
+    @media(max-width:480px) and (min-width:480px) {
+        .fusion-header-wrapper .fusion-secondary-menu{
+            display: none;
+        }
+    }
+
+    /*Media queries for 568px width mobile screen*/
+    @media(max-width:568px) and (min-width:568px) {
+        .fusion-header-wrapper .fusion-secondary-menu{
+            display: none;
+        }
+    }
+
+/* Side Navigation Widget */
+#wrapper .side-nav-widget li a { display:block; }
+#wrapper .side-nav-widget li.current_page_item>a {
+    padding-left: 23px;
+    border-left: 3px solid #a0ce4e;
+}
+#wrapper .side-nav-widget li a {
+    padding-left: 25px;
+}
+#wrapper .side-nav-widget li ul.children { display:block; padding-left:25px; }

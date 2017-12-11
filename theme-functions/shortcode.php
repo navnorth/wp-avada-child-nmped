@@ -81,6 +81,188 @@ $atts = shortcode_atts( array(
     );
 }
 
+/**
+ * Spacer
+ * Shortcode Example : [spacer height='20']
+ */
+ add_shortcode("spacer", "spacer_func");
+ function spacer_func($attribute) {
+
+	if (is_array($attribute)) extract($attribute);
+
+	if (isset($height) && !empty($height)) {
+		$height = " height:".((strpos($height,"px")>0)?$height:$height."px");
+	} else {
+		$height = " height:12px;";
+	}
+
+	$return = '<div class="clearfix" style="clear:both;'. $height .'"></div>';
+
+	return $return;
+
+ }
+
+/**
+ * Accordion Group & Accordion
+ * Shortcode Example : [nmped_accordion_group][nmped_accordion title="" accordion_series="one" expanded=""] your content goes here [/nmped_accordion][/nmped_accordion_group]
+ */
+add_shortcode('nmped_accordion_group', 'nmped_accordion_group_func');
+function nmped_accordion_group_func($atts, $content = null)
+{
+	$accordion_id = "accordion";
+	
+	if (!empty($atts)) {
+		extract($atts);
+		if ($id)
+			$accordion_id = $id;
+	}
+	
+	$return = '';
+	$return .= '<div class="panel-group" id="'.$accordion_id.'" role="tablist" aria-multiselectable="true">';
+			$content = str_replace( "<p>","", $content );
+			$content = str_replace( "</p>","", $content );
+			$return .= do_shortcode($content);
+	$return .= '</div>';
+	return $return;
+}
+
+ 
+add_shortcode('nmped_accordion', 'nmped_accordion_func');
+function nmped_accordion_func($atts, $content = null)
+{
+$group_id = "accordion";
+
+  extract($atts);
+  $return = '';
+
+  if(isset($accordion_series) && !empty($accordion_series))
+  {
+		$return .= '<div class="panel panel-default">';
+
+		$return .= '<div class="panel-heading" role="tab" id="heading'. $group_id. $accordion_series .'">';
+		  $return .= '<h5 class="panel-title">';
+
+			  if(isset($expanded) && !empty($expanded) && strtolower($expanded) == "true")
+			  {
+				  $class = "";
+				  $uptcls = "in";
+			  }
+			  else
+			  {
+				  $class = "collapsed";
+				  $uptcls = '';
+			  }
+
+			  $return .= '<a class="'.$class.'" data-toggle="collapse" data-parent="#'.$group_id.'" href="#collapse'. $group_id. $accordion_series .'" aria-expanded="false" aria-controls="collapse'. $accordion_series .'">';
+			  $return .= $title;
+			$return .= '</a>';
+		 $return .= ' </h5>';
+		$return .= '</div>';
+
+		$return .= '<div id="collapse'. $group_id. $accordion_series .'" class="panel-collapse collapse '.$uptcls.'" role="tabpanel" aria-labelledby="heading'. $accordion_series .'">';
+		  $return .= '<div class="panel-body">';
+			//$content = apply_filters('the_content', $content);
+			$return .= $content;
+		  $return .= '</div>';
+		$return .= '</div>';
+
+		$return .= '</div>';
+
+		return $return;
+  }
+}
+
+/**
+ * Button
+ * Shortcode Example : [btn button_color ='' text='' text_color='#ffffff']
+ */
+ add_shortcode("nmped_button", "nmped_button_func");
+ function nmped_button_func($attr, $content = null) {
+
+	if (is_array($attr)) extract($attr);
+
+	//Checks if content is provided otherwise display the text attribute as button text
+	$buttonText = (isset($text) && !empty($text)) ? $text : "Button";
+	if (!empty($content)) {
+		$buttonText = $content;
+	}
+
+	$btnStyle = '';
+
+	//Button Color
+	if (isset($button_color) && !empty($button_color)) {
+		if (strpos($button_color,"#")===false)
+			$button_color = "#".$button_color;
+		$btnStyle .= "background-color:".$button_color.";";
+	}
+
+	//Button Text color
+	if (isset($text_color) && !empty($text_color)) {
+		if (strpos($text_color,"#")===false)
+			$text_color = "#".$text_color;
+		$btnStyle .= "color:".$text_color.";";
+	}
+
+	//Button Font Face
+	if (isset($font_face) && !empty($font_face)) {
+		$btnStyle .= "font-family:".$font_face.";";
+	}
+
+	//Button Font Size
+	if (isset($font_size) && !empty($font_size)) {
+		$btnStyle .= "font-size:".$font_size."px;";
+	}
+
+	//Button Font Weight
+	if (isset($font_weight) && !empty($font_weight)) {
+		$btnStyle .= "font-weight:".$font_weight.";";
+	}
+
+	//Button Code
+	$buttonStart = "<button class='btn custom-button' style='".$btnStyle."'>";
+	$buttonEnd = "</button>";
+
+	$return = $buttonStart.$buttonText.$buttonEnd;
+
+	if (isset($url) && !empty($url)) {
+		$urlStart = "<a href='".$url."'";
+		if (isset($new_window) && ($new_window=="yes")) {
+			$urlStart .= " onmousedown='ga(\"send\", \"event\",\"Outbound\",window.location.pathname,\"".$url."\",0);' target='_blank'";
+		}
+		$urlStart .= ">";
+		$urlEnd = "</a>";
+		$return = $urlStart.$return.$urlEnd;
+	}
+
+	return $return;
+ }
+ 
+ /**
+ * SubPages
+ * Shortcode Example : [nmped_subpages title='' id='']
+ */
+ add_shortcode("nmped_subpages", "nmped_subpages_func");
+ function nmped_subpages_func($attr, $content = null) {
+
+      if (is_array($attr)) extract($attr);
+
+      $html = "";
+      
+      if (! empty($title)){
+       $html.= '<h4 class="widget-title">' . $title . '</h4>';
+      }
+      
+      if (! empty($id)){
+	 $html .= nmped_display_subpages($id);
+      } else {
+	 $queried_object = get_queried_object();
+	 if ($queried_object) {
+            $html .= nmped_display_subpages($queried_object->ID);
+	 }
+      }
+      return $html;
+ }
+
 /*--------------------------------------------------------------------------------------
 *
 * Parse data-attributes for shortcodes
