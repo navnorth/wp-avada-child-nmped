@@ -258,6 +258,16 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
 
     }
 
+    /*increase p links font weight to 600*/
+    #wrapper .post-content a{
+        font-weight: 600;
+    }
+    .fusion-post-wrapper a.fusion-read-more{
+        font-weight: 600;
+    }
+    #posts-container .fusion-meta-info a{
+        font-weight: 600;
+    }
 
 /*CSS for mobile*/
 
