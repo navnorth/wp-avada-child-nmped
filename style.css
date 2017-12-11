@@ -76,8 +76,18 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: none !important;
     }
 
-    #wrapper #content a{
-        text-decoration: underline;
+    /*#wrapper #content a{*/
+        /*text-decoration: underline;*/
+    /*}*/
+
+    .post-content a:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
+    .fusion-posts-container a:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
     }
 
 /* Skip Content Style */
@@ -182,18 +192,23 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: underline !important;
     }
 
+    /*remove underline for breadcrumbs a link*/
+    #wrapper .fusion-page-title-bar .fusion-breadcrumbs a{
+        text-decoration: none !important;
+    }
+
     /*breadcrumbs links hover styling*/
-    .fusion-breadcrumbs a:hover{
+    #wrapper .fusion-page-title-bar .fusion-breadcrumbs a:hover{
         color: #e64900 !important;
         text-decoration: underline !important;
     }
 
     /*breadcrumbs links focus styling*/
-    .fusion-breadcrumbs a:focus{
+    #wrapper .fusion-page-title-bar .fusion-breadcrumbs a:focus{
         color: #e64900 !important;
         text-decoration: underline !important;
     }
-    .fusion-breadcrumbs span{
+    #wrapper .fusion-page-title-bar .fusion-breadcrumbs span{
         display: inline;
     }
 
