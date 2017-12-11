@@ -287,6 +287,17 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         margin-left: 0;
     }
 
+    /*main menu submenu color change to while on hover*/
+    .fusion-main-menu .sub-menu li a:hover{
+        color: #fff !important;
+    }
+    .fusion-main-menu .sub-menu li a{
+        color: #fff !important;
+    }
+    .fusion-main-menu .sub-menu .current_page_item > a{
+        color: #fff !important;
+    }
+
 
 /*CSS for mobile*/
 
