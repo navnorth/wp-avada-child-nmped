@@ -32,7 +32,7 @@ function nmped_media_buttons_context($context)
 	return $context . $out;
 }
 
-add_action('admin_print_footer_scripts', 'nmped_add_quicktags');
+add_action('admin_print_footer_scripts', 'nmped_add_quicktags', 100);
 function nmped_add_quicktags()
 {
 	?>
