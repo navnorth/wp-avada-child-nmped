@@ -125,6 +125,10 @@ function add_css_for_featured_image_in_sidebar(){
                     #main .sidebar{
                         padding: 0 !important;
                     }
+                    /*side nav display fixes*/
+                    .fusion-content-widget-area .widget {
+                        padding: 9px 15px !important;
+                    }
                 </style>
 
             <?php }

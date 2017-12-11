@@ -76,8 +76,24 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: none !important;
     }
 
-    #wrapper #content a{
-        text-decoration: underline;
+    /*#wrapper #content a{*/
+        /*text-decoration: underline;*/
+    /*}*/
+
+    .post-content a:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
+    .fusion-posts-container a:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
+    /*underline side nav current page link on hover*/
+    .side-nav li a:hover{
+        text-decoration: underline !important;
+        color: #e64900;
     }
 
 /* Skip Content Style */
@@ -168,7 +184,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .wpcf7 .wpcf7-form .wpcf7-submit:hover{
         background: #e64900 !important;
     }
-    /*set */
+    /*set focus for submit button*/
     .wpcf7 .wpcf7-form .wpcf7-submit:focus{
         background: #e64900 !important;
     }
@@ -182,18 +198,23 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: underline !important;
     }
 
+    /*remove underline for breadcrumbs a link*/
+    #wrapper .fusion-page-title-bar .fusion-breadcrumbs a{
+        text-decoration: none !important;
+    }
+
     /*breadcrumbs links hover styling*/
-    .fusion-breadcrumbs a:hover{
+    #wrapper .fusion-page-title-bar .fusion-breadcrumbs a:hover{
         color: #e64900 !important;
         text-decoration: underline !important;
     }
 
     /*breadcrumbs links focus styling*/
-    .fusion-breadcrumbs a:focus{
+    #wrapper .fusion-page-title-bar .fusion-breadcrumbs a:focus{
         color: #e64900 !important;
         text-decoration: underline !important;
     }
-    .fusion-breadcrumbs span{
+    #wrapper .fusion-page-title-bar .fusion-breadcrumbs span{
         display: inline;
     }
 
@@ -236,6 +257,46 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         background-image: -ms-linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
         background-image: -o-linear-gradient(top, rgba(160,206,78,0.8) 0%, #a0ce4e 100%);
 
+    }
+
+    /*increase p links font weight to 600*/
+    #wrapper .post-content a{
+        font-weight: 600;
+    }
+    .fusion-post-wrapper a.fusion-read-more{
+        font-weight: 600;
+    }
+    #posts-container .fusion-meta-info a{
+        font-weight: 600;
+    }
+
+    /*Default Sidebar Menu Styling */
+    .fusion-content-widget-area .widget{
+        padding: 0px 0px !important;
+    }
+
+    .sidebar .widget .heading .widget-title, .sidebar .widget .widget-title{
+        padding: 0 !important;
+    }
+
+    .side-nav-widget .page_item{
+        padding: 0 0 0 15px !important;
+    }
+
+    #wrapper .side-nav-widget li ul.children{
+        padding-left: 15px !important;
+        margin-left: 0;
+    }
+
+    /*main menu submenu color change to while on hover*/
+    .fusion-main-menu .sub-menu li a:hover{
+        color: #fff !important;
+    }
+    .fusion-main-menu .sub-menu li a{
+        color: #fff !important;
+    }
+    .fusion-main-menu .sub-menu .current_page_item > a{
+        color: #fff !important;
     }
 
 
