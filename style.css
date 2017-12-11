@@ -93,6 +93,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     /*underline side nav current page link on hover*/
     .side-nav li a:hover{
         text-decoration: underline !important;
+        color: #e64900;
     }
 
 /* Skip Content Style */
