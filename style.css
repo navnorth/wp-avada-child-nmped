@@ -183,7 +183,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .wpcf7 .wpcf7-form .wpcf7-submit:hover{
         background: #e64900 !important;
     }
-    /*set */
+    /*set focus for submit button*/
     .wpcf7 .wpcf7-form .wpcf7-submit:focus{
         background: #e64900 !important;
     }
@@ -268,6 +268,25 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     #posts-container .fusion-meta-info a{
         font-weight: 600;
     }
+
+    /*Default Sidebar Menu Styling */
+    .fusion-content-widget-area .widget{
+        padding: 0px 0px !important;
+    }
+
+    .sidebar .widget .heading .widget-title, .sidebar .widget .widget-title{
+        padding: 0 !important;
+    }
+
+    .side-nav-widget .page_item{
+        padding: 0 0 0 15px !important;
+    }
+
+    #wrapper .side-nav-widget li ul.children{
+        padding-left: 15px !important;
+        margin-left: 0;
+    }
+
 
 /*CSS for mobile*/
 
