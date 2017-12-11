@@ -90,6 +90,11 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: underline !important;
     }
 
+    /*underline side nav current page link on hover*/
+    .side-nav li a:hover{
+        text-decoration: underline !important;
+    }
+
 /* Skip Content Style */
     #skipcontent a {
         padding:5px 10px;
