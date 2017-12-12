@@ -192,15 +192,15 @@ function custom_footer_widget_titles( array $params ) {
 // Replace MyVRSpot URL to embed
 add_filter( 'the_content' , 'replace_myvrspot_to_embed' );
 function replace_myvrspot_to_embed($content) {
-    $pattern = '@(http|https)://(live\.)?myvrspot[^\s]*@i';
+    $pattern = '@(<p.+|\n|^)(http|https)://(live\.)?myvrspot[^\s]*(?=\n|$)@i';
     
     $matches = array();
     
     preg_match_all($pattern, $content, $matches);
     
     foreach ($matches[0] as $match) {
-	$match = strip_tags($match);
-	$embed_code = '<div class="video-container"><iframe src="' . $match . '" frameborder="0" scrolling="no" allowfullscreen mozallowfullscreen webkitallowfullscreen></iframe></div>';
+	$match_url = strip_tags($match);
+	$embed_code = '<div class="video-container"><iframe src="' . $match_url . '" frameborder="0" scrolling="no" allowfullscreen mozallowfullscreen webkitallowfullscreen></iframe></div>';
 	$content = str_replace($match, $embed_code, $content);
         
     }
