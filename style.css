@@ -392,3 +392,4 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     padding-left: 25px;
 }
 #wrapper .side-nav-widget li ul.children { display:block; padding-left:25px; }
+.sidebar li a:hover, .sidebar li a:focus { color: #e64900 !important; text-decoration: underline !important; }
