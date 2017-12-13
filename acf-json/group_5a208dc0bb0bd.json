@@ -1,0 +1,135 @@
+{
+    "key": "group_5a208dc0bb0bd",
+    "title": "Link",
+    "fields": [
+        {
+            "key": "field_5a208ded9038f",
+            "label": "Is Link External?",
+            "name": "is_link_external",
+            "type": "true_false",
+            "instructions": "Select if the URL is external to this Wordpress Website",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "External Link",
+            "ui_off_text": "Internal Link"
+        },
+        {
+            "key": "field_5a208e1d90390",
+            "label": "External Link",
+            "name": "external_link",
+            "type": "text",
+            "instructions": "The absolute link to another webserver (e.g. http:\/\/www.ped.state.nm.us\/), or relative link (e.g. \/case-studies)",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5a208ded9038f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5a208e2a90391",
+            "label": "Internal Link",
+            "name": "internal_link",
+            "type": "page_link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5a208ded9038f",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [],
+            "taxonomy": [],
+            "allow_null": 0,
+            "allow_archives": 1,
+            "multiple": 0
+        },
+        {
+            "key": "field_5a2736d4c223b",
+            "label": "Open Link In New Tab?",
+            "name": "open_link_in_new_tab",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "This Tab",
+            "ui_off_text": "New Tab"
+        },
+        {
+            "key": "field_5a29c20264023",
+            "label": "Link Title Text",
+            "name": "link_title",
+            "type": "text",
+            "instructions": "The title tag provides context for users as to the destination of the link.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1512936623
+}

@@ -95,6 +95,7 @@ function add_categories_taxonomies_to_pages() {
 if ( ! is_admin() ) {
     add_action( 'pre_get_posts' , 'category_tag_archives' );
 }
+
 function category_tag_archives( $wp_query ) {
     $my_post_types = array( 'post', 'page' );
 
@@ -106,6 +107,8 @@ function category_tag_archives( $wp_query ) {
     if ( $wp_query->get( 'tag' ) )
 	$wp_query->set( 'post_type' , $my_post_types );
 }
+
+include 'functions-custom.php';
 
 //Sidebar Display : to add css if sidebar contains image and align image just below main menu as mockup
 function add_css_for_featured_image_in_sidebar(){

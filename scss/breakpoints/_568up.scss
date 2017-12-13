@@ -1,0 +1,100 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: 481px and Up Stylesheet
+
+This stylesheet is loaded for larger devices. It's set to
+481px because at 480px it would load on a landscaped iPhone.
+This isn't ideal because then you would be loading all those
+extra styles on that same mobile connection.
+
+A word of warning. This size COULD be a larger mobile device,
+so you still want to keep it pretty light and simply expand
+upon your base.scss styles.
+
+******************************************************************/
+
+/*
+IMPORTANT NOTE ABOUT SASS 3.3 & UP
+You can't use @extend within media queries
+anymore, so just be aware that if you drop
+them in here, they won't work.
+*/
+
+.homepage-rows {
+  overflow: hidden;
+  display: block;
+  &__row {
+	@include display-flex;
+	@include flex-wrap(wrap);
+	&--reverse {
+	  @include flex-direction(row-reverse);
+	}
+  }
+  &__small-row {
+	@include display-flex;
+	width: 100%;
+  }
+}
+
+.callout {
+  overflow: hidden;
+  display: block;
+
+  &--small {
+	width: 50%;
+	float: left;
+  }
+
+  &--large {
+	width: 100%;
+  }
+
+  &--bg-image {
+  }
+
+  &__wrap {
+	&--title {
+	}
+	&--image {
+	}
+  }
+
+  &__title {
+  }
+  &__text {
+  }
+  &__button {
+
+  }
+}
+
+.categories {
+  overflow: hidden;
+  display: block;
+  clear: both;
+  &__category {
+	overflow: hidden;
+	display: block;
+  }
+}
+
+.category {
+  width: 50%;
+  float: left;
+
+  &:nth-child(even) {
+	padding-left: 10px;
+  }
+
+  &:nth-child(odd) {
+	padding-right: 10px;
+  }
+
+  &__img {
+  }
+  &__title {
+	font-size: 18px;
+  }
+}
