@@ -1,0 +1,56 @@
+{
+    "key": "group_5a208c2fe3595",
+    "title": "Background Color Dropdown",
+    "fields": [
+        {
+            "key": "field_5a208c5c60dbd",
+            "label": "Background Color",
+            "name": "background_color",
+            "type": "select",
+            "instructions": "Select the background color of the block",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "blue": "Blue",
+                "orange": "Orange",
+                "yellow": "Yellow",
+                "green": "Green"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "!=",
+                "value": "post"
+            },
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1512936629
+}
