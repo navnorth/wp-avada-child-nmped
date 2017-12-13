@@ -81,7 +81,7 @@ wp_enqueue_style('homepage-category-styles', get_stylesheet_directory_uri() . '/
 		<?php endwhile; ?>
 		<?php wp_reset_postdata(); ?>
 	</section>
-<?php do_action('avada_after_content'); ?>
+<?php //do_action('avada_after_content'); ?>
 <?php get_footer('home');
 
 

@@ -91,6 +91,20 @@ function add_categories_taxonomies_to_pages() {
     register_taxonomy_for_object_type( 'category' , 'page' );
 }
 
+//Reorder Page Attributes Side Metabox
+add_action( 'admin_menu' , 'remove_page_attributes_metabox' );
+function remove_page_attributes_metabox() {
+    if ( is_admin() ) {
+	remove_meta_box( 'pageparentdiv', 'page', 'side' );
+    }
+}
+
+//Put back Page Attributes Metabox up above
+add_action( 'add_meta_boxes', 'add_page_attributes_metabox' );
+function add_page_attributes_metabox() {
+    add_meta_box( 'pageparentdiv' , __('Page Attributes') , 'page_attributes_meta_box' , 'page' , 'side', 'high' );
+}
+
 // Include pages to category and tag archives
 if ( ! is_admin() ) {
     add_action( 'pre_get_posts' , 'category_tag_archives' );

@@ -201,6 +201,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     /*remove underline for breadcrumbs a link*/
     #wrapper .fusion-page-title-bar .fusion-breadcrumbs a{
         text-decoration: none !important;
+        font-weight: 600;
     }
 
     /*breadcrumbs links hover styling*/
@@ -297,6 +298,30 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     }
     .fusion-main-menu .sub-menu .current_page_item > a{
         color: #fff !important;
+    }
+
+    /*breadcrumbs styling for next line */
+    .fusion-page-title-bar{
+        height: 130px;
+    }
+    .fusion-page-title-captions{
+        position: absolute;
+        width: 100%;
+        top: 20px;
+    }
+    .fusion-page-title-secondary{
+        position: relative;
+        width: 100%;
+        margin-top: 78px;
+        flex-shrink: unset;
+    }
+    .fusion-page-title-bar{
+        margin-bottom: 20px;
+    }
+
+    /*focus for browse button*/
+    .wpcf7-file:focus{
+        outline-color: #F18458;
     }
 
 
