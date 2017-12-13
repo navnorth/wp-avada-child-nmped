@@ -201,6 +201,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     /*remove underline for breadcrumbs a link*/
     #wrapper .fusion-page-title-bar .fusion-breadcrumbs a{
         text-decoration: none !important;
+        font-weight: 600;
     }
 
     /*breadcrumbs links hover styling*/
