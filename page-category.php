@@ -50,16 +50,21 @@ wp_enqueue_style('homepage-category-styles', get_stylesheet_directory_uri() . '/
 								?>
 								<div class="categories__category category">
 									<div class="category__img">
-										<?= wp_get_attachment_image($category_image['ID'], 'portfolio-one'); ?>
-									</div>
-									<h4 class="category__title">
 										<a title="<?= $category_link_title ?>"
 										   target="<?= get_target_from_acf_link_field($category_open_link_in_new_tab) ?>"
 										   class="category__link"
-										   href="">
+										   href="<?= $category_link ?>">
+											<?= wp_get_attachment_image($category_image['ID'], 'portfolio-one'); ?>
+										</a>
+									</div>
+									<h2 class="category__title">
+										<a title="<?= $category_link_title ?>"
+										   target="<?= get_target_from_acf_link_field($category_open_link_in_new_tab) ?>"
+										   class="category__link"
+										   href="<?= $category_link ?>">
 											<?= $category_title ?>
 										</a>
-									</h4>
+									</h2>
 								</div>
 							<?php endforeach; ?>
 						</div>
