@@ -319,6 +319,11 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         margin-bottom: 20px;
     }
 
+    /*focus for browse button*/
+    .wpcf7-file:focus{
+        outline-color: #F18458;
+    }
+
 
 /*CSS for mobile*/
 
