@@ -299,6 +299,22 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         color: #fff !important;
     }
 
+    /*breadcrumbs styling for next line */
+    .fusion-page-title-bar{
+        height: 130px !important;
+    }
+    .fusion-page-title-captions{
+        position: absolute;
+        width: 100%;
+        top: 25px;
+    }
+    .fusion-page-title-secondary{
+        position: relative;
+        width: 100%;
+        margin-top: 80px;
+        flex-shrink: unset;
+    }
+
 
 /*CSS for mobile*/
 
