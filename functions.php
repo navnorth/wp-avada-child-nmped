@@ -223,3 +223,8 @@ function replace_myvrspot_to_embed($content) {
     }
     return $content;
 }
+
+// Display Full-width search
+function show_full_search() {
+    get_template_part( 'templates/search' );
+}

@@ -407,14 +407,26 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         }
     }
 
-/* Side Navigation Widget */
-#wrapper .side-nav-widget li a { display:block; }
-#wrapper .side-nav-widget li.current_page_item>a {
-    padding-left: 23px;
-    border-left: 3px solid #a0ce4e;
-}
-#wrapper .side-nav-widget li a {
-    padding-left: 25px;
-}
-#wrapper .side-nav-widget li ul.children { display:block; padding-left:25px; }
-.sidebar li a:hover, .sidebar li a:focus { color: #e64900 !important; text-decoration: underline !important; }
+    /* Side Navigation Widget */
+    #wrapper .side-nav-widget li a { display:block; }
+    #wrapper .side-nav-widget li.current_page_item>a {
+        padding-left: 23px;
+        border-left: 3px solid #a0ce4e;
+    }
+    #wrapper .side-nav-widget li a {
+        padding-left: 25px;
+    }
+    #wrapper .side-nav-widget li ul.children { display:block; padding-left:25px; }
+    .sidebar li a:hover, .sidebar li a:focus { color: #e64900 !important; text-decoration: underline !important; }
+    .uppercase { text-transform:uppercase; }
+    .center { text-align:center; }
+    #nmped-full-search { background-size:cover !important; background-position:top left !important; padding:100px 50px; }
+    #nmped-search { max-width:50%; margin: 5% auto; }
+    #nmped-search h2 { color:#fff; font-size:36px; font-weight:bold; text-shadow: 0px 2px 12px rgba(0,0,0,1); }
+    #nmped-search .searchform .search-field input[type=text] { border:1px solid #000000 !important; }
+
+    @media screen and (max-width:480px) {
+        #nmped-full-search { padding:10% 5%; }
+        #nmped-search { width:100%; max-width:100%; }
+        #nmped-search h2 { font-size:20px; }
+    }
