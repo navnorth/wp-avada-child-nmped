@@ -324,6 +324,15 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         outline-color: #F18458;
     }
 
+    /*Page title bar padding left, right fixes*/
+    #content .fusion-page-title-bar{
+        padding-left:0 !important;
+        padding-right:0 !important;
+    }
+    body.has-sidebar #content{
+        width: 75% !important;
+    }
+
 
 /*CSS for mobile*/
 
