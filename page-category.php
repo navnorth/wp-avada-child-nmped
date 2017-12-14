@@ -11,6 +11,7 @@ if (!defined('ABSPATH')) {
 
 wp_enqueue_style('homepage-category-styles', get_stylesheet_directory_uri() . '/css/style.css', '1.0.1');
 
+add_action( 'avada_after_main_container' , 'show_full_search' );
 ?>
 
 <?php get_header('home'); ?>
@@ -86,7 +87,6 @@ wp_enqueue_style('homepage-category-styles', get_stylesheet_directory_uri() . '/
 		<?php endwhile; ?>
 		<?php wp_reset_postdata(); ?>
 	</section>
-<?php //do_action('avada_after_content'); ?>
 <?php get_footer('home');
 
 

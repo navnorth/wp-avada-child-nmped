@@ -14,6 +14,9 @@ add_action( 'avada_override_current_page_title_bar' , 'disable_page_title_bar_in
 function disable_page_title_bar_in_header($page_id) {
     return;
 }
+
+add_action( 'avada_after_main_container' , 'show_full_search' );
+
 ?>
 <?php get_header(); ?>
 <section id="content" <?php Avada()->layout->add_style( 'content_style' ); ?>>
