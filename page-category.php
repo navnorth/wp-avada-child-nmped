@@ -70,16 +70,6 @@ add_action( 'avada_after_main_container' , 'show_full_search' );
 							<?php endforeach; ?>
 						</div>
 
-						<?php $search_background = get_field('search_background', 'options'); ?>
-						<div class="category-page__search search-section background-filter"
-						     style="background-image:url(<?= $search_background['url'] ?>)">
-							<div class="search-section__wrap">
-								<h1 class="search-section__title"><?= get_field('search_title', 'options'); ?></h1>
-								<div class="search-section__searchform">
-									<?= get_search_form() ?>
-								</div>
-							</div>
-						</div>
 					<?php endif; ?>
 
 				</div>
