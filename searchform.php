@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="search-table">
 		<div class="search-field">
 			<label for="s" class="hidden">Search: </label>
-			<input type="text" value="" name="s" class="s" placeholder="<?php esc_html_e( 'Search ...', 'Avada' ); ?>" required aria-required="true" aria-label="<?php esc_html_e( 'Search ...', 'Avada' ); ?>"/>
+			<input type="text" value="" id="s" name="s" class="s" placeholder="<?php esc_html_e( 'Search ...', 'Avada' ); ?>" required aria-required="true" aria-label="<?php esc_html_e( 'Search ...', 'Avada' ); ?>"/>
 		</div>
 		<div class="search-button">
 			<input type="submit" class="searchsubmit" value="&#xf002;" aria-label="Search" />
