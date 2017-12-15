@@ -37,6 +37,8 @@ add_action( 'admin_enqueue_scripts' , 'nmpedadmin_enqueue_styles' );
 function avada_lang_setup() {
 	$lang = get_stylesheet_directory() . '/languages';
 	load_child_theme_textdomain( 'Avada', $lang );
+	// Remove Main Menu Search Icon
+	remove_filter( 'wp_nav_menu_items', 'avada_add_search_to_main_nav', 20 );
 }
 add_action( 'after_setup_theme', 'avada_lang_setup' );
 
@@ -193,3 +195,6 @@ function replace_myvrspot_to_embed($content) {
 function show_full_search() {
     get_template_part( 'templates/search' );
 }
+
+// Disable Search Menu on Main Nav and reinstantiate it on the child theme
+add_filter( 'wp_nav_menu_items' , 'nmped_add_search_to_main_nav', 20, 4 );
