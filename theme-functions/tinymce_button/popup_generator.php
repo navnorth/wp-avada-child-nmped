@@ -27,14 +27,6 @@ if($action == "show_popup")
                                     Spacer
                                 </div>
                             </div>
-                            <div class="nmped_sngltinyclm" onclick="nmped_clicked(this);" data-shortcode="embed_video">
-                                <div class="nmped_snglimgtiny">
-                                    <img src="'.get_stylesheet_directory_uri().'/theme-functions/tinymce_button/images/featured_video.png">
-                                </div>
-                                <div class="nmped_snglttltiny">
-                                    Embed Video
-                                </div>
-                            </div>
                             <div class="nmped_sngltinyclm" onclick="nmped_clicked(this);" data-shortcode="accordion">
                                 <div class="nmped_snglimgtiny">
                                     <img src="'.get_stylesheet_directory_uri().'/theme-functions/tinymce_button/images/accordion.png">
@@ -51,8 +43,6 @@ if($action == "show_popup")
                                     Button
                                 </div>
                             </div>
-                        </div>
-                        <div class="nmped_sngltinyrow">
                             <div class="nmped_sngltinyclm" onclick="nmped_clicked(this);" data-shortcode="subpages">
                                 <div class="nmped_snglimgtiny nmped_button">
                                     <i class="fa fa-file-text fa-4x" aria-hidden="true"></i>
@@ -61,6 +51,8 @@ if($action == "show_popup")
                                     SubPages
                                 </div>
                             </div>
+                        </div>
+                        <div class="nmped_sngltinyrow">
                             <div class="nmped_sngltinyclm" onclick="nmped_clicked(this);" data-shortcode="table">
                                 <div class="nmped_snglimgtiny nmped_button">
                                     <i class="fa fa-table fa-4x" aria-hidden="true"></i>
@@ -117,12 +109,9 @@ if($action == "show_popup")
                     case "spacer":
 					   var shortcode = "[spacer height=\'16\']";
 					   break;
-                    case "embed_video":
-                       var shortcode = "[fusion_youtube id=\'\' alignment=\'\' width=\'\' height=\'\' autoplay=\'false\' api_params=\'\' hide_on_mobile=\'large-visibility\' class=\'\'][/fusion_youtube]";
-                       break;
                     case "accordion":
-                       var shortcode = "[nmped_accordion_group id=\'accordion1\'][nmped_accordion title=\'Accordion Item 1\' accordion_series=\'one\' expanded=\'\' group_id=\'accordion1\'] your content goes here [/nmped_accordion][nmped_accordion title=\'Accordion Item 2\' accordion_series=\'two\' expanded=\'\' group_id=\'accordion1\'] your content goes here [/nmped_accordion][nmped_accordion title=\'Accordion Item 3\' accordion_series=\'three\' expanded=\'\' group_id=\'accordion\'] your content goes here [/nmped_accordion][/nmped_accordion_group]";
-                       break;
+                            var shortcode = "[nmped_accordion_group id=\'accordion1\'][nmped_accordion title=\'Accordion Item 1\' accordion_series=\'one\' expanded=\'\' group_id=\'accordion1\'] your content goes here [/nmped_accordion][nmped_accordion title=\'Accordion Item 2\' accordion_series=\'two\' expanded=\'\' group_id=\'accordion1\'] your content goes here [/nmped_accordion][nmped_accordion title=\'Accordion Item 3\' accordion_series=\'three\' expanded=\'\' group_id=\'accordion\'] your content goes here [/nmped_accordion][/nmped_accordion_group]";
+                            break;
                     case "button":
 					   var shortcode = "[nmped_button text=\'\' button_color=\'\' text_color=\'\' font_face=\'\' font_size=\'\' font_weight=\'\' url=\'\' new_window=\'yes/no\']";
 					   break;
