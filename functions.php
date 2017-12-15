@@ -124,41 +124,6 @@ function category_tag_archives( $wp_query ) {
 
 include 'functions-custom.php';
 
-//Sidebar Display : to add css if sidebar contains image and align image just below main menu as mockup
-function add_css_for_featured_image_in_sidebar(){
-    global $post;
-
-    if(isset($post->ID)) {
-
-        $templateName =get_post_meta( $post->ID, '_wp_page_template', true );
-
-        if("side-navigation.php" == strtolower($templateName)){
-
-            $parentPageId = wp_get_post_parent_id($post->ID);
-
-            if(has_post_thumbnail($post) || ( isset($parentPageId) && has_post_thumbnail($parentPageId) ) ){ ?>
-                <style>
-                    .fusion-page-title-bar{
-                        width:75%;
-                    }
-                    #sidebar{
-                        margin-top: -120px;
-                    }
-                    #main .sidebar{
-                        padding: 0 !important;
-                    }
-                    /*side nav display fixes*/
-                    .fusion-content-widget-area .widget {
-                        padding: 9px 15px !important;
-                    }
-                </style>
-
-            <?php }
-        }
-    }
- }
-add_action('wp_footer','add_css_for_featured_image_in_sidebar');
-
 // Load Custom Widget
 add_action( 'widgets_init' , 'load_nmped_widget' );
 function load_nmped_widget() {
@@ -210,16 +175,16 @@ function custom_footer_widget_titles( array $params ) {
 add_filter( 'the_content' , 'replace_myvrspot_to_embed' );
 function replace_myvrspot_to_embed($content) {
     $pattern = '@(<p.+|\n|^)(http|https)://(live\.)?myvrspot[^\s]*(?=\n|$)@i';
-    
+
     $matches = array();
-    
+
     preg_match_all($pattern, $content, $matches);
-    
+
     foreach ($matches[0] as $match) {
 	$match_url = strip_tags($match);
 	$embed_code = '<div class="video-container"><iframe src="' . $match_url . '" frameborder="0" scrolling="no" allowfullscreen mozallowfullscreen webkitallowfullscreen></iframe></div>';
 	$content = str_replace($match, $embed_code, $content);
-        
+
     }
     return $content;
 }

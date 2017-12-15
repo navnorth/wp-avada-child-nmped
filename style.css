@@ -168,6 +168,10 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         color: #e64900 !important;
         outline: none !important;
     }
+    .fusion-body .fusion-main-menu li.current_page_item.fusion-dropdown-submenu a:focus{
+        color: #fff !important;
+        outline: none !important;
+    }
     .fusion-secondary-menu li a:focus{
         color: #e64900 !important;
         outline: none !important;
@@ -272,8 +276,9 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     }
 
     /*Default Sidebar Menu Styling */
-    .fusion-content-widget-area .widget{
-        padding: 0px 0px !important;
+    .sidebar.fusion-content-widget-area .widget{
+        padding: 20px 20px 0 20px !important;
+        margin-bottom:20px !important;
     }
 
     .sidebar .widget .heading .widget-title, .sidebar .widget .widget-title{
@@ -302,21 +307,21 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
 
     /*breadcrumbs styling for next line */
     .fusion-page-title-bar{
-        height: 130px;
+        height: auto !important;
+        margin-bottom: 30px;
     }
-    .fusion-page-title-captions{
-        position: absolute;
+    .fusion-page-title-bar .fusion-page-title-row .fusion-page-title-wrapper{
+        display: block !important;
+    }
+    .fusion-page-title-bar .fusion-page-title-row .fusion-page-title-wrapper .fusion-page-title-captions{
         width: 100%;
-        top: 20px;
+        float: left;
     }
-    .fusion-page-title-secondary{
-        position: relative;
-        width: 100%;
-        margin-top: 78px;
-        flex-shrink: unset;
-    }
-    .fusion-page-title-bar{
-        margin-bottom: 20px;
+    .fusion-page-title-bar .fusion-page-title-row .fusion-page-title-wrapper .fusion-page-title-secondary{
+        width: 100%  !important;
+        float: right  !important;
+        clear: both  !important;
+        margin-top: 15px !important;
     }
 
     /*focus for browse button*/
@@ -324,6 +329,24 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         outline-color: #F18458;
     }
 
+    /*Page title bar padding left, right fixes*/
+    #content .fusion-page-title-bar{
+        padding-left:0 !important;
+        padding-right:0 !important;
+        padding-top: 30px;
+    }
+    body.has-sidebar #content{
+        width: 75% !important;
+    }
+    body.has-sidebar #main .sidebar{
+        padding: 0 !important;
+    }
+    #main{
+        padding-top: 0 !important;
+    }
+    .fusion-page-title-bar.fusion-page-title-bar-breadcrumbs.fusion-page-title-bar-left{
+        padding-top: 30px;
+    }
 
 /*CSS for mobile*/
 
