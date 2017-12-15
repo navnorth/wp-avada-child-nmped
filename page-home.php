@@ -78,10 +78,9 @@ wp_enqueue_style('homepage-category-styles', get_stylesheet_directory_uri() . '/
 												<div class="callout__wrap callout__wrap--text">
 													<h2 class="callout__title"><?= $callout_1_section_heading ?></h2>
 													<div class="callout__text"><?= $callout_1_section_text ?></div>
-													<a title="<?= $callout_1_link_title ?>"
-													   target="<?= get_target_from_acf_link_field($callout_1_is_link_external) ?>"
-													   href="<?= $callout_1_link ?>"
-													   class="callout__button"><?= $callout_1_button_text ?></a>
+
+													<?= do_shortcode( '[fusion_button link="' . $callout_1_link . '" title="' . $callout_1_link_title . '" target="' . get_target_from_acf_link_field($callout_1_is_link_external) . '"]' . $callout_1_button_text . '[/fusion_button]' ); ?>
+
 												</div>
 
 												<div class="callout__wrap callout__wrap--image">
@@ -96,10 +95,9 @@ wp_enqueue_style('homepage-category-styles', get_stylesheet_directory_uri() . '/
 												<div class="callout__wrap callout__wrap--text">
 													<h2 class="callout__title"><?= $callout_2_section_heading ?></h2>
 													<div class="callout__text"><?= $callout_2_section_text ?></div>
-													<a title="<?= $callout_2_link_title ?>"
-													   target="<?= get_target_from_acf_link_field($callout_2_is_link_external) ?>"
-													   href="<?= $callout_2_link ?>"
-													   class="callout__button"><?= $callout_2_button_text ?></a>
+
+													<?= do_shortcode( '[fusion_button link="' . $callout_2_link . '" title="' . $callout_2_link_title . '" target="' . get_target_from_acf_link_field($callout_2_is_link_external) . '"]' . $callout_2_button_text . '[/fusion_button]' ); ?>
+
 												</div>
 
 												<div class="callout__wrap callout__wrap--image">
@@ -116,10 +114,9 @@ wp_enqueue_style('homepage-category-styles', get_stylesheet_directory_uri() . '/
 											<div class="callout__wrap callout__wrap--text">
 												<h2 class="callout__title"><?= $large_callout_section_heading ?></h2>
 												<div class="callout__text"><?= $large_callout_section_text ?></div>
-												<a title="<?= $large_callout_link_title ?>"
-												   target="<?= get_target_from_acf_link_field($large_callout_is_link_external) ?>"
-												   href="<?= $large_callout_link ?>"
-												   class="callout__button"><?= $large_callout_button_text ?></a>
+
+												<?= do_shortcode( '[fusion_button link="' . $large_callout_link . '" title="' . $large_callout_link_title . '" target="' . get_target_from_acf_link_field($large_callout_is_link_external) . '"]' . $large_callout_button_text . '[/fusion_button]' ); ?>
+
 											</div>
 
 											<!--div class="callout__wrap callout__wrap--image">
