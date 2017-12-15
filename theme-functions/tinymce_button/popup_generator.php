@@ -110,7 +110,7 @@ if($action == "show_popup")
 					   var shortcode = "[spacer height=\'16\']";
 					   break;
                     case "accordion":
-                            var shortcode = "[nmped_accordion_group id=\'accordion1\'][nmped_accordion title=\'Accordion Item 1\' accordion_series=\'one\' expanded=\'\' group_id=\'accordion1\'] your content goes here [/nmped_accordion][nmped_accordion title=\'Accordion Item 2\' accordion_series=\'two\' expanded=\'\' group_id=\'accordion1\'] your content goes here [/nmped_accordion][nmped_accordion title=\'Accordion Item 3\' accordion_series=\'three\' expanded=\'\' group_id=\'accordion\'] your content goes here [/nmped_accordion][/nmped_accordion_group]";
+                            var shortcode = "[fusion_accordion][fusion_toggle title=\"Your Toggle Title Here\" open=\"no\" ]\n\nYour Content Goes Here\n\n[/fusion_toggle][/fusion_accordion]";
                             break;
                     case "button":
 					   var shortcode = "[nmped_button text=\'\' button_color=\'\' text_color=\'\' font_face=\'\' font_size=\'\' font_weight=\'\' url=\'\' new_window=\'yes/no\']";
