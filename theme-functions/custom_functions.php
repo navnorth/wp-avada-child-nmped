@@ -101,4 +101,39 @@ if ( ! function_exists( 'nmped_display_subpages' ) ) {
 	}
 }
 
+if ( ! function_exists( 'nmped_add_search_to_main_nav' ) ) {
+	/**
+	 * Add search to the main navigation.
+	 *
+	 * @param  string $items HTML for the main menu items.
+	 * @param  array  $args  Arguments for the WP menu.
+	 * @return string
+	 */
+	function nmped_add_search_to_main_nav( $items, $args ) {
+		$ubermenu = false;
+
+		if ( function_exists( 'ubermenu_get_menu_instance_by_theme_location' ) && ubermenu_get_menu_instance_by_theme_location( $args->theme_location ) ) {
+
+			// Disable woo cart on ubermenu navigations.
+			$ubermenu = true;
+		}
+
+		if ( 'v6' != Avada()->settings->get( 'header_layout' ) && false == $ubermenu ) {
+			if ( 'main_navigation' == $args->theme_location || 'sticky_navigation' == $args->theme_location ) {
+				if ( Avada()->settings->get( 'main_nav_search_icon' ) ) {
+
+					$items .= '<li class="fusion-custom-menu-item fusion-main-menu-search">';
+						$items .= '<a class="fusion-main-menu-icon" aria-label="Search" alt="Search"></a>';
+						$items .= '<div class="fusion-custom-menu-item-contents">';
+							$items .= get_search_form( false );
+						$items .= '</div>';
+					$items .= '</li>';
+				}
+			}
+		}
+
+		return $items;
+	}
+}
+
 ?>

@@ -119,7 +119,7 @@ if($action == "show_popup")
 					   var shortcode = "[nmped_subpages title=\'\' id=\'\']";
 					   break;
                     case "table":
-                       var shortcode = "[fusion_table]<div class=\'table-2\'><table width=\'100%\'><thead><tr><th align=\'left\'>Column 0</th><th align=\'left\'>Column 1</th><th align=\'left\'>Column 2</th></tr></thead><tbody><tr><td align=\'left\'>Column 0 Value</td><td align=\'left\'>Column 1 Value</td><td align=\'left\'>Column 2 Value</td></tr></tbody></table></div>[/fusion_table]";
+                       var shortcode = "[fusion_table]\n<div class=\'table-2\'>\n<table width=\'99%\'>\n<thead>\n<tr>\n<th align=\'left\'>Column 0</th>\n<th align=\'left\'>Column 1</th>\n<th align=\'left\'>Column 2</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td align=\'left\'>Column 0 Value</td>\n<td align=\'left\'>Column 1 Value</td>\n<td align=\'left\'>Column 2 Value</td>\n</tr>\n</tbody>\n</table>\n</div>\n[/fusion_table]";
 					   break;
                     case "pdf":
                        var shortcode = "[wonderplugin_pdf src=\'/wp-content/uploads/2017/12/your-PDF-FileName.pdf\']";
