@@ -304,6 +304,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     /*breadcrumbs styling for next line */
     .fusion-page-title-bar{
         height: auto !important;
+        margin-bottom: 30px;
     }
     .fusion-page-title-bar .fusion-page-title-row .fusion-page-title-wrapper{
         display: block !important;
@@ -317,9 +318,6 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         float: right  !important;
         clear: both  !important;
         margin-top: 15px !important;
-    }
-    .fusion-page-title-bar{
-        margin-bottom: 20px;
     }
 
     /*focus for browse button*/
