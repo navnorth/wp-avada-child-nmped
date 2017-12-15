@@ -340,6 +340,9 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     #main{
         padding-top: 0 !important;
     }
+    .fusion-page-title-bar.fusion-page-title-bar-breadcrumbs.fusion-page-title-bar-left{
+        padding-top: 30px;
+    }
 
 /*CSS for mobile*/
 
