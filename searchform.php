@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <form role="search" class="searchform" method="get" action="<?php echo esc_url_raw( home_url( '/' ) ); ?>">
 	<div class="search-table">
 		<div class="search-field">
+			<label for="s" class="hidden">Search: </label>
 			<input type="text" value="" name="s" class="s" placeholder="<?php esc_html_e( 'Search ...', 'Avada' ); ?>" required aria-required="true" aria-label="<?php esc_html_e( 'Search ...', 'Avada' ); ?>"/>
 		</div>
 		<div class="search-button">
