@@ -113,7 +113,7 @@ if($action == "show_popup")
                             var shortcode = "[fusion_accordion][fusion_toggle title=\"Your Toggle Title Here\" open=\"no\" ]\n\nYour Content Goes Here\n\n[/fusion_toggle][/fusion_accordion]";
                             break;
                     case "button":
-					   var shortcode = "[nmped_button text=\'\' button_color=\'\' text_color=\'\' font_face=\'\' font_size=\'\' font_weight=\'\' url=\'\' new_window=\'yes/no\']";
+					   var shortcode = "[fusion_button link=\"url\" title=\"Button Title Text\" target=\"_self\"]Put Your Button Text Here[/fusion_button]";
 					   break;
                     case "subpages":
 					   var shortcode = "[nmped_subpages title=\'\' id=\'\']";
