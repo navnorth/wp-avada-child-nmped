@@ -57,15 +57,11 @@ add_action( 'avada_after_main_container' , 'show_full_search' );
 										   href="<?= $category_link ?>">
 											<?= wp_get_attachment_image($category_image['ID'], 'portfolio-one'); ?>
 										</a>
-									</div>
-									<h2 class="category__title">
-										<a title="<?= $category_link_title ?>"
-										   target="<?= get_target_from_acf_link_field($category_open_link_in_new_tab) ?>"
-										   class="category__link"
-										   href="<?= $category_link ?>">
+
+										<h2 class="category__title">
 											<?= $category_title ?>
-										</a>
-									</h2>
+										</h2>
+									</div>
 								</div>
 							<?php endforeach; ?>
 						</div>
