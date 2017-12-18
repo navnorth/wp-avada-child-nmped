@@ -290,7 +290,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     }
 
     #wrapper .side-nav-widget li ul.children{
-        padding-left: 15px !important;
+        padding-left: 0px !important;
         margin-left: 0;
     }
 
@@ -347,6 +347,23 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .fusion-page-title-bar.fusion-page-title-bar-breadcrumbs.fusion-page-title-bar-left{
         padding-top: 30px;
     }
+
+    /*Search Tab focus fixes when tabbed through keyboard*/
+    .fusion-main-menu .fusion-main-menu-search .fusion-main-menu-icon:focus::after{
+        color: #e64900 !important;
+        outline: none !important;
+        text-decoration: underline !important;
+    }
+
+    /*Magnifying glass*/
+    .searchform .search-table .search-button input[type=submit]:focus{
+        color: #e64900;
+    }
+
+#wrapper .side-nav-widget li a{
+    padding-left: 0 !important;
+}
+
 
 /*CSS for mobile*/
 
@@ -433,7 +450,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     /* Side Navigation Widget */
     #wrapper .side-nav-widget li a { display:block; }
     #wrapper .side-nav-widget li.current_page_item>a {
-        padding-left: 23px;
+        padding-left: 23px !important;
         border-left: 3px solid #a0ce4e;
     }
     #wrapper .side-nav-widget li a {
