@@ -227,3 +227,20 @@ function hide_fusion_css(){
     }
 }
 add_action( 'admin_head', 'hide_fusion_css' );
+
+// Hide Fusion Builder button on tinymce editor
+function nmped_tinymce_buttons( $buttons ) {
+    
+    if (!current_user_can('administrator')) {
+      //Remove the fusion builder button
+      $remove = 'fusion_button';
+
+      //Find the array key and then unset
+      if ( ( $key = array_search( $remove, $buttons ) ) !== false )
+		unset( $buttons[$key] );
+
+    }
+      return $buttons;
+    
+ }
+add_filter( 'mce_buttons', 'nmped_tinymce_buttons', 20 );
