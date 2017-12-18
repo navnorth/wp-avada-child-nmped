@@ -253,3 +253,10 @@ function hide_fusion_metaboxes() {
     }
 }
 add_action( 'do_meta_boxes', 'hide_fusion_metaboxes' );
+
+// Add Default Categories to Events
+function add_default_categories_to_events() {
+    unregister_taxonomy_for_object_type( 'events_categories', 'ai1ec_event' );
+    register_taxonomy_for_object_type( 'category' , 'ai1ec_event' );   
+}
+add_action( 'init' , 'add_default_categories_to_events', 100 );
