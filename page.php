@@ -10,11 +10,22 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Direct script access denied.' );
 }
+
+add_action( 'wp_enqueue_scripts', 'add_nmped_hover_js' );
+function add_nmped_hover_js() {
+	wp_enqueue_script( 'avada-side-nav', get_template_directory_uri() . '/assets/min/js/general/avada-side-nav.js', array( 'jquery', 'jquery-hover-intent' ) );
+}
+
 add_action( 'avada_override_current_page_title_bar' , 'disable_page_title_bar_in_header', 10, 1 );
 function disable_page_title_bar_in_header($page_id) {
     return;
 }
 
+add_filter( 'fusion_sidebar_1_class', 'add_sidenav_right_class' );
+function add_sidenav_right_class( $classes ){
+	$classes[] = 'side-nav-right';
+	return $classes;
+}
 add_action( 'avada_after_main_container' , 'show_full_search' );
 
 ?>
