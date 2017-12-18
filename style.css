@@ -348,6 +348,15 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         padding-top: 30px;
     }
 
+    /*Search Tab focus fixes when tabbed through keyboard*/
+    .fusion-main-menu .fusion-main-menu-search .fusion-main-menu-icon:focus::after{
+        color: #e64900 !important;
+        outline: none !important;
+        text-decoration: underline !important;
+    }
+
+
+
 /*CSS for mobile*/
 
     /*color for menu icon in mobile*/
