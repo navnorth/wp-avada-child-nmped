@@ -355,6 +355,11 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: underline !important;
     }
 
+    /*Magnifying glass*/
+    .searchform .search-table .search-button input[type=submit]:focus{
+        color: #e64900;
+    }
+
 
 
 /*CSS for mobile*/
