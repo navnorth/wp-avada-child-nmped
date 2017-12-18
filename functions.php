@@ -198,3 +198,18 @@ function show_full_search() {
 
 // Disable Search Menu on Main Nav and reinstantiate it on the child theme
 add_filter( 'wp_nav_menu_items' , 'nmped_add_search_to_main_nav', 20, 4 );
+
+//Custom function to get current page_id inside & outside of query loop
+function avada_get_current_page_id(){
+
+    $post_id = false;
+
+    if ( in_the_loop() ) {
+        $post_id = get_the_ID();
+    } else {
+        global $wp_query;
+        $post_id = $wp_query->get_queried_object_id();
+    }
+
+    return $post_id;
+}

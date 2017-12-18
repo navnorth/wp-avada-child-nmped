@@ -21,8 +21,11 @@ function disable_page_title_bar_in_header($page_id) {
 	<section id="content" <?php Avada()->layout->add_class( 'content_class' ); ?> <?php Avada()->layout->add_style( 'content_style' ); ?>>
 
     <!-- Custom - Adding Title Bar before content-->
-    <?php avada_current_page_title_bar( $c_page_id ); ?>
-
+    <?php
+        $page_id     = avada_get_current_page_id();
+        avada_current_page_title_bar($page_id);
+    ?>
+    
 	<?php get_template_part( 'templates/blog', 'layout' ); ?>
 	</section>
 	<?php do_action( 'avada_after_content' ); ?>
