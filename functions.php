@@ -213,3 +213,17 @@ function avada_get_current_page_id(){
 
     return $post_id;
 }
+
+// Hide Fusion Button on HTML Editor
+function hide_fusion_css(){
+    if (!current_user_can('administrator')) {
+    echo '
+	<style>
+	input[type=button]#qt_content_fusion_shortcodes_text_mode {
+	display: none;
+	}
+	</style>
+    ';
+    }
+}
+add_action( 'admin_head', 'hide_fusion_css' );
