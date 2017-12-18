@@ -97,7 +97,7 @@ function add_categories_taxonomies_to_pages() {
 add_action( 'admin_menu' , 'remove_page_attributes_metabox' );
 function remove_page_attributes_metabox() {
     if ( is_admin() ) {
-	remove_meta_box( 'pageparentdiv', 'page', 'side' );
+	remove_meta_box( 'pageparentdiv', 'page', 'side' );	
     }
 }
 
@@ -244,3 +244,12 @@ function nmped_tinymce_buttons( $buttons ) {
     
  }
 add_filter( 'mce_buttons', 'nmped_tinymce_buttons', 20 );
+
+// Hide Fusion Page Options
+function hide_fusion_metaboxes() {
+    if (!current_user_can('administrator')) {
+	remove_meta_box( 'pyre_page_options', 'page', 'advanced' );
+	remove_meta_box( 'pyre_post_options', 'post', 'advanced' );
+    }
+}
+add_action( 'do_meta_boxes', 'hide_fusion_metaboxes' );
