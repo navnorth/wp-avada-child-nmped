@@ -465,6 +465,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     #nmped-search h2 { color:#fff; font-size:36px; font-weight:bold; text-shadow: 0px 2px 12px rgba(0,0,0,1); }
     #nmped-search .searchform .search-field input[type=text] { border:1px solid #000000 !important; }
     .hidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+    .side-nav-right .side-nav .arrow:after { content:''; }
 
     @media screen and (max-width:480px) {
         #nmped-full-search { padding:10% 5%; }
