@@ -97,7 +97,7 @@ function add_categories_taxonomies_to_pages() {
 add_action( 'admin_menu' , 'remove_page_attributes_metabox' );
 function remove_page_attributes_metabox() {
     if ( is_admin() ) {
-	remove_meta_box( 'pageparentdiv', 'page', 'side' );
+	remove_meta_box( 'pageparentdiv', 'page', 'side' );	
     }
 }
 
@@ -213,3 +213,50 @@ function avada_get_current_page_id(){
 
     return $post_id;
 }
+
+// Hide Fusion Button on HTML Editor
+function hide_fusion_css(){
+    if (!current_user_can('administrator')) {
+    echo '
+	<style>
+	input[type=button]#qt_content_fusion_shortcodes_text_mode {
+	display: none;
+	}
+	</style>
+    ';
+    }
+}
+add_action( 'admin_head', 'hide_fusion_css' );
+
+// Hide Fusion Builder button on tinymce editor
+function nmped_tinymce_buttons( $buttons ) {
+    
+    if (!current_user_can('administrator')) {
+      //Remove the fusion builder button
+      $remove = 'fusion_button';
+
+      //Find the array key and then unset
+      if ( ( $key = array_search( $remove, $buttons ) ) !== false )
+		unset( $buttons[$key] );
+
+    }
+      return $buttons;
+    
+ }
+add_filter( 'mce_buttons', 'nmped_tinymce_buttons', 20 );
+
+// Hide Fusion Page Options
+function hide_fusion_metaboxes() {
+    if (!current_user_can('administrator')) {
+	remove_meta_box( 'pyre_page_options', 'page', 'advanced' );
+	remove_meta_box( 'pyre_post_options', 'post', 'advanced' );
+    }
+}
+add_action( 'do_meta_boxes', 'hide_fusion_metaboxes' );
+
+// Add Default Categories to Events
+function add_default_categories_to_events() {
+    unregister_taxonomy_for_object_type( 'events_categories', 'ai1ec_event' );
+    register_taxonomy_for_object_type( 'category' , 'ai1ec_event' );   
+}
+add_action( 'init' , 'add_default_categories_to_events', 100 );
