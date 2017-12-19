@@ -388,6 +388,11 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: underline !important;
     }
 
+    /*remove underline for menu icon bars*/
+    a.fusion-icon-bars:hover{
+        text-decoration: none !important;
+    }
+
     /*CSS for mobile*/
 
     /*color for menu icon in mobile*/
