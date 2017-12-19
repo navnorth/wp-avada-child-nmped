@@ -360,12 +360,40 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         color: #e64900;
     }
 
-#wrapper .side-nav-widget li a{
-    padding-left: 0 !important;
-}
+    #wrapper .side-nav-widget li a{
+        padding-left: 0 !important;
+    }
 
+    /*Image and text below combined for assistive tech*/
+    .post-content--v2 a h2:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
 
-/*CSS for mobile*/
+    .post-content--v2 a:hover h2{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
+    .post-content--v2 a:hover{
+        text-decoration: none !important;
+    }
+
+    .post-content--v2 a:focus{
+        outline: 0 !important;
+    }
+
+    .post-content--v2 a:focus h2{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
+    /*remove underline for menu icon bars*/
+    a.fusion-icon-bars:hover{
+        text-decoration: none !important;
+    }
+
+    /*CSS for mobile*/
 
     /*color for menu icon in mobile*/
     .fusion-mobile-menu-icons a:before{
