@@ -370,6 +370,11 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: underline !important;
     }
 
+    .post-content--v2 a:hover h2{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
     .post-content--v2 a:hover{
         text-decoration: none !important;
     }
