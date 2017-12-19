@@ -23,9 +23,19 @@ function disable_page_title_bar_in_header($page_id) {
     <!-- Custom - Adding Title Bar before content-->
     <?php
         $page_id     = avada_get_current_page_id();
-        avada_current_page_title_bar($page_id);
+        $page_title = get_post_meta( $page_id , 'pyre_page_title', true );
+
+        //Showing Title with Default Title bar setting for posts page
+        if('default' == $page_title){
+            $page_title_bar_contents = avada_get_page_title_bar_contents( $page_id  );
+            avada_page_title_bar( $page_title_bar_contents[0], $page_title_bar_contents[1], $page_title_bar_contents[2] );
+        }
+        else{
+            avada_current_page_title_bar($page_id);
+        }
+
     ?>
-    
+
 	<?php get_template_part( 'templates/blog', 'layout' ); ?>
 	</section>
 	<?php do_action( 'avada_after_content' ); ?>
