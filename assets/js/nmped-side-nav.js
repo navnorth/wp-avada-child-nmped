@@ -3,7 +3,7 @@ jQuery(document).ready(function(a){
         jQuery(this).find("> .children").length&&(jQuery(".rtl").length?jQuery(this).prepend('<span class="arrow"></span>'):jQuery(this).append('<span class="arrow"></span>'))
     }),
     jQuery(".side-nav-right .side-nav li").each(function(){
-        jQuery(this).find("> .children").length&&(jQuery("body.rtl").length?jQuery(this).append('<span class="arrow"><i class="fa fa-caret-right" aria-hidden="true"></i></span>'):jQuery(this).prepend('<span class="arrow"><i class="fa fa-caret-right" aria-hidden="true"></i></span>'))
+        jQuery(this).find("> .children").length&&(jQuery("body.rtl").length?jQuery(this).append('<span class="arrow" tabindex="0"><i class="fa fa-caret-right" aria-hidden="true"></i></span>'):jQuery(this).prepend('<span class="arrow" tabindex="0"><i class="fa fa-caret-right" aria-hidden="true"></i></span>'))
     }),
     jQuery(".side-nav .current_page_item").each(function(){
         jQuery(this).find("> .children").length&&jQuery(this).find("> .children").show("slow")
@@ -43,4 +43,10 @@ jQuery(window).load(function(){
             },
             timeout:500
     })
+    jQuery(".side-nav li span.arrow").on("keydown", function(e){
+        if (e.which=="13") {
+            jQuery(this).trigger("click");
+        }
+    });
+    
 });
