@@ -360,12 +360,40 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         color: #e64900;
     }
 
-#wrapper .side-nav-widget li a{
-    padding-left: 0 !important;
-}
+    #wrapper .side-nav-widget li a{
+        padding-left: 0 !important;
+    }
 
+    /*Image and text below combined for assistive tech*/
+    .post-content--v2 a h2:hover{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
 
-/*CSS for mobile*/
+    .post-content--v2 a:hover h2{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
+    .post-content--v2 a:hover{
+        text-decoration: none !important;
+    }
+
+    .post-content--v2 a:focus{
+        outline: 0 !important;
+    }
+
+    .post-content--v2 a:focus h2{
+        color: #e64900 !important;
+        text-decoration: underline !important;
+    }
+
+    /*remove underline for menu icon bars*/
+    a.fusion-icon-bars:hover{
+        text-decoration: none !important;
+    }
+
+    /*CSS for mobile*/
 
     /*color for menu icon in mobile*/
     .fusion-mobile-menu-icons a:before{
@@ -448,9 +476,9 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     }
 
     /* Side Navigation Widget */
-    #wrapper .side-nav-widget li a { display:block; }
+    #wrapper .side-nav-widget li a { display:inline-block; }
+    #wrapper .side-nav-widget li.current_page_item > span.arrow { border-left:3px solid #003366; padding-left:10px;  }
     #wrapper .side-nav-widget li.current_page_item>a {
-        padding-left: 23px !important;
         border-left: 3px solid #a0ce4e;
     }
     #wrapper .side-nav-widget li a {
@@ -465,6 +493,13 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     #nmped-search h2 { color:#fff; font-size:36px; font-weight:bold; text-shadow: 0px 2px 12px rgba(0,0,0,1); }
     #nmped-search .searchform .search-field input[type=text] { border:1px solid #000000 !important; }
     .hidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+    .side-nav-right .side-nav .arrow:after { content:''; }
+    #wrapper .side-nav li.current_page_item a { border-right:none; border-left:none; }
+    #wrapper .side-nav li.current_page_item { border-right-color: #003366; border-left-color: #003366; }
+    .side-nav li a { border-bottom:none; }
+    ul.side-nav  { border-top:none; border-bottom: 1px solid #e0dede; }
+    .side-nav ul { border-bottom:none; }
+    .side-nav li { border-top: 1px solid #e0dede; }
 
     @media screen and (max-width:480px) {
         #nmped-full-search { padding:10% 5%; }
