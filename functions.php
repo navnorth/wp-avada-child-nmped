@@ -1,15 +1,5 @@
 <?php
 
-// disable XMLRPC to stop brute force attacks
-add_filter('xmlrpc_enabled', '__return_false');
-
-// Disable X-Pingback to header
-add_filter('wp_headers', 'disable_x_pingback');
-function disable_x_pingback( $headers ) {
-    unset( $headers['X-Pingback'] );
-    return $headers;
-}
-
 /**
  * Add Shortcode
  **/
@@ -107,7 +97,7 @@ function add_categories_taxonomies_to_pages() {
 add_action( 'admin_menu' , 'remove_page_attributes_metabox' );
 function remove_page_attributes_metabox() {
     if ( is_admin() ) {
-	remove_meta_box( 'pageparentdiv', 'page', 'side' );
+	remove_meta_box( 'pageparentdiv', 'page', 'side' );	
     }
 }
 
@@ -240,7 +230,7 @@ add_action( 'admin_head', 'hide_fusion_css' );
 
 // Hide Fusion Builder button on tinymce editor
 function nmped_tinymce_buttons( $buttons ) {
-
+    
     if (!current_user_can('administrator')) {
       //Remove the fusion builder button
       $remove = 'fusion_button';
@@ -251,7 +241,7 @@ function nmped_tinymce_buttons( $buttons ) {
 
     }
       return $buttons;
-
+    
  }
 add_filter( 'mce_buttons', 'nmped_tinymce_buttons', 20 );
 
@@ -267,6 +257,6 @@ add_action( 'do_meta_boxes', 'hide_fusion_metaboxes' );
 // Add Default Categories to Events
 function add_default_categories_to_events() {
     unregister_taxonomy_for_object_type( 'events_categories', 'ai1ec_event' );
-    register_taxonomy_for_object_type( 'category' , 'ai1ec_event' );
+    register_taxonomy_for_object_type( 'category' , 'ai1ec_event' );   
 }
 add_action( 'init' , 'add_default_categories_to_events', 100 );
