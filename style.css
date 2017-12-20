@@ -503,7 +503,6 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
 
     /* Side Navigation Widget */
     #wrapper .side-nav-widget li a { display:inline-block; }
-    #wrapper .side-nav-widget li.current_page_item > span.arrow { border-left:3px solid #003366; padding-left:10px;  }
     #wrapper .side-nav-widget li.current_page_item>a {
         border-left: 3px solid #a0ce4e;
     }
