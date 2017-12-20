@@ -402,6 +402,23 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         padding: 10px 0 10px 0 !important;
     }
 
+    /*remove border from side nav*/
+    #nmped_subpages_widget-2 .side-nav.side-nav-widget{
+        border: none !important;
+    }
+    #nmped_subpages_widget-2 .side-nav.side-nav-widget li{
+        border: none !important;
+    }
+    #nmped_subpages_widget-2 .side-nav.side-nav-widget li ul li a{
+        border: none !important;
+    }
+    #categories-2 ul li{
+        border: none !important;
+    }
+    #category-posts-2-internal .cat-post-item{
+        border: none !important;
+    }
+
 /*CSS for mobile*/
 
     /*color for menu icon in mobile*/
