@@ -136,4 +136,39 @@ if ( ! function_exists( 'nmped_add_search_to_main_nav' ) ) {
 	}
 }
 
+function nmped_related_posts_where( $where ) {
+    return $where." AND post_type='post'";
+}
+
+if ( ! function_exists( 'nmped_render_footer_social_icons' ) ) {
+	/**
+	 * Output the footer social icons.
+	 *
+	 * @return void
+	 */
+	function nmped_render_footer_social_icons() {
+		global $social_icons;
+
+		// Render the social icons.
+		if ( Avada()->settings->get( 'icons_footer' ) ) : ?>
+			<div class="fusion-social-links-footer">
+				<?php
+
+				$footer_social_icon_options = array(
+					'position'          => 'footer',
+					'icon_colors'       => Avada()->settings->get( 'footer_social_links_icon_color' ),
+					'box_colors'        => Avada()->settings->get( 'footer_social_links_box_color' ),
+					'icon_boxed'        => Avada()->settings->get( 'footer_social_links_boxed' ),
+					'icon_boxed_radius' => Fusion_Sanitize::size( Avada()->settings->get( 'footer_social_links_boxed_radius' ) ),
+					'tooltip_placement' => Avada()->settings->get( 'footer_social_links_tooltip_placement' ),
+					'linktarget'        => Avada()->settings->get( 'social_icons_new' ),
+				);
+
+				echo $social_icons->render_social_icons( $footer_social_icon_options ); // WPCS: XSS ok.
+				?>
+			</div>
+		<?php endif;
+	}
+}
+
 ?>

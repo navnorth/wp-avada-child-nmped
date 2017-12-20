@@ -154,7 +154,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     }
 
     .fusion-main-menu > ul > li > a, .side-nav li a{
-        font-size: 18px !important;
+        font-size: 16px !important;
     }
 
     /*on hover underline links in footer*/
@@ -393,7 +393,33 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: none !important;
     }
 
-    /*CSS for mobile*/
+    /*Remove carrots for categories widget in sidebar*/
+    .widget_categories .cat-item a:before{
+        content: '' !important;
+    }
+    /*Add more spacing for categories*/
+    #categories-2 li{
+        padding: 10px 0 10px 0 !important;
+    }
+
+    /*remove border from side nav*/
+    #nmped_subpages_widget-2 .side-nav.side-nav-widget{
+        border: none !important;
+    }
+    #nmped_subpages_widget-2 .side-nav.side-nav-widget li{
+        border: none !important;
+    }
+    #nmped_subpages_widget-2 .side-nav.side-nav-widget li ul li a{
+        border: none !important;
+    }
+    #categories-2 ul li{
+        border: none !important;
+    }
+    #category-posts-2-internal .cat-post-item{
+        border: none !important;
+    }
+
+/*CSS for mobile*/
 
     /*color for menu icon in mobile*/
     .fusion-mobile-menu-icons a:before{
@@ -477,7 +503,6 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
 
     /* Side Navigation Widget */
     #wrapper .side-nav-widget li a { display:inline-block; }
-    #wrapper .side-nav-widget li.current_page_item > span.arrow { border-left:3px solid #003366; padding-left:10px;  }
     #wrapper .side-nav-widget li.current_page_item>a {
         border-left: 3px solid #a0ce4e;
     }
