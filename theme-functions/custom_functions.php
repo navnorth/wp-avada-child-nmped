@@ -136,4 +136,8 @@ if ( ! function_exists( 'nmped_add_search_to_main_nav' ) ) {
 	}
 }
 
+function nmped_related_posts_where( $where ) {
+    return $where." AND post_type='post'";
+}
+
 ?>
