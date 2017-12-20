@@ -18,12 +18,12 @@ require_once( get_stylesheet_directory() . '/theme-functions/custom_functions.ph
 /**
  * Include NMPED SubPages Widget
  */
-include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widgets/class-nmped-subpages-widget.php' );
+include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widget/class-nmped-subpages-widget.php' );
 
 /**
  * Include NMPED Related Posts Widget
  */
-include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widgets/class-nmped-related-posts-widget.php' );
+include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widget/class-nmped-related-posts-widget.php' );
 
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'avada-stylesheet' ) );
