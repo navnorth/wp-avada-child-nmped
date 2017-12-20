@@ -393,7 +393,16 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         text-decoration: none !important;
     }
 
-    /*CSS for mobile*/
+    /*Remove carrots for categories widget in sidebar*/
+    .widget_categories .cat-item a:before{
+        content: '' !important;
+    }
+    /*Add more spacing for categories*/
+    #categories-2 li{
+        padding: 10px 0 10px 0 !important;
+    }
+
+/*CSS for mobile*/
 
     /*color for menu icon in mobile*/
     .fusion-mobile-menu-icons a:before{
