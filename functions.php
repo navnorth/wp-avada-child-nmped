@@ -97,7 +97,7 @@ function add_categories_taxonomies_to_pages() {
 add_action( 'admin_menu' , 'remove_page_attributes_metabox' );
 function remove_page_attributes_metabox() {
     if ( is_admin() ) {
-	remove_meta_box( 'pageparentdiv', 'page', 'side' );	
+	remove_meta_box( 'pageparentdiv', 'page', 'side' );
     }
 }
 
@@ -191,6 +191,14 @@ function replace_myvrspot_to_embed($content) {
     return $content;
 }
 
+// remove Side Navigation and Contact templates (Avada defaults)
+function nmped_remove_page_templates( $templates ) {
+    unset( $templates['side-navigation.php'] );
+    unset( $templates['contact.php'] );
+    return $templates;
+}
+add_filter( 'theme_page_templates', 'nmped_remove_page_templates' );
+
 // Display Full-width search
 function show_full_search() {
     get_template_part( 'templates/search' );
@@ -230,7 +238,7 @@ add_action( 'admin_head', 'hide_fusion_css' );
 
 // Hide Fusion Builder button on tinymce editor
 function nmped_tinymce_buttons( $buttons ) {
-    
+
     if (!current_user_can('administrator')) {
       //Remove the fusion builder button
       $remove = 'fusion_button';
@@ -241,7 +249,7 @@ function nmped_tinymce_buttons( $buttons ) {
 
     }
       return $buttons;
-    
+
  }
 add_filter( 'mce_buttons', 'nmped_tinymce_buttons', 20 );
 
@@ -257,6 +265,6 @@ add_action( 'do_meta_boxes', 'hide_fusion_metaboxes' );
 // Add Default Categories to Events
 function add_default_categories_to_events() {
     unregister_taxonomy_for_object_type( 'events_categories', 'ai1ec_event' );
-    register_taxonomy_for_object_type( 'category' , 'ai1ec_event' );   
+    register_taxonomy_for_object_type( 'category' , 'ai1ec_event' );
 }
 add_action( 'init' , 'add_default_categories_to_events', 100 );

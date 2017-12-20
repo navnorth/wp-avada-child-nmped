@@ -114,15 +114,7 @@
             "maxlength": ""
         }
     ],
-    "location": [
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "post"
-            }
-        ]
-    ],
+    "location": [],
     "menu_order": 0,
     "position": "normal",
     "style": "default",
