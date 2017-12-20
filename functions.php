@@ -138,12 +138,12 @@ function custom_footer_widget_titles( array $params ) {
 
     $widget = &$params[0];
 
+    $fusion_options = get_option('fusion_options');
+
     if (preg_match('/avada-footer-widget/',$widget["id"])) {
 
         $footer_heading_fontsize = '';
         $footer_heading_lineheight = '';
-
-        $fusion_options = get_option('fusion_options');
 
         if (isset($fusion_options['footer_headings_typography']) && is_array($fusion_options['footer_headings_typography']) && !empty($fusion_options['footer_headings_typography'])) {
 
@@ -167,6 +167,28 @@ function custom_footer_widget_titles( array $params ) {
         // $params will ordinarily be an array of 2 elements, we're only interested in the first element
         $widget['before_title'] = '<p class="widget-title" ' . $fontsizestyle . ' ' . $fontlineheightstyle . '>';
         $widget['after_title'] = '</p>';
+
+        return $params;
+    }
+    else{
+        //replace side nav h4(heading tag for title) to h2
+        $sidenav_heading_fontsize = '';
+
+        if (isset($fusion_options['sidew_font_size']) && !empty($fusion_options['sidew_font_size'])) {
+
+            $arrSide_heading_size = $fusion_options['sidew_font_size'];
+
+            if (isset($arrSide_heading_size) && !empty($arrSide_heading_size)) {
+                $sidenav_heading_fontsize = filter_var($arrSide_heading_size, FILTER_SANITIZE_NUMBER_INT);
+            }
+
+        }
+
+        $fontsizestyle = (false == empty($sidenav_heading_fontsize)) ? 'data-fontsize="' . $sidenav_heading_fontsize . '"' : '';
+
+        // $params will ordinarily be an array of 2 elements, we're only interested in the first element
+        $widget['before_title'] = '<h2 class="widget-title" ' . $fontsizestyle . '>';
+        $widget['after_title'] = '</h2>';
 
         return $params;
     }
