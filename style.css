@@ -274,6 +274,9 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     #posts-container .fusion-meta-info a{
         font-weight: 600;
     }
+    .post-content p {
+        hyphens: manual !important;
+    }
 
     /*Default Sidebar Menu Styling */
     .sidebar.fusion-content-widget-area .widget{
