@@ -296,3 +296,17 @@ function add_default_categories_to_events() {
     register_taxonomy_for_object_type( 'category' , 'ai1ec_event' );
 }
 add_action( 'init' , 'add_default_categories_to_events', 100 );
+
+// Add DOM event Listener to Contact Form
+function nmped_cf7_footer() {
+?>
+<script type="text/javascript">
+    document.addEventListener( 'wpcf7submit', function( event ) {
+	setTimeout(function(){
+	    jQuery(window).scrollTop(jQuery('.wpcf7-response-output.wpcf7-validation-errors').offset().top-120);
+	}, 500);
+}, false );
+</script>
+<?php
+}
+add_action( 'wp_footer', 'nmped_cf7_footer' );
