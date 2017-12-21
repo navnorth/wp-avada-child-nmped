@@ -18,6 +18,10 @@
                 $('.fusion-main-menu .fusion-main-menu-search a').trigger('click');
             }
         });
+        
+        if ($('.fusion-blog-archive .fusion-posts-container .fusion-flexslider .flex-direction-nav').length) {
+            $('.fusion-blog-archive .fusion-posts-container .fusion-flexslider .flex-direction-nav').empty();
+        }
     });
 
     //Missing Visible Focus fixes for when focus on image - adding tabindex

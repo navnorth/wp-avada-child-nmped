@@ -18,12 +18,12 @@ require_once( get_stylesheet_directory() . '/theme-functions/custom_functions.ph
 /**
  * Include NMPED SubPages Widget
  */
-include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widget/class-nmped-subpages-widget.php' );
+include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widgets/class-nmped-subpages-widget.php' );
 
 /**
  * Include NMPED Related Posts Widget
  */
-include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widget/class-nmped-related-posts-widget.php' );
+include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widgets/class-nmped-related-posts-widget.php' );
 
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'avada-stylesheet' ) );
@@ -296,3 +296,24 @@ function add_default_categories_to_events() {
     register_taxonomy_for_object_type( 'category' , 'ai1ec_event' );
 }
 add_action( 'init' , 'add_default_categories_to_events', 100 );
+
+// Add DOM event Listener to Contact Form
+function nmped_cf7_footer() {
+?>
+<script type="text/javascript">
+    document.addEventListener( 'wpcf7submit', function( event ) {
+	setTimeout(function(){
+	    jQuery('.wpcf7-response-output.wpcf7-validation-errors').attr('tabindex', '0');
+	    jQuery('.wpcf7-response-output.wpcf7-validation-errors').focus();
+	    /*jQuery(window).scrollTop(jQuery('.wpcf7-response-output.wpcf7-validation-errors').offset().top-120);*/
+	}, 500);
+}, false );
+</script>
+<?php
+}
+add_action( 'wp_footer', 'nmped_cf7_footer' );
+
+add_action( 'wp_head', 'remove_default_blog_post_content' );
+function remove_default_blog_post_content(){
+	remove_action( 'avada_blog_post_content', 'avada_render_blog_post_content', 10 );
+}
