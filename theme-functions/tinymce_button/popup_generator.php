@@ -119,7 +119,7 @@ if($action == "show_popup")
 					   var shortcode = "[nmped_subpages title=\'\' id=\'\']";
 					   break;
                     case "table":
-                       var shortcode = "[fusion_table]\n<div class=\'table-2\'>\n<table width=\'99%\'>\n<thead>\n<tr>\n<th align=\'left\'>Column 1</th>\n<th align=\'left\'>Column 2</th>\n<th align=\'left\'>Column 3</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td align=\'left\'>Column 1 Value</td>\n<td align=\'left\'>Column 2 Value</td>\n<td align=\'left\'>Column 3 Value</td>\n</tr>\n</tbody>\n</table>\n</div>\n[/fusion_table]";
+                       var shortcode = "<div class=\'table-2\'>\n<table width=\'99%\'>\n<thead>\n<tr>\n<th align=\'left\'>Heading One</th>\n<th align=\'left\'>Heading Two</th>\n<th align=\'left\'>Heading Three</th>\n<th align=\'left\'>Heading Four</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td align=\'left\'>Content In Row One, Cell One</td>\n<td align=\'left\'>Content In Row One, Cell Two</td>\n<td align=\'left\'>Content In Row One, Cell Three</td>\n<td align=\'left\'>Content In Row One, Cell Four</td>\n</tr>\n<tr>\n<td align=\'left\'>Content In Row Two, Cell One</td>\n<td align=\'left\'>Content In Row Two, Cell Two</td>\n<td align=\'left\'>Content In Row Two, Cell Three</td>\n<td align=\'left\'>Content In Row One, Cell Four</td>\n</tr>\n</tbody>\n</table>\n</div>";
 					   break;
                     case "pdf":
                        var shortcode = "[wonderplugin_pdf src=\'/wp-content/uploads/2017/12/your-PDF-FileName.pdf\']";
