@@ -312,3 +312,8 @@ function nmped_cf7_footer() {
 <?php
 }
 add_action( 'wp_footer', 'nmped_cf7_footer' );
+
+add_action( 'wp_head', 'remove_default_blog_post_content' );
+function remove_default_blog_post_content(){
+	remove_action( 'avada_blog_post_content', 'avada_render_blog_post_content', 10 );
+}
