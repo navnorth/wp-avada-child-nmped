@@ -212,7 +212,7 @@ function replace_myvrspot_to_embed($content) {
 
     foreach ($matches[0] as $match) {
 	$match_url = strip_tags($match);
-	$embed_code = '<div class="video-container"><iframe src="' . $match_url . '" frameborder="0" scrolling="no" allowfullscreen mozallowfullscreen webkitallowfullscreen></iframe></div>';
+	$embed_code = '<div class="video-container"><iframe src="' . $match_url . '" title="Video Player Embed" frameborder="0" scrolling="no" allowfullscreen mozallowfullscreen webkitallowfullscreen></iframe></div>';
 	$content = str_replace($match, $embed_code, $content);
 
     }
