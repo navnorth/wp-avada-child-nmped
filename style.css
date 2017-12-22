@@ -423,6 +423,11 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         border: none !important;
     }
 
+    /*change color of oops word*/
+    .error-page .oops{
+        color: #003366 !important;
+    }
+
 /*CSS for mobile*/
 
     /*color for menu icon in mobile*/
