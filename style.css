@@ -428,6 +428,19 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         color: #003366 !important;
     }
 
+    /*Carrot odd placement when nav item is on two lines --- fixes */
+    #nmped_subpages_widget-2 .page_item .arrow{
+        display: inline;
+    }
+    #nmped_subpages_widget-2 .page_item_has_children a{
+        display: inline !important;
+    }
+    #nmped_subpages_widget-2 li.page_item_has_children ul.children{
+        padding-top: 5px;
+        padding-left: 5px !important;
+    }
+
+
 /*CSS for mobile*/
 
     /*color for menu icon in mobile*/
