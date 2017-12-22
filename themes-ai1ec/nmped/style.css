@@ -1,0 +1,40 @@
+/**
+ * Theme Name: NMPED
+ * Theme URI: https://time.ly/
+ * Author: Navigation North
+ * Author URI: https://navigationnorth.com/
+ * Description: Custom Calendar Theme
+ * Version: 1.0.0
+ * Tags: light, white, gray, blue
+ */
+
+/*
+	====================================================
+	= Theme structure in All-in-One Event Calendar 2.0 =
+	====================================================
+
+	Please do not place your custom CSS rules in this file. Instead, place them in
+	here:
+
+	  [wp-content]/themes-ai1ec/[your_theme_directory]/css/override.css
+
+	Alternatively, for the more savvy designers, use the dynamic LESS stylesheet
+	language (http://lesscss.org/) to define your style rules, allowing you to
+	take advantage of any LESS variables defined by Vortex (see
+	[wp_root]/themes-ai1ec/vortex/less/user_variables.php). Place your LESS code
+	in this file:
+
+	  [wp-content]/themes-ai1ec/[your_theme_directory]/less/override.less
+
+	The style rules produced by these files will be applied *after* all the
+	default style rules of Vortex have been applied.
+
+	= NOTE ======================================================================
+	= Be sure to visit Events > Theme Options and click "Save Options" any time =
+	= you make changes to either of the above files before viewing your site.   =
+	=============================================================================
+
+	To find out more about the powerful theming engine, visit our help article:
+
+		https://time.ly/document/customize-calendar/create-new-calendar-theme/
+ */
