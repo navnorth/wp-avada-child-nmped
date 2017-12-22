@@ -104,7 +104,7 @@ if($action == "show_popup")
 				switch (shortcode_type)
 				{
                     case \'bsgrid\':
-					   var shortcode = \'[row]\n\n[column md="4"]\n\nyour 1st column content here \n\n[/column]\n\n[column md="4"]\n\nyour 2nd column content here \n\n[/column]\n\n[column md="4"]\n\nyour 3rd column content here \n\n[/column]\n\n[/row]\';
+					   var shortcode = \'[row]\n\n[column md="4"]\n\nYour first column content goes here!\n\n[/column]\n\n[column md="4"]\n\nYour second column content goes here!\n\n[/column]\n\n[column md="4"]\n\nYour third column content goes here!\n\n[/column]\n\n[/row]\';
 					   break;
                     case \'spacer\':
 					   var shortcode = \'[spacer height="16"]\';
