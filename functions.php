@@ -1,5 +1,7 @@
 <?php
 
+global $nmped_toggle;
+
 /**
  * Add Shortcode
  **/
@@ -24,6 +26,11 @@ include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widgets/
  * Include NMPED Related Posts Widget
  */
 include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widgets/class-nmped-related-posts-widget.php' );
+
+/**
+ * Include NMPED Toggle Class
+ */
+include_once wp_normalize_path( get_stylesheet_directory() . '/includes/shortcodes/nmped-toggle.php' );
 
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'avada-stylesheet' ) );
@@ -312,6 +319,22 @@ function nmped_cf7_footer() {
 <?php
 }
 add_action( 'wp_footer', 'nmped_cf7_footer' );
+
+function nmped_hide_menu_options(){
+    if (!current_user_can('administrator')) {
+    ?>
+    <style>
+	#menu-posts-avada_faq,
+	#menu-posts-themefusion_elastic,
+	#menu-posts-avada_portfolio,
+	#menu-posts-slide,
+	#menu-comments,
+	#searchwp-index-errors-notice { display:none; }
+    </style>
+    <?php
+    }
+}
+add_action( 'admin_footer', 'nmped_hide_menu_options' );
 
 add_action( 'wp_head', 'remove_default_blog_post_content' );
 function remove_default_blog_post_content(){
