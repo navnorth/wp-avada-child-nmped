@@ -27,6 +27,7 @@ add_action( 'avada_after_main_container' , 'show_full_search' );
 							<?php
 							$category_title = get_field('category_title');
 							$content = get_field('content');
+							$bottom_content = get_field('bottom_content');
 							$categories = get_field('categories');
 							?>
 
@@ -65,6 +66,14 @@ add_action( 'avada_after_main_container' , 'show_full_search' );
 								</div>
 							<?php endforeach; ?>
 						</div>
+
+						<?php if (!empty($bottom_content)) : ?>
+							<div class="category-page__content post-content">
+								<div class="category-page__content-wysiwyg">
+									<?= $bottom_content ?>
+								</div>
+							</div>
+						<?php endif; ?>
 
 					<?php endif; ?>
 
