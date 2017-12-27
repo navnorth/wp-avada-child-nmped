@@ -4,7 +4,7 @@
 #dataConfirmModal .modal-header { border-bottom:none; }
 #dataConfirmModal .modal-body { color:#ffffff; }
 #dataConfirmModal .modal-body p.href { color:#e6d54b; }
-#dataConfirmModal .modal-body h4 { font-size:20px; }
+#dataConfirmModal .modal-body h2 { font-size:24px; color:#ffffff; }
 #dataConfirmModal .modal-footer { border-top:none; }
 #dataConfirmModal .modal-footer .btn { text-transform:uppercase; color:#000000; padding:10px 20px; border-style:solid; font-size:16px; cursor:pointer; }
 #dataConfirmModal .modal-footer .btn-white { background:#ffffff; }

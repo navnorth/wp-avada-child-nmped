@@ -29,7 +29,7 @@
               $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"></div><div class="modal-body"></div><div class="modal-footer"><button class="btn btn-primary btn-white" data-dismiss="modal" aria-hidden="true">No</button><button class="btn btn-primary btn-yellow" tabindex="1" id="dataConfirmOK">Proceed</button></div></div>');
       }
 
-      var $html = '<h4>You are about to leave the NMPED website.</h4>'
+      var $html = '<h2>You are about to leave the NMPED website.</h2>'
       $html += '<p>The link you clicked is NOT part of the New Mexico Public Education website.</p>'
       $html += '<p class="href">' + href + '</p>'
       $html += '<p>Would you like to proceed?</p>'
