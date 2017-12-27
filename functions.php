@@ -47,6 +47,21 @@ function avada_lang_setup() {
 }
 add_action( 'after_setup_theme', 'avada_lang_setup' );
 
+// Permissions
+add_filter('wpcf7_map_meta_cap', 'change_cf7_capabilities',10,1);
+function change_cf7_capabilities($meta_caps) {
+
+    $meta_caps = array(
+        'wpcf7_edit_contact_form' => 'cf7_edit_forms',
+        'wpcf7_edit_contact_forms' => 'cf7_edit_forms',
+        'wpcf7_read_contact_forms' => 'cf7_read_forms',
+        'wpcf7_delete_contact_form' => 'cf7_delete_forms',
+        'wpcf7_manage_integration' => 'cf7_manage_integration' );
+
+    return $meta_caps;
+}
+
+
 // remove the default 'Posts' before we add a new one
 add_action('admin_menu','remove_default_post_type');
 function remove_default_post_type() {
