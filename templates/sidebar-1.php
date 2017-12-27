@@ -19,9 +19,10 @@ $sticky_sidebar = in_array( 'fusion-sticky-sidebar', apply_filters( 'fusion_side
 	<?php
 	$sidebar_image = '<img src="'.get_stylesheet_directory_uri().'/assets/images/nmped.png" class="default-post-thumbnail size-post-thumbnail" alt="'.get_the_title($post->ID).'" />';
 	if (get_queried_object()) {
+		$spost = get_queried_object();
 		// Display thumbnail on the top side navigation
-		if (has_post_thumbnail($post->ID)) {
-			$post_thumbnail = get_the_post_thumbnail($post->ID);
+		if (has_post_thumbnail($spost->ID) && $spost->post_name!=='news') {
+			$post_thumbnail = get_the_post_thumbnail($spost->ID);
 			$sidebar_image = $post_thumbnail;
 		}
 	} 
