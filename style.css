@@ -558,6 +558,10 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .side-nav ul { border-bottom:none; }
     .side-nav li { border-top: 1px solid #e0dede; }
 
+    @media only screen and (max-width: 800px){
+        body.has-sidebar #content { width:100% !important; }
+    }
+
     @media screen and (max-width:480px) {
         #nmped-full-search { padding:10% 5%; }
         #nmped-search { width:100%; max-width:100%; }
