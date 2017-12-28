@@ -572,6 +572,9 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     ul.side-nav  { border-top:none; border-bottom: 1px solid #e0dede; }
     .side-nav ul { border-bottom:none; }
     .side-nav li { border-top: 1px solid #e0dede; }
+    #ai1ec-container a:hover,
+    #ai1ec-container a:focus { text-decoration:none !important; }
+    .ai1ec-field-label h2 { font-size:18px !important; margin:0 !important; line-height:1.25em !important; }
 
     @media only screen and (max-width: 800px){
         body.has-sidebar #content { width:100% !important; }
