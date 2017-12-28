@@ -337,14 +337,17 @@ add_action( 'wp_footer', 'nmped_cf7_footer' );
 function nmped_hide_menu_options(){
     if (!current_user_can('administrator')) {
     ?>
-    <style>
-	#menu-posts-avada_faq,
-	#menu-posts-themefusion_elastic,
-	#menu-posts-avada_portfolio,
-	#menu-posts-slide,
-	#menu-comments,
-	#searchwp-index-errors-notice { display:none; }
-    </style>
+        <style>
+    	#menu-posts-avada_faq,
+    	#menu-posts-themefusion_elastic,
+    	#menu-posts-avada_portfolio,
+    	#menu-posts-slide,
+    	#menu-comments,
+    	#searchwp-index-errors-notice,
+        #toplevel_page_avada,
+        #toplevel_page_fusion-builder-options,
+        .hide-if-no-customize { display:none; }
+        </style>
     <?php
     }
 }
@@ -503,11 +506,11 @@ function get_categories_by_post_type($post_type, $args = '') {
     $exclude = array();
     $results = array();
     $categories = array();
-    
+
     //check all categories and exclude
     foreach (get_categories($args) as $category) {
         $posts = get_posts(array('post_type' => $post_type, 'category' => $category->cat_ID, 'post_status' => 'publish'));
-	
+
         if (empty($posts)) { $exclude[] = $category->cat_ID; } else {
 	    foreach ($posts as $post) {
 		if ($post->post_type=="post") {
@@ -520,11 +523,11 @@ function get_categories_by_post_type($post_type, $args = '') {
 	    }
 	}
     }
-    
+
     $unique_categories = wp_list_pluck($results, 'category', 'cat_ID');
-    
+
     $counts = array_count_values(array_column($results, 'cat_ID'));
-    
+
     foreach($unique_categories as $category){
 	foreach($counts as $key=>$val){
 	    if ($category->cat_ID==$key){
@@ -532,7 +535,7 @@ function get_categories_by_post_type($post_type, $args = '') {
 	    }
 	}
     }
-    
+
     return $unique_categories;
 }
 add_filter( 'wp_list_categories' , 'nmped_list_categories_for_post_type' );
