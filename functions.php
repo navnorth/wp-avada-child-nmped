@@ -143,7 +143,7 @@ function category_tag_archives( $wp_query ) {
 
     // add page to category archive
     if ( $wp_query->get( 'category_name' ) || $wp_query->get( 'cat' ) )
-	$wp_query->set( 'post_type' , $my_post_types );
+	$wp_query->set( 'post_type' , array('post') );
 
     // add page to tag archive
     if ( $wp_query->get( 'tag' ) )
