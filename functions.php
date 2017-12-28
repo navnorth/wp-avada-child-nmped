@@ -143,7 +143,7 @@ function category_tag_archives( $wp_query ) {
 
     // add page to category archive
     if ( $wp_query->get( 'category_name' ) || $wp_query->get( 'cat' ) )
-	$wp_query->set( 'post_type' , $my_post_types );
+	$wp_query->set( 'post_type' , array('post') );
 
     // add page to tag archive
     if ( $wp_query->get( 'tag' ) )
@@ -536,3 +536,26 @@ function get_categories_by_post_type($post_type, $args = '') {
     return $unique_categories;
 }
 add_filter( 'wp_list_categories' , 'nmped_list_categories_for_post_type' );
+
+function nmped_enqueue_media_scripts() {
+    wp_enqueue_media();
+}
+add_action( 'admin_enqueue_scripts' , 'nmped_enqueue_media_scripts' );
+function nmped_required_alt_text()
+{
+    ?>
+    <script language="javascript" type="text/javascript">
+	jQuery(document).ready( function($){
+	    if (wp.media) {
+		console.log(wp.media.view);
+		wp.media.view.MediaFrame.prototype.on('open', function() {
+		    console.log('test');
+		    e.preventDefault();
+		    console.log('test');
+		});
+	    }
+	});
+    </script>
+<?php
+}
+add_action( 'admin_head' , 'nmped_required_alt_text' );
