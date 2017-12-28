@@ -68,7 +68,6 @@ function change_cf7_capabilities($meta_caps) {
     return $meta_caps;
 }
 
-
 // remove the default 'Posts' before we add a new one
 add_action('admin_menu','remove_default_post_type');
 function remove_default_post_type() {
@@ -355,3 +354,185 @@ add_action( 'wp_head', 'remove_default_blog_post_content' );
 function remove_default_blog_post_content(){
 	remove_action( 'avada_blog_post_content', 'avada_render_blog_post_content', 10 );
 }
+
+function nmped_list_categories_for_posts_only($args = ''){
+    $defaults = array(
+		'child_of'            => 0,
+		'current_category'    => 0,
+		'depth'               => 0,
+		'echo'                => 1,
+		'exclude'             => '',
+		'exclude_tree'        => '',
+		'feed'                => '',
+		'feed_image'          => '',
+		'feed_type'           => '',
+		'hide_empty'          => 1,
+		'hide_title_if_empty' => false,
+		'hierarchical'        => true,
+		'order'               => 'ASC',
+		'orderby'             => 'name',
+		'separator'           => '<br />',
+		'show_count'          => 1,
+		'show_option_all'     => '',
+		'show_option_none'    => __( 'No categories' ),
+		'style'               => 'list',
+		'taxonomy'            => 'category',
+		'title_li'            => '',
+		'use_desc_for_title'  => 1,
+	);
+
+	$r = wp_parse_args( $args, $defaults );
+
+	if ( !isset( $r['pad_counts'] ) && $r['show_count'] && $r['hierarchical'] )
+		$r['pad_counts'] = false;
+
+	// Descendants of exclusions should be excluded too.
+	if ( true == $r['hierarchical'] ) {
+		$exclude_tree = array();
+
+		if ( $r['exclude_tree'] ) {
+			$exclude_tree = array_merge( $exclude_tree, wp_parse_id_list( $r['exclude_tree'] ) );
+		}
+
+		if ( $r['exclude'] ) {
+			$exclude_tree = array_merge( $exclude_tree, wp_parse_id_list( $r['exclude'] ) );
+		}
+
+		$r['exclude_tree'] = $exclude_tree;
+		$r['exclude'] = '';
+	}
+
+	if ( ! isset( $r['class'] ) )
+		$r['class'] = ( 'category' == $r['taxonomy'] ) ? 'categories' : $r['taxonomy'];
+
+	if ( ! taxonomy_exists( $r['taxonomy'] ) ) {
+		return false;
+	}
+
+	$show_option_all = $r['show_option_all'];
+	$show_option_none = $r['show_option_none'];
+
+	$categories = get_categories_by_post_type('post', $r );
+
+	$output = '';
+	if ( $r['title_li'] && 'list' == $r['style'] && ( ! empty( $categories ) || ! $r['hide_title_if_empty'] ) ) {
+		$output = '<li class="' . esc_attr( $r['class'] ) . '">' . $r['title_li'] . '<ul>';
+	}
+	if ( empty( $categories ) ) {
+		if ( ! empty( $show_option_none ) ) {
+			if ( 'list' == $r['style'] ) {
+				$output .= '<li class="cat-item-none">' . $show_option_none . '</li>';
+			} else {
+				$output .= $show_option_none;
+			}
+		}
+	} else {
+		if ( ! empty( $show_option_all ) ) {
+
+			$posts_page = '';
+
+			// For taxonomies that belong only to custom post types, point to a valid archive.
+			$taxonomy_object = get_taxonomy( $r['taxonomy'] );
+			if ( ! in_array( 'post', $taxonomy_object->object_type ) && ! in_array( 'page', $taxonomy_object->object_type ) ) {
+				foreach ( $taxonomy_object->object_type as $object_type ) {
+					$_object_type = get_post_type_object( $object_type );
+
+					// Grab the first one.
+					if ( ! empty( $_object_type->has_archive ) ) {
+						$posts_page = get_post_type_archive_link( $object_type );
+						break;
+					}
+				}
+			}
+
+			// Fallback for the 'All' link is the posts page.
+			if ( ! $posts_page ) {
+				if ( 'page' == get_option( 'show_on_front' ) && get_option( 'page_for_posts' ) ) {
+					$posts_page = get_permalink( get_option( 'page_for_posts' ) );
+				} else {
+					$posts_page = home_url( '/' );
+				}
+			}
+
+			$posts_page = esc_url( $posts_page );
+			if ( 'list' == $r['style'] ) {
+				$output .= "<li class='cat-item-all'><a href='$posts_page'>$show_option_all</a></li>";
+			} else {
+				$output .= "<a href='$posts_page'>$show_option_all</a>";
+			}
+		}
+
+		if ( empty( $r['current_category'] ) && ( is_category() || is_tax() || is_tag() ) ) {
+			$current_term_object = get_queried_object();
+			if ( $current_term_object && $r['taxonomy'] === $current_term_object->taxonomy ) {
+				$r['current_category'] = get_queried_object_id();
+			}
+		}
+
+		if ( $r['hierarchical'] ) {
+			$depth = $r['depth'];
+		} else {
+			$depth = -1; // Flat.
+		}
+		$output .= walk_category_tree( $categories, $depth, $r );
+	}
+
+	if ( $r['title_li'] && 'list' == $r['style'] && ( ! empty( $categories ) || ! $r['hide_title_if_empty'] ) ) {
+		$output .= '</ul></li>';
+	}
+
+	/**
+	 * Filters the HTML output of a taxonomy list.
+	 *
+	 * @since 2.1.0
+	 *
+	 * @param string $output HTML output.
+	 * @param array  $args   An array of taxonomy-listing arguments.
+	 */
+	//$output = preg_replace('/<\/a> \(([0-9]+)\)/', ' <span class="count"> (\\1)</span></a>', $output);
+	$output = preg_replace('/<\/a> \(([0-9]+)\)/', ' (\\1)</a>', $output);
+	$html = $output;
+
+	if ( $r['echo'] ) {
+		echo $html;
+	} else {
+		return $html;
+	}
+}
+function get_categories_by_post_type($post_type, $args = '') {
+    $exclude = array();
+    $results = array();
+    $categories = array();
+    
+    //check all categories and exclude
+    foreach (get_categories($args) as $category) {
+        $posts = get_posts(array('post_type' => $post_type, 'category' => $category->cat_ID, 'post_status' => 'publish'));
+	
+        if (empty($posts)) { $exclude[] = $category->cat_ID; } else {
+	    foreach ($posts as $post) {
+		if ($post->post_type=="post") {
+		    $results[] = array(
+				'cat_ID' => $category->cat_ID,
+				'category' => $category,
+				'post' => $post
+			);
+		}
+	    }
+	}
+    }
+    
+    $unique_categories = wp_list_pluck($results, 'category', 'cat_ID');
+    
+    $counts = array_count_values(array_column($results, 'cat_ID'));
+    
+    foreach($unique_categories as $category){
+	foreach($counts as $key=>$val){
+	    if ($category->cat_ID==$key){
+		$category->category_count = $category->count = $val;
+	    }
+	}
+    }
+    
+    return $unique_categories;
+}
+add_filter( 'wp_list_categories' , 'nmped_list_categories_for_post_type' );

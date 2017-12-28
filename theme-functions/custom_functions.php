@@ -360,4 +360,90 @@ if ( ! function_exists( 'nmped_fusion_get_post_content_excerpt' ) ) {
 	}
 }// End if().
 
+if ( ! function_exists( 'nmped_list_categories_for_post_type' ) ) {
+	function nmped_list_categories_for_post_type($post_type, $args = '') {
+	    $exclude = array();
+	
+	    // Check ALL categories for posts of given post type
+	    foreach (get_categories() as $category) {
+		$posts = get_posts(array('post_type' => $post_type, 'category' => $category->cat_ID));
+		
+		// If no posts found, ...
+		if (empty($posts))
+		    // ...add category to exclude list
+		    $exclude[] = $category->cat_ID;
+	    }
+	
+	    // Set up args
+	    if (! empty($exclude)) {
+		$args .= ('' === $args) ? '' : '&';
+		$args .= 'exclude='.implode(',', $exclude);
+	    }
+	
+	    // List categories
+	    nmped_list_categories_for_posts_only($args);
+	}
+}
+
+if (! function_exists('array_column')) {
+    function array_column(array $input, $columnKey, $indexKey = null) {
+        $array = array();
+        foreach ($input as $value) {
+            if ( !array_key_exists($columnKey, $value)) {
+                trigger_error("Key \"$columnKey\" does not exist in array");
+                return false;
+            }
+            if (is_null($indexKey)) {
+                $array[] = $value[$columnKey];
+            }
+            else {
+                if ( !array_key_exists($indexKey, $value)) {
+                    trigger_error("Key \"$indexKey\" does not exist in array");
+                    return false;
+                }
+                if ( ! is_scalar($value[$indexKey])) {
+                    trigger_error("Key \"$indexKey\" does not contain scalar value");
+                    return false;
+                }
+                $array[$value[$indexKey]] = $value[$columnKey];
+            }
+        }
+        return $array;
+    }
+}
+
+function nmped_toggle_panel_attr() {
+
+	$attr = array(
+		'class' => 'fusion-panel panel-default nmped-panel',
+	);
+
+	return $attr;
+
+}
+
+function nmped_data_toggle_attr($child_args, $parent_args, $accordian_counter, $collapse_id) {
+	$attr = array();
+
+	if ( 'yes' === $child_args['open'] ) {
+		$attr['class'] = 'active';
+	}
+	
+	$attr['data-toggle'] = 'collapse';
+	if ( 'toggles' !== $parent_args['type'] ) {
+		$attr['data-parent'] = sprintf( '#accordion-%s-%s', get_the_ID(), $accordian_counter );
+	}
+	$attr['data-target'] = '#' . $collapse_id;
+	$attr['href']        = '#' . $collapse_id;
+	
+	return $attr;
+}
+
+function nmped_collapse_attr($child_args, $collapse_id) {
+	return array(
+		'id'    => $collapse_id,
+		'class' => 'panel-collapse collapse ' . $child_args['toggle_class'],
+	);
+}
+
 ?>
