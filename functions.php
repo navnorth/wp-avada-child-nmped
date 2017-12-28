@@ -536,3 +536,26 @@ function get_categories_by_post_type($post_type, $args = '') {
     return $unique_categories;
 }
 add_filter( 'wp_list_categories' , 'nmped_list_categories_for_post_type' );
+
+function nmped_enqueue_media_scripts() {
+    wp_enqueue_media();
+}
+add_action( 'admin_enqueue_scripts' , 'nmped_enqueue_media_scripts' );
+function nmped_required_alt_text()
+{
+    ?>
+    <script language="javascript" type="text/javascript">
+	jQuery(document).ready( function($){
+	    if (wp.media) {
+		console.log(wp.media.view);
+		wp.media.view.MediaFrame.prototype.on('open', function() {
+		    console.log('test');
+		    e.preventDefault();
+		    console.log('test');
+		});
+	    }
+	});
+    </script>
+<?php
+}
+add_action( 'admin_head' , 'nmped_required_alt_text' );
