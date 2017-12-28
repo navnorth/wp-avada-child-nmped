@@ -1,13 +1,13 @@
 {{ navigation | raw }}
 
-<div class="ai1ec-agenda-view{% if has_product_buy_button %} ai1ec-has-product-buy-button{% endif %}">
+<ul class="ai1ec-agenda-view{% if has_product_buy_button %} ai1ec-has-product-buy-button{% endif %}">
 	{% if dates is empty %}
 		<p class="ai1ec-no-results">
 			{{ text_upcoming_events }}
 		</p>
 	{% else %}
 		{% for date, date_info in dates %}
-			<div class="ai1ec-date
+			<li class="ai1ec-date
 				{% if date_info.today is not empty %}ai1ec-today{% endif %}">
 				<a class="ai1ec-date-title ai1ec-load-view"
 					href="{{ date_info.href | e('html_attr') }}"
@@ -112,9 +112,9 @@
 						{% endfor %} {# event in category #}
 					{% endfor %} {# category in date_info.events #}
 				</div>
-			</div>
+			</li>
 		{% endfor %} {# date, date_info in dates #}
 	{% endif %} {# dates is not empty #}
-</div>
+</ul>
 
 <div class="ai1ec-pull-left">{{ pagination_links | raw }}</div>

@@ -12,9 +12,9 @@
 		{{ text_categories }}
 		<span class="ai1ec-caret"></span>
 	</a>
-	<div class="ai1ec-dropdown-menu">
+	<ul class="ai1ec-dropdown-menu">
 		{% for term in categories %}
-			<div data-term="{{ term.term_id }}"
+			<li data-term="{{ term.term_id }}"
 				{% if term.term_id in selected_cat_ids %}
 					class="ai1ec-active"
 				{% endif %}>
@@ -31,8 +31,8 @@
 					{% endif %}
 					{{ term.name | raw }}
 				</a>
-			</div>
+			</li>
 		{% endfor %}
-	</div>
+	</ul>
 </li>
 
