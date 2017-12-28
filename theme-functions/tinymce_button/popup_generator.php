@@ -110,7 +110,7 @@ if($action == "show_popup")
 					   var shortcode = \'[spacer height="16"]\';
 					   break;
                     case \'accordion\':
-                            var shortcode = \'[fusion_accordion][fusion_toggle title="Your Toggle Title Here" open="no" ]\n\nYour Content Goes Here\n\n[/fusion_toggle][/fusion_accordion]\';
+                            var shortcode = \'[fusion_accordion][nmped_toggle title="Your Toggle Title Here" open="no" ]\n\nYour Content Goes Here\n\n[/nmped_toggle][/fusion_accordion]\';
                             break;
                     case \'button\':
 					   var shortcode = \'[fusion_button link="url" title="Button Title Text" target="_self"]Put Your Button Text Here[/fusion_button]\';
@@ -119,7 +119,7 @@ if($action == "show_popup")
 					   var shortcode = \'[nmped_subpages title="" id=""]\';
 					   break;
                     case \'table\':
-                       var shortcode = \'<div class="table-2">\n<table width="99%">\n<thead>\n<tr>\n<th align="left">Heading One</th>\n<th align="left">Heading Two</th>\n<th align="left">Heading Three</th>\n<th align="left">Heading Four</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td align="left">Content In Row One, Cell One</td>\n<td align="left">Content In Row One, Cell Two</td>\n<td align="left">Content In Row One, Cell Three</td>\n<td align="left">Content In Row One, Cell Four</td>\n</tr>\n<tr>\n<td align="left">Content In Row Two, Cell One</td>\n<td align="left">Content In Row Two, Cell Two</td>\n<td align="left">Content In Row Two, Cell Three</td>\n<td align="left">Content In Row One, Cell Four</td>\n</tr>\n</tbody>\n</table>\n</div>\';
+                       var shortcode = \'<div class="table-1">\n<table width="99%">\n<thead>\n<tr>\n<th align="left">Heading One</th>\n<th align="left">Heading Two</th>\n<th align="left">Heading Three</th>\n<th align="left">Heading Four</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td align="left">Content In Row One, Cell One</td>\n<td align="left">Content In Row One, Cell Two</td>\n<td align="left">Content In Row One, Cell Three</td>\n<td align="left">Content In Row One, Cell Four</td>\n</tr>\n<tr>\n<td align="left">Content In Row Two, Cell One</td>\n<td align="left">Content In Row Two, Cell Two</td>\n<td align="left">Content In Row Two, Cell Three</td>\n<td align="left">Content In Row One, Cell Four</td>\n</tr>\n</tbody>\n</table>\n</div>\';
 					   break;
                     case \'pdf\':
                        var shortcode = \'[wonderplugin_pdf src="/wp-content/uploads/2017/12/your-PDF-FileName.pdf"]\';
