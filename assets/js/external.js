@@ -20,7 +20,7 @@
       return matcher.test(hostname);
     });
   };
-  $(document).on('click', 'a[href]', function(e) {
+  $(document).on('click', 'a[href],area[href]', function(e) {
     var $this, checkMatches, checkOverride, href, matches, target;
     $this = $(this);
     href = $this.attr('href');
