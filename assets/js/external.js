@@ -4,9 +4,16 @@
   recentUrls = {};
   /* basic format for domains in the whitelist: /^domainname\.com$/  -- no quotes around each item in the array */
   whitelist = [
-                 /^.*navigationnorth\.com$/,
-                 /^plus\.google\.com$/,
-                 /^ped\.state\.nm\.us$/
+                /^plus\.google\.com$/,
+                /^ped\.state\.nm\.us$/,
+                /^aae\.ped\.state\.nm\.us$/,
+                /^gradcohort\.ped\.state\.nm\.us$/,
+                /^soap\.ped\.state\.nm\.us$/,
+                /^webed\.ped\.state\.nm\.us$/,
+                /^newmexicocommoncore\.org$/,
+                /^apps\.ped\.state\.nm\.us$/,
+                /^families\.ped\.state\.nm\.us$/,
+                /^www\.dvr\.state\.nm\.us$/
               ];
   whitelisted = function(hostname) {
     return _.any(whitelist, function(matcher) {
