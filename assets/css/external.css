@@ -5,7 +5,11 @@
 #dataConfirmModal .modal-body { color:#ffffff; }
 #dataConfirmModal .modal-body p.href { color:#e6d54b; }
 #dataConfirmModal .modal-body h2 { font-size:24px; color:#ffffff; }
-#dataConfirmModal .modal-footer { border-top:none; }
+#dataConfirmModal .modal-footer { border-top:none; display:block; }
 #dataConfirmModal .modal-footer .btn { text-transform:uppercase; color:#000000; padding:10px 20px; border-style:solid; font-size:16px; cursor:pointer; }
 #dataConfirmModal .modal-footer .btn-white { background:#ffffff; }
 #dataConfirmModal .modal-footer .btn-yellow { background:#e6d54b; border-color:#e6d54b; }
+#dataConfirmModal .modal-footer .btn-yellow:hover,
+#dataConfirmModal .modal-footer .btn-yellow:focus { opacity:.90; border:1px solid #f6f6f6; }
+#dataConfirmModal .modal-footer .btn-white:hover,
+#dataConfirmModal .modal-footer .btn-white:focus { opacity:.90; border:1px solid #e6d54b; }

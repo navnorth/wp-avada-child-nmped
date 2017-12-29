@@ -33,7 +33,7 @@
       e.preventDefault();
 
       if (!$('#dataConfirmModal').length) {
-              $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"></div><div class="modal-body"></div><div class="modal-footer"><button class="btn btn-primary btn-white" data-dismiss="modal" aria-hidden="true">No</button><button class="btn btn-primary btn-yellow" tabindex="1" id="dataConfirmOK">Proceed</button></div></div>');
+              $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"></div><div class="modal-body"></div><div class="modal-footer fusion-button-wrapper"><button class="btn btn-primary btn-white fusion-button button-flat fusion-button-round button-large button-default button-1" data-dismiss="modal" tabindex="1" aria-hidden="true">No</button><button class="btn btn-primary btn-yellow fusion-button button-flat fusion-button-round button-large button-default button-1" tabindex="2" id="dataConfirmOK">Proceed</button></div></div>');
       }
 
       var $html = '<h2>You are about to leave the NMPED website.</h2>'
