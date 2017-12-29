@@ -54,6 +54,8 @@ if ('modern' === Avada()->settings->get('mobile_menu_design')) {
 
 ?>
 <body <?php body_class(); ?>>
+<!-- Skip Content Navigation -->
+	<div id="skipcontent"><a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to Content', 'wp-avad-child-nmped' ); ?>"><?php _e( 'Skip to Content', 'wp-avad-child-nmped' ); ?></a></div>
 <?php do_action('avada_before_body_content');
 
 $boxed_side_header_right = false;

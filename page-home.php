@@ -14,7 +14,7 @@ wp_enqueue_style('homepage-category-styles', get_stylesheet_directory_uri() . '/
 ?>
 <?php get_header('home'); ?>
 
-	<section class="homepage-content">
+	<section id="content" class="homepage-content">
 		<?php while (have_posts()) : the_post(); ?>
 			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<?php echo fusion_render_rich_snippets_for_pages(); // WPCS: XSS ok. ?>

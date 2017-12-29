@@ -16,7 +16,7 @@ add_action( 'avada_after_main_container' , 'show_full_search' );
 
 <?php get_header('home'); ?>
 
-	<section class="category-page">
+	<section id="content" class="category-page">
 		<?php while (have_posts()) : the_post(); ?>
 			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<?php echo fusion_render_rich_snippets_for_pages(); // WPCS: XSS ok. ?>
