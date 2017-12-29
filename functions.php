@@ -562,3 +562,17 @@ function nmped_required_alt_text()
 <?php
 }
 add_action( 'admin_head' , 'nmped_required_alt_text' );
+
+/** Update Logo of Login Page **/
+function nmped_login_logo() { ?>
+    <style type="text/css">
+        #login h1 a, .login h1 a {
+            background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/assets/images/logo-retina-1.png);
+		height:90px;
+		width:320px;
+		background-size: 320px 90px;
+		background-repeat: no-repeat;
+        }
+    </style>
+<?php }
+add_action( 'login_enqueue_scripts', 'nmped_login_logo' );
