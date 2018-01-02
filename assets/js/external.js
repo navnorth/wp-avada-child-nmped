@@ -5,6 +5,7 @@
   /* basic format for domains in the whitelist: /^domainname\.com$/  -- no quotes around each item in the array */
   whitelist = [
                 /^plus\.google\.com$/,
+                /^www\.ped\.state\.nm\.us$/,
                 /^ped\.state\.nm\.us$/,
                 /^aae\.ped\.state\.nm\.us$/,
                 /^gradcohort\.ped\.state\.nm\.us$/,
