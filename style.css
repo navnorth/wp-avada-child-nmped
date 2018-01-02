@@ -577,6 +577,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .ai1ec-field-label h2 { font-size:18px !important; margin:0 !important; line-height:1.25em !important; }
     .ai1ec-btn-group-list { padding-left:0 !important; }
     .ai1ec-btn-group-list li { display:inline !important; list-style:none !important; }
+    .nmped-related-posts li { margin-bottom:15px !important; }
 
     @media only screen and (max-width: 800px){
         body.has-sidebar #content { width:100% !important; }
