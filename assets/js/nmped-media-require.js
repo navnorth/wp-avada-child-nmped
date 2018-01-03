@@ -8,6 +8,7 @@ jQuery(document).ready(function ($) {
 	 *
 	 * @returns {boolean}
 	 */
+	
 	var checkForAlt = function (showNotice) {
 
 		var notice         = ('undefined' !== typeof showNotice) ? showNotice : false,
@@ -122,7 +123,7 @@ jQuery(document).ready(function ($) {
 	};
 
 	var body = $('body');
-
+	
 	// Bind to keyup.
 	body.on('keyup', '.media-modal-content label[data-setting="alt"] input, .media-frame-content input[data-setting="alt"]', function () {
 		checkForAlt();
