@@ -560,29 +560,6 @@ function get_categories_by_post_type($post_type, $args = '') {
 }
 add_filter( 'wp_list_categories' , 'nmped_list_categories_for_post_type' );
 
-function nmped_enqueue_media_scripts() {
-    wp_enqueue_media();
-}
-add_action( 'admin_enqueue_scripts' , 'nmped_enqueue_media_scripts' );
-function nmped_required_alt_text()
-{
-    ?>
-    <script language="javascript" type="text/javascript">
-	jQuery(document).ready( function($){
-	    if (wp.media) {
-		console.log(wp.media.view);
-		wp.media.view.MediaFrame.prototype.on('open', function() {
-		    console.log('test');
-		    e.preventDefault();
-		    console.log('test');
-		});
-	    }
-	});
-    </script>
-<?php
-}
-add_action( 'admin_head' , 'nmped_required_alt_text' );
-
 /** Update Logo of Login Page **/
 function nmped_login_logo() { ?>
     <style type="text/css">
@@ -596,3 +573,57 @@ function nmped_login_logo() { ?>
     </style>
 <?php }
 add_action( 'login_enqueue_scripts', 'nmped_login_logo' );
+
+function nmped_require_alt_script() {
+    $site_id = is_multisite() ? get_current_blog_id() : 0;
+    
+    /**
+    * Filter the screen IDs in where the script should be displayed
+    *
+    * This filter allows us to limit or expand to multiple content types or other screens based on the the current site.
+    * 
+    **/
+    $screens = apply_filters( 'nmped_replace_alt_tags_screen_ids', array( 'post', 'page' ), $site_id );
+
+    if ( in_array( get_current_screen()->id, $screens, true ) ) {
+	wp_register_script( 'nmped_require_alt_tags', get_stylesheet_directory_uri() . '/assets/js/nmped-media-require.js', array( 'jquery' ), null, true );
+	wp_register_style( 'nmped_require_alt_tags', get_stylesheet_directory_uri() . '/assets/css/nmped-require-image-alt-tags.css', array(), null );
+	
+	wp_enqueue_script( 'nmped_require_alt_tags' );
+	wp_enqueue_style( 'nmped_require_alt_tags' );
+	
+	$disclaimer_copy = apply_filters( 'nmped_alt_tag_disclaimer', esc_html__( 'Please include an \'Alt Text\' before proceeding with inserting your image.', 'wp-avada-child-nmped' ) );
+	
+	wp_localize_script(
+	    'nmped_require_alt_tags',
+	    'nmpedTagsCopy',
+	    array(
+		    'txt'        => esc_html__( 'The following image(s) are missing alt text', 'wp-avada-child-nmped' ),
+		    'editTxt'    => esc_html__( 'You must enter \'alt text\' for this image before you can proceed', 'wp-avada-child-nmped' ),
+		    'disclaimer' => $disclaimer_copy,
+	    )
+	);
+    }
+}
+add_action( 'admin_enqueue_scripts', 'nmped_require_alt_script' );
+
+function nmped_filter_manage_media_columns( $columns ){
+    $columns['alttext'] = esc_html__( 'Alt Text', 'wp-avada-child-nmped' );
+
+    return $columns;
+}
+add_filter( 'manage_media_columns', 'nmped_filter_manage_media_columns' );
+
+function nmped_action_manage_media_custom_column( $column_name, $post_id ) {
+    
+    if ( 'alttext' === $column_name && wp_attachment_is_image( $post_id ) ) {
+
+	$alt_text = get_post_meta( $post_id, '_wp_attachment_image_alt', true );
+
+	if ( empty( $alt_text ) ) {
+		printf( '<span style="color: red;">%s</span>', esc_html__( 'Missing', 'wp-avada-child-nmped' ) );
+	}
+    }
+    
+}
+add_action( 'manage_media_custom_column', 'nmped_action_manage_media_custom_column', 10, 3 );
