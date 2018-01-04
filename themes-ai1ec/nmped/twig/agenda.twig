@@ -19,10 +19,10 @@
 						<div class="ai1ec-year">{{ date_info.year }}</div>
 					{% endif %}
 				</a>
-				<div class="ai1ec-date-events">
+				<ul class="ai1ec-date-events">
 					{% for category in date_info.events %}
 						{% for event in category %}
-							<div class="ai1ec-event
+							<li class="ai1ec-event
 								ai1ec-event-id-{{ event.post_id }}
 								ai1ec-event-instance-id-{{ event.instance_id }}
 								{% if event.is_allday %}ai1ec-allday{% endif %}
@@ -108,10 +108,10 @@
 									</div>
 								</div>
 
-							</div>
+							</li>
 						{% endfor %} {# event in category #}
 					{% endfor %} {# category in date_info.events #}
-				</div>
+				</ul>
 			</li>
 		{% endfor %} {# date, date_info in dates #}
 	{% endif %} {# dates is not empty #}
