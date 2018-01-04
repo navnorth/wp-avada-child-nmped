@@ -570,6 +570,9 @@ function nmped_login_logo() { ?>
 		background-size: 320px 90px;
 		background-repeat: no-repeat;
         }
+	.center { text-align:center; }
+	.login #nav a { color: #00a0d2; }
+	.login #nav a:hover { text-decoration:underline; }
     </style>
 <?php }
 add_action( 'login_enqueue_scripts', 'nmped_login_logo' );
@@ -746,3 +749,42 @@ function nmped_attachment_display() {
      </style>
 <?php
 }
+
+// Change lost password text
+function change_lost_password( $text ) {
+    if ($text == "Lost your password?") {
+	$text = 'For login issues, please <a href="' .site_url('/contact-us'). '">contact us</a>.';
+    }
+    return $text;
+}
+add_filter( 'gettext' , 'change_lost_password' );
+
+function nmped_lostpassword_url() {
+    return "";
+}
+add_filter( 'lostpassword_url',  'nmped_lostpassword_url', 10, 0 );
+
+function nmped_customize_login_error( $error ) {
+    return "Invalidy username/password";
+}
+add_filter( 'login_errors' , 'nmped_customize_login_error' );
+
+function nmped_login_message( $message ) {
+    if ( empty($message) ){
+        return "<p class='center'><strong>Provide your DoIT data center credentials <br/>to login (PEDEUI).</strong></p>";
+    } else {
+        return $message;
+    }
+}
+add_filter( 'login_message', 'nmped_login_message' );
+
+function nmped_login_script(){
+?>
+    <script>
+	jQuery(document).ready(function($){
+	    $('#login #nav a').first().contents().unwrap();
+	});
+    </script>
+<?php
+}
+add_action( 'login_footer' , 'nmped_login_script' );

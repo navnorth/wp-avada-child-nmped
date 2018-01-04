@@ -10,6 +10,6 @@
 #dataConfirmModal .modal-footer .btn-white { background:#ffffff; }
 #dataConfirmModal .modal-footer .btn-yellow { background:#e6d54b; border-color:#e6d54b; }
 #dataConfirmModal .modal-footer .btn-yellow:hover,
-#dataConfirmModal .modal-footer .btn-yellow:focus { opacity:.90; border:1px solid #f6f6f6; }
+#dataConfirmModal .modal-footer .btn-yellow:focus { opacity:.90; border:1px solid #f6f6f6; text-decoration:underline !important; }
 #dataConfirmModal .modal-footer .btn-white:hover,
-#dataConfirmModal .modal-footer .btn-white:focus { opacity:.90; border:1px solid #e6d54b; }
+#dataConfirmModal .modal-footer .btn-white:focus { opacity:.90; border:1px solid #e6d54b; text-decoration:underline !important; }
