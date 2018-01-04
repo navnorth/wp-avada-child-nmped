@@ -569,6 +569,7 @@ function nmped_login_logo() { ?>
 		width:320px;
 		background-size: 320px 90px;
 		background-repeat: no-repeat;
+        box-shadow:0 1px 3px rgba(0,0,0,.13);
         }
 	.center { text-align:center; }
 	.login #nav a { color: #00a0d2; }
@@ -579,24 +580,24 @@ add_action( 'login_enqueue_scripts', 'nmped_login_logo' );
 
 function nmped_require_alt_script() {
     $site_id = is_multisite() ? get_current_blog_id() : 0;
-    
+
     /**
     * Filter the screen IDs in where the script should be displayed
     *
     * This filter allows us to limit or expand to multiple content types or other screens based on the the current site.
-    * 
+    *
     **/
     $screens = apply_filters( 'nmped_replace_alt_tags_screen_ids', array( 'post', 'page' ), $site_id );
 
     if ( in_array( get_current_screen()->id, $screens, true ) ) {
 	wp_register_script( 'nmped_require_alt_tags', get_stylesheet_directory_uri() . '/assets/js/nmped-media-require.js', array( 'jquery', 'backbone', 'underscore' ), null, true );
 	wp_register_style( 'nmped_require_alt_tags', get_stylesheet_directory_uri() . '/assets/css/nmped-require-image-alt-tags.css', array(), null );
-	
+
 	wp_enqueue_script( 'nmped_require_alt_tags' );
 	wp_enqueue_style( 'nmped_require_alt_tags' );
-	
+
 	$disclaimer_copy = apply_filters( 'nmped_alt_tag_disclaimer', esc_html__( 'Please include an \'Alt Text\' before proceeding with inserting your image.', 'wp-avada-child-nmped' ) );
-	
+
 	wp_localize_script(
 	    'nmped_require_alt_tags',
 	    'nmpedTagsCopy',
@@ -618,7 +619,7 @@ function nmped_filter_manage_media_columns( $columns ){
 add_filter( 'manage_media_columns', 'nmped_filter_manage_media_columns' );
 
 function nmped_action_manage_media_custom_column( $column_name, $post_id ) {
-    
+
     if ( 'alttext' === $column_name && wp_attachment_is_image( $post_id ) ) {
 
 	$alt_text = get_post_meta( $post_id, '_wp_attachment_image_alt', true );
@@ -627,7 +628,7 @@ function nmped_action_manage_media_custom_column( $column_name, $post_id ) {
 		printf( '<span style="color: red;">%s</span>', esc_html__( 'Missing', 'wp-avada-child-nmped' ) );
 	}
     }
-    
+
 }
 add_action( 'manage_media_custom_column', 'nmped_action_manage_media_custom_column', 10, 3 );
 
@@ -728,7 +729,7 @@ function nmped_attachment_display() {
 		</label>
 		<# if ( 'image' === data.type ) { #>
 			<label class="setting" data-setting="alt">
-				<span class="name"><?php _e('Alt Text'); ?> <span class="red required">*</span></span> 
+				<span class="name"><?php _e('Alt Text'); ?> <span class="red required">*</span></span>
 				<input type="text" value="{{ data.alt }}" {{ maybeReadOnly }} />
 			</label>
 		<# } #>
@@ -753,7 +754,7 @@ function nmped_attachment_display() {
 // Change lost password text
 function change_lost_password( $text ) {
     if ($text == "Lost your password?") {
-	$text = 'For login issues, please <a href="' .site_url('/contact-us'). '">contact us</a>.';
+	   $text = 'For login issues, please email <a href="mailto:PED.HelpDesk@state.nm.us?subject=WordPress Login Issues" title="send email to PED.HelpDesk@state.nm.us">PED.HelpDesk@state.nm.us</a>.';
     }
     return $text;
 }
@@ -765,7 +766,7 @@ function nmped_lostpassword_url() {
 add_filter( 'lostpassword_url',  'nmped_lostpassword_url', 10, 0 );
 
 function nmped_customize_login_error( $error ) {
-    return "Invalidy username/password";
+    return "Invalid username/password";
 }
 add_filter( 'login_errors' , 'nmped_customize_login_error' );
 
