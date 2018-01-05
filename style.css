@@ -586,6 +586,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .ai1ec-agenda-view li { list-style:none !important; }
     ul.ai1ec-date-events { padding-left:0; }
     ul.ai1ec-agenda-view li.ai1ec-date a.ai1ec-date-title:hover { outline:2px solid #88a9e0; }
+    .fusion-main-menu .sub-menu.fusion-switched-side { left:-158px !important; }
 
     @media only screen and (max-width: 800px){
         body.has-sidebar #content { width:100% !important; }
