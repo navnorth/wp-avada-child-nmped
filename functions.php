@@ -789,3 +789,22 @@ function nmped_login_script(){
 <?php
 }
 add_action( 'login_footer' , 'nmped_login_script' );
+
+/** Hide Widgets from Admin Dashboard **/
+function nmped_remove_dashboard_widgets(){
+    if (!current_user_can('administrator')) {
+	//Welcome Panel
+	remove_action('welcome_panel', 'wp_welcome_panel');
+	//Wordpress Events and News
+	remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
+	// Quick Drafts
+	remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
+	// At a Glance
+	remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
+	//ThemeFusion News
+	remove_meta_box( 'themefusion_news', 'dashboard', 'normal' );
+	// Google Analytics Dashboard
+	remove_meta_box( 'gadwp-widget', 'dashboard', 'normal' );
+    }
+}
+add_action('wp_dashboard_setup', 'nmped_remove_dashboard_widgets' );
