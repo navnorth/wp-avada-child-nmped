@@ -1,0 +1,63 @@
+<style>
+<!--
+{{ css | raw }}
+-->
+</style>
+<div class="timely ai1ec-agenda-widget-view ai1ec-clearfix">
+
+	{% if dates is empty %}
+		<p class="ai1ec-no-results">
+			{{ text_upcoming_events }}
+		</p>
+	{% else %}
+		<ul class="ai1ec-calendar-widget-results">
+			{% set tag_for_days = 'a' %}
+			{% if link_for_days == false %}
+				{% set tag_for_days = 'span' %}
+			{% endif %}
+			{% for date, date_info in dates %}
+				<li class="ai1ec-date
+					{% if date_info.today is not empty %}ai1ec-today{% endif %}">
+					<div class="ai1ec-date-events">
+						{% for category in date_info.events %}
+							{% for event in category %}
+								<strong><a href="{{ event.permalink | e('html_attr') }}">
+									<span class="ai1ec-event-title">
+										{{ event.filtered_title | truncate | raw }}
+									</span>
+									</a>
+								</strong><br/>
+								{{ date | weekday }}, {{ date | month }} {{ date | day }}, {{ date | year }}
+							{% endfor %} {# event in category #}
+						{% endfor %} {# category in date_info.events #}
+					</div>
+				</li>
+			{% endfor %} {# date, date_info in dates #}
+		</ul>
+	{% endif %} {# dates is not empty #}
+
+	{% if show_calendar_button or show_subscribe_buttons %}
+		<div class="ai1ec-subscribe-buttons-widget">
+			{% if show_calendar_button %}
+				<a class="ai1ec-btn ai1ec-btn-default ai1ec-btn-xs ai1ec-pull-right
+					ai1ec-calendar-link"
+					href="{{ calendar_url | e('html_attr') }}">
+					{{ text_view_calendar }}
+				</a>
+			{% endif %}
+
+			{% if show_subscribe_buttons == 1 %}
+				{% include 'subscribe-buttons.twig' with {
+					'button_classes':     'ai1ec-btn-xs',
+					'export_url':         subscribe_url,
+					'export_url_no_html': subscribe_url_no_html,
+					'subscribe_label':    text_subscribe_label,
+					'text':               subscribe_buttons_text,
+					'alignment':          'right',
+				} %}
+			{% endif %}
+		</div>
+	{% endif %} {# show_calendar_button or show_subscribe_buttons #}
+
+</div>
+
