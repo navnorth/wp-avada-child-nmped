@@ -32,6 +32,7 @@ add_action( 'avada_after_main_container' , 'show_full_search' );
 				<?php endif; ?>
 			<?php endif; ?>
 		</div>
+		<div class="last-updated-date"><?php _e( "Page last updated " , "wp-avada-child-nmped" ); the_modified_date("F j, Y"); ?></div>
 	<?php endwhile; ?>
 </section>
 <?php get_footer();
