@@ -538,8 +538,8 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         }
     }
 
-    /*Media queries for 1812px and more for categories*/
-    @media(min-width:1812px){
+    /*Media queries for 1750px and more for categories*/
+    @media(min-width:1750px){
         .category:nth-child(3n){
             margin-right: 60px;
         }
