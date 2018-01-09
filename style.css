@@ -538,13 +538,28 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         }
     }
 
-    /*Media queries for 1750px and more for categories*/
+    /*Media queries for 1750px or larger for categories*/
     @media(min-width:1750px){
         .category:nth-child(3n){
             margin-right: 60px;
         }
+        
+        .category:nth-child(4n){
+            margin-right: 0px;
+        }
         .category{
             margin-right: 60px;
+        }
+    }
+    
+    /*Media queries for 2180px or larger for categories*/
+    @media(min-width:2180px){
+        .category:nth-child(4n){
+            margin-right: 60px;
+        }
+        
+        .category:nth-child(5n){
+            margin-right: 0px;
         }
     }
 
