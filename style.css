@@ -436,7 +436,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         display: inline !important;
     }
     #nmped_subpages_widget-2 li.page_item_has_children ul.children{
-        padding-top: 5px;
+        /*padding-top: 5px;*/
         padding-left: 5px !important;
     }
 
@@ -556,7 +556,12 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     #wrapper .side-nav-widget li a {
         padding-left: 25px;
     }
-    #wrapper .side-nav-widget li ul.children { padding-left:25px; }
+    #wrapper .side-nav-widget li ul.children { padding-left:25px; margin-left:20px; }
+    #wrapper .side-nav-widget li ul.children li { padding-left:0; }
+    #wrapper .side-nav-widget li.page_item_has_children { padding-top: 7px !important; padding-bottom: 3px !important; }
+    #wrapper .side-nav-widget li ul.children li.page_item { padding-left:0 !important; }
+    #wrapper .side-nav-widget li ul.children li.page_item_has_children { padding-left:15px !important; }
+    #wrapper .side-nav li a { padding:5px 0; }
     .sidebar li a:hover, .sidebar li a:focus { color: #e64900 !important; text-decoration: underline !important; }
     .uppercase { text-transform:uppercase; }
     .center { text-align:center; }
@@ -581,6 +586,17 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .ai1ec-agenda-view li { list-style:none !important; }
     ul.ai1ec-date-events { padding-left:0; }
     ul.ai1ec-agenda-view li.ai1ec-date a.ai1ec-date-title:hover { outline:2px solid #88a9e0; }
+    .fusion-main-menu .sub-menu.fusion-switched-side { left:-158px !important; }
+    .widget_ai1ec_agenda_widget a.ai1ec-calendar-link { border: none; background: none; display: block; font-size: 16px; text-decoration: underline !important; }
+    .widget_ai1ec_agenda_widget a.ai1ec-calendar-link:hover { color: #e64900 !important; }
+    .widget_ai1ec_agenda_widget .ai1ec-subscribe-buttons-widget { float: left; overflow: hidden; margin-top:10px; }
+    .widget_ai1ec_agenda_widget a.ai1ec-calendar-link .ai1ec-fa-arrow-right { display:none; }
+    .widget_ai1ec_agenda_widget .ai1ec-agenda-widget-view .ai1ec-date { background:none; }
+    .widget_ai1ec_agenda_widget ul.ai1ec-calendar-widget-results li.ai1ec-date .ai1ec-date-events { font-size:16px; color:#333333; }
+    .widget_ai1ec_agenda_widget ul.ai1ec-calendar-widget-results li.ai1ec-date .ai1ec-date-events a { font-weight:bold; text-decoration:underline !important; }
+    .page #main .fusion-row { position:relative; }
+    .page #main #content .last-updated-date { position:absolute; bottom:0; left:0; }
+    .page #main #content.full-width .last-updated-date { margin-bottom:-15px; }
 
     @media only screen and (max-width: 800px){
         body.has-sidebar #content { width:100% !important; }
@@ -590,4 +606,5 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         #nmped-full-search { padding:10% 5%; }
         #nmped-search { width:100%; max-width:100%; }
         #nmped-search h2 { font-size:20px; }
+        .page #main #content.full-width .last-updated-date { margin-bottom:-15px; }
     }

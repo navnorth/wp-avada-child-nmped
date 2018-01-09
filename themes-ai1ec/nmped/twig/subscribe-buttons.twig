@@ -4,7 +4,7 @@
 {% set button_classes = button_classes ? button_classes : 'ai1ec-btn-sm' %}
 <div class="ai1ec-subscribe-dropdown ai1ec-dropdown{% if placement == 'up' %} ai1ec-dropup{% endif %} ai1ec-btn
 	ai1ec-btn-default {{ button_classes | e('html_attr') }}">
-	<span role="button" class="ai1ec-dropdown-toggle ai1ec-subscribe"
+	<span role="button" class="ai1ec-dropdown-toggle ai1ec-subscribe" tabindex="0"
 			data-toggle="ai1ec-dropdown">
 		<i class="ai1ec-fa ai1ec-icon-rss ai1ec-fa-lg ai1ec-fa-fw"></i>
 		<span class="ai1ec-hidden-xs">
