@@ -610,8 +610,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .widget_ai1ec_agenda_widget ul.ai1ec-calendar-widget-results li.ai1ec-date .ai1ec-date-events { font-size:16px; color:#333333; }
     .widget_ai1ec_agenda_widget ul.ai1ec-calendar-widget-results li.ai1ec-date .ai1ec-date-events a { font-weight:bold; text-decoration:underline !important; }
     .page #main .fusion-row { position:relative; }
-    .page #main #content .last-updated-date { position:absolute; bottom:0; left:0; }
-    .page #main #content.full-width .last-updated-date { margin-bottom:-15px; }
+    .page #main #content .last-updated-date { position:absolute; bottom:0; left:0; margin-bottom:-30px; }
 
     @media only screen and (max-width: 800px){
         body.has-sidebar #content { width:100% !important; }
