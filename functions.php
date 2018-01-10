@@ -338,6 +338,7 @@ function hide_fusion_metaboxes() {
     }
     if (current_user_can('author')) {
 	remove_meta_box( 'commentstatusdiv' , 'ai1ec_event' , 'normal' );
+	remove_meta_box( 'commentstatusdiv' , 'ai1ec_event' , 'normal' );
     }
 }
 add_action( 'do_meta_boxes', 'hide_fusion_metaboxes' );
@@ -834,7 +835,85 @@ add_action( 'admin_menu' , 'setup_ped_settings_menu' );
 
 /** Register PED Settings **/
 function register_ped_settings() {
+    //Create General Section
+    add_settings_section(
+	    'nmped_general_settings',
+	    '',
+	    'nmped_general_settings_callback',
+	    'nmped_settings'
+    );
     
+    //Add Settings field for Enable notification
+    add_settings_field(
+	    'nmped_enable_notification',
+	    '',
+	    'setup_settings_field',
+	    'nmped_settings',
+	    'nmped_general_settings',
+	    array(
+		    'uid' => 'nmped_enable_notification',
+		    'type' => 'checkbox',
+		    'class' => 'notification_option',
+		    'name' =>  __( 'Enable automated notifications of out-of-date content', 'wp-avada-child-nmped' ),
+		    'value' => '1'
+	    )
+    );
+    
+    //Add Settings field for Content Age
+    add_settings_field(
+	    'nmped_age_days',
+	    '',
+	    'setup_settings_field',
+	    'nmped_settings',
+	    'nmped_general_settings',
+	    array(
+		    'uid' => 'nmped_age_days',
+		    'type' => 'number',
+		    'size' => 3,
+		    'class' => 'text_option',
+		    'title' =>  __( 'Age:', 'wp-avada-child-nmped' ),
+		    'description' => __( 'days since last modified' , 'wp-avada-child-nmped' ),
+		    'value' => 90
+	    )
+    );
+    
+    //Add Settings field for Frequency
+    add_settings_field(
+	    'nmped_notification_frequency',
+	    '',
+	    'setup_settings_field',
+	    'nmped_settings',
+	    'nmped_general_settings',
+	    array(
+		    'uid' => 'nmped_notification_frequency',
+		    'type' => 'selectbox',
+		    'class' => 'selectbox_option',
+		    'title' =>  __( 'Frequency:', 'wp-avada-child-nmped' ),
+		    'values' => array( 'daily' => "Daily", 'weekly' => "Weekly" , 'monthly' => "Monthly" )
+	    )
+    );
+    
+    //Add Settings field for send to last author
+    add_settings_field(
+	    'nmped_to_last_author',
+	    '',
+	    'setup_settings_field',
+	    'nmped_settings',
+	    'nmped_general_settings',
+	    array(
+		    'uid' => 'nmped_to_last_author',
+		    'type' => 'checkbox',
+		    'class' => 'checkbox_option',
+		    'title' =>  __( 'Send to:', 'wp-avada-child-nmped' ),
+		    'name' =>  __( 'last author of the page', 'wp-avada-child-nmped' ),
+		    'value' => '1'
+	    )
+    );
+    
+    register_setting( 'nmped_general_settings' , 'nmped_enable_notification' );
+    register_setting( 'nmped_general_settings' , 'nmped_age_days' );
+    register_setting( 'nmped_general_settings' , 'nmped_notification_frequency' );
+    register_setting( 'nmped_general_settings' , 'nmped_to_last_author' );
 }
 add_action ( 'admin_init' , 'register_ped_settings' );
 
@@ -844,3 +923,113 @@ function remove_posts_menu() {
     }
 }
 add_action( 'admin_menu' , 'remove_posts_menu' );
+
+function nmped_general_settings_callback() {}
+
+function setup_settings_field( $arguments ) {
+	$selected = "";
+	$size = "";
+	$class = "";
+	$disabled = "";
+
+	$value = get_option($arguments['uid']);
+
+	if (isset($arguments['indent'])){
+		echo '<div class="indent">';
+	}
+
+	if (isset($arguments['class'])) {
+		$class = $arguments['class'];
+		$class = " class='".$class."' ";
+	}
+
+	if (isset($arguments['pre_html'])) {
+		echo $arguments['pre_html'];
+	}
+
+	switch($arguments['type']){
+		case "textbox":
+			$size = 'size="50"';
+			if (isset($arguments['title']))
+				$title = $arguments['title'];
+			echo '<label for="'.$arguments['uid'].'"><strong>'.$title.'</strong></label><input name="'.$arguments['uid'].'" id="'.$arguments['uid'].'" type="'.$arguments['type'].'" value="' . $value . '" ' . $size . ' ' .  $selected . ' />';
+			break;
+		case "checkbox":
+		case "radio":
+			$display_value = "";
+			$selected = "";
+
+			if ($value=="1" || $value=="on"){
+				$selected = "checked='checked'";
+				$display_value = "value='1'";
+			} elseif ($value===false){
+				$selected = "";
+				if (isset($arguments['default'])) {
+					if ($arguments['default']==true){
+						$selected = "checked='checked'";
+					}
+				}
+			} else {
+				$selected = "";
+			}
+
+			if (isset($arguments['disabled'])){
+				if ($arguments['disabled']==true)
+					$disabled = " disabled";
+			}
+			
+			if (isset($arguments['title'])){
+			    $title = $arguments['title'];
+			    echo '<label for="'.$arguments['uid'].'"><strong>'.$title.'</strong></label>';
+			}
+
+			echo '<input name="'.$arguments['uid'].'" id="'.$arguments['uid'].'" '.$class.' type="'.$arguments['type'].'" ' . $display_value . ' ' . $size . ' ' .  $selected . ' ' . $disabled . '  /><label for="'.$arguments['uid'].'"><strong>'.$arguments['name'].'</strong></label>';
+			break;
+		case "textarea":
+			echo '<label for="'.$arguments['uid'].'"><h3><strong>'.$arguments['name'];
+			if (isset($arguments['inline_description']))
+				echo '<span class="inline-desc">'.$arguments['inline_description'].'</span>';
+			echo '</strong></h3></label>';
+			echo '<textarea name="'.$arguments['uid'].'" id="'.$arguments['uid'].'" rows="10">' . $value . '</textarea>';
+			break;
+		case "selectbox":
+			if (isset($arguments['title']))
+				$title = $arguments['title'];
+			echo '<label for="'.$arguments['uid'].'"><strong>'.$title.'</strong></label>';
+			echo '<select name="'.$arguments['uid'].'" id="'.$arguments['uid'].'">';
+			if ($values = $arguments['values']){
+			    foreach ($values as $key=>$value) {
+				echo '<option value="'.$key.'">'.$value.'</option>';
+			    }
+			}
+			echo '</select>';
+			break;
+		default:
+			$size = 'size="50"';
+			if (isset($arguments['size']))
+			    $size = 'size="'. $arguments['size'] . '"';
+			    
+			if (isset($arguments['value']))
+			    $value = $arguments['value'];
+			    
+			if (isset($arguments['title']))
+				$title = $arguments['title'];
+				
+			echo '<label for="'.$arguments['uid'].'"><strong>'.$title.'</strong></label><input name="'.$arguments['uid'].'" id="'.$arguments['uid'].'" type="'.$arguments['type'].'" value="' . $value . '" ' . $size . ' ' .  $selected . ' />';
+			break;
+	}
+
+	//Show Helper Text if specified
+	if (isset($arguments['helper'])) {
+		printf( '<span class="helper"> %s</span>' , $arguments['helper'] );
+	}
+
+	//Show Description if specified
+	if( isset($arguments['description']) ){
+		printf( '<span class="description">%s</span>', $arguments['description'] );
+	}
+
+	if (isset($arguments['indent'])){
+		echo '</div>';
+	}
+}

@@ -1,2 +1,7 @@
 fieldset { border:2px solid #3c3c3c; padding:25px; }
 fieldset legend { font-weight:bold; font-size:18px; }
+form#ped_settings { margin-top:15px; }
+form#ped_settings .form-table th { display:none; }
+tr.text_option label { margin-right:15px; }
+form#ped_settings input[type=number] { text-align:right; width:60px; }
+span.description { margin-left: 15px; }
