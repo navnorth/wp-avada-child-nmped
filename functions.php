@@ -32,6 +32,11 @@ include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widgets/
  */
 include_once wp_normalize_path( get_stylesheet_directory() . '/includes/shortcodes/nmped-toggle.php' );
 
+/**
+ * Include NMPED PED Settings
+ */
+include_once wp_normalize_path( get_stylesheet_directory() . '/includes/settings.php' );
+
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'avada-stylesheet' ) );
     wp_enqueue_script( 'external-script', get_stylesheet_directory_uri() . '/assets/js/external.js', array( 'jquery', 'underscore' ) );
@@ -43,6 +48,7 @@ add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 
 function nmpedadmin_enqueue_styles() {
     wp_enqueue_style( 'shortcode-styles', get_stylesheet_directory_uri() . '/theme-functions/tinymce_button/shortcode_button.css', array() );
+    wp_enqueue_style( 'admin-styles', get_stylesheet_directory_uri() . '/assets/css/admin.css', array() );
 }
 add_action( 'admin_enqueue_scripts' , 'nmpedadmin_enqueue_styles' );
 
@@ -806,3 +812,28 @@ function nmped_remove_dashboard_widgets(){
     }
 }
 add_action('wp_dashboard_setup', 'nmped_remove_dashboard_widgets' );
+
+/** Add PED Settings menu **/
+function setup_ped_settings_menu() {
+    add_submenu_page( "options-general.php" ,
+			"PED Settings" ,
+			"PED Settings" ,
+			"manage_options" ,
+			"ped-settings" ,
+			"theme_ped_settings"
+		     );
+}
+add_action( 'admin_menu' , 'setup_ped_settings_menu' );
+
+/** Register PED Settings **/
+function register_ped_settings() {
+    
+}
+add_action ( 'admin_init' , 'register_ped_settings' );
+
+function remove_posts_menu() {
+    if (current_user_can('author')) {
+	remove_menu_page('edit.php');
+    }
+}
+add_action( 'admin_menu' , 'remove_posts_menu' );
