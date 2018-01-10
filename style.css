@@ -538,13 +538,28 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         }
     }
 
-    /*Media queries for 1812px and more for categories*/
-    @media(min-width:1812px){
+    /*Media queries for 1750px or larger for categories*/
+    @media(min-width:1750px){
         .category:nth-child(3n){
             margin-right: 60px;
         }
+        
+        .category:nth-child(4n){
+            margin-right: 0px;
+        }
         .category{
             margin-right: 60px;
+        }
+    }
+    
+    /*Media queries for 2180px or larger for categories*/
+    @media(min-width:2180px){
+        .category:nth-child(4n){
+            margin-right: 60px;
+        }
+        
+        .category:nth-child(5n){
+            margin-right: 0px;
         }
     }
 
@@ -586,7 +601,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .ai1ec-agenda-view li { list-style:none !important; }
     ul.ai1ec-date-events { padding-left:0; }
     ul.ai1ec-agenda-view li.ai1ec-date a.ai1ec-date-title:hover { outline:2px solid #88a9e0; }
-    .fusion-main-menu .sub-menu.fusion-switched-side { left:-158px !important; }
+    .fusion-main-menu .sub-menu.fusion-switched-side { left:-135px !important; }
     .widget_ai1ec_agenda_widget a.ai1ec-calendar-link { border: none; background: none; display: block; font-size: 16px; text-decoration: underline !important; }
     .widget_ai1ec_agenda_widget a.ai1ec-calendar-link:hover { color: #e64900 !important; }
     .widget_ai1ec_agenda_widget .ai1ec-subscribe-buttons-widget { float: left; overflow: hidden; margin-top:10px; }
@@ -595,8 +610,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .widget_ai1ec_agenda_widget ul.ai1ec-calendar-widget-results li.ai1ec-date .ai1ec-date-events { font-size:16px; color:#333333; }
     .widget_ai1ec_agenda_widget ul.ai1ec-calendar-widget-results li.ai1ec-date .ai1ec-date-events a { font-weight:bold; text-decoration:underline !important; }
     .page #main .fusion-row { position:relative; }
-    .page #main #content .last-updated-date { position:absolute; bottom:0; left:0; }
-    .page #main #content.full-width .last-updated-date { margin-bottom:-15px; }
+    .page #main #content .last-updated-date { position:absolute; bottom:0; left:0; margin-bottom:-30px; }
 
     @media only screen and (max-width: 800px){
         body.has-sidebar #content { width:100% !important; }
