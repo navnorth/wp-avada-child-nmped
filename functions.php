@@ -331,6 +331,13 @@ function hide_fusion_metaboxes() {
     if (!current_user_can('administrator')) {
 	remove_meta_box( 'pyre_page_options', 'page', 'advanced' );
 	remove_meta_box( 'pyre_post_options', 'post', 'advanced' );
+	remove_meta_box( 'pyre_post_options', 'ai1ec_event', 'advanced' );
+	remove_meta_box( 'fusion_builder_layout', 'page', 'normal' );
+	remove_meta_box( 'fusion_builder_layout', 'post', 'normal' );
+	remove_meta_box( 'fusion_builder_layout', 'ai1ec_event', 'normal' );
+    }
+    if (current_user_can('author')) {
+	remove_meta_box( 'commentstatusdiv' , 'ai1ec_event' , 'normal' );
     }
 }
 add_action( 'do_meta_boxes', 'hide_fusion_metaboxes' );
