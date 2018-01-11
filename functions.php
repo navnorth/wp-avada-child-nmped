@@ -870,7 +870,7 @@ function register_ped_settings() {
 		    'uid' => 'nmped_age_days',
 		    'type' => 'number',
 		    'size' => 3,
-		    'class' => 'text_option',
+		    'class' => 'text_option input_option',
 		    'title' =>  __( 'Age:', 'wp-avada-child-nmped' ),
 		    'description' => __( 'days since last modified' , 'wp-avada-child-nmped' ),
 		    'value' => 90
@@ -887,7 +887,7 @@ function register_ped_settings() {
 	    array(
 		    'uid' => 'nmped_notification_frequency',
 		    'type' => 'selectbox',
-		    'class' => 'selectbox_option',
+		    'class' => 'select_option input_option',
 		    'title' =>  __( 'Frequency:', 'wp-avada-child-nmped' ),
 		    'values' => array( 'daily' => "Daily", 'weekly' => "Weekly" , 'monthly' => "Monthly" )
 	    )
@@ -903,10 +903,70 @@ function register_ped_settings() {
 	    array(
 		    'uid' => 'nmped_to_last_author',
 		    'type' => 'checkbox',
-		    'class' => 'checkbox_option',
+		    'class' => 'checkbox_option input_option',
 		    'title' =>  __( 'Send to:', 'wp-avada-child-nmped' ),
-		    'name' =>  __( 'last author of the page', 'wp-avada-child-nmped' ),
+		    'description' =>  __( 'last author of the page', 'wp-avada-child-nmped' ),
 		    'value' => '1'
+	    )
+    );
+    
+    //Add Settings field for send to all Editors
+    add_settings_field(
+	    'nmped_to_all_editors',
+	    '',
+	    'setup_settings_field',
+	    'nmped_settings',
+	    'nmped_general_settings',
+	    array(
+		    'uid' => 'nmped_to_all_editors',
+		    'type' => 'checkbox',
+		    'class' => 'checkbox_option_nolabel input_option',
+		    'description' =>  __( 'all Editors', 'wp-avada-child-nmped' ),
+	    )
+    );
+    
+    //Add Settings field for send to all Division Leads
+    add_settings_field(
+	    'nmped_to_all_division_leads',
+	    '',
+	    'setup_settings_field',
+	    'nmped_settings',
+	    'nmped_general_settings',
+	    array(
+		    'uid' => 'nmped_to_all_division_leads',
+		    'type' => 'checkbox',
+		    'class' => 'checkbox_option_nolabel input_option',
+		    'description' =>  __( 'all Division Leads', 'wp-avada-child-nmped' ),
+	    )
+    );
+    
+    //Add Settings field for send to additional Recipient(s)
+    add_settings_field(
+	    'nmped_to_additional_recipients',
+	    '',
+	    'setup_settings_field',
+	    'nmped_settings',
+	    'nmped_general_settings',
+	    array(
+		    'uid' => 'nmped_to_additional_recipients',
+		    'type' => 'checkbox',
+		    'class' => 'checkbox_option_nolabel input_option',
+		    'description' =>  __( 'Additional Recipient(s)', 'wp-avada-child-nmped' ),
+	    )
+    );
+    
+    //Add Settings field for Content Age
+    add_settings_field(
+	    'nmped_recipient_emails',
+	    '',
+	    'setup_settings_field',
+	    'nmped_settings',
+	    'nmped_general_settings',
+	    array(
+		    'uid' => 'nmped_recipient_emails',
+		    'type' => 'textbox',
+		    'class' => 'email_option_nolabel input_option',
+		    'value' => 'PEDHelpDesk@state.nm.us'
 	    )
     );
     
@@ -914,6 +974,9 @@ function register_ped_settings() {
     register_setting( 'nmped_general_settings' , 'nmped_age_days' );
     register_setting( 'nmped_general_settings' , 'nmped_notification_frequency' );
     register_setting( 'nmped_general_settings' , 'nmped_to_last_author' );
+    register_setting( 'nmped_general_settings' , 'nmped_to_all_editors' );
+    register_setting( 'nmped_general_settings' , 'nmped_to_all_division_leads' );
+    register_setting( 'nmped_general_settings' , 'nmped_to_additional_recipients' );
 }
 add_action ( 'admin_init' , 'register_ped_settings' );
 
@@ -952,6 +1015,8 @@ function setup_settings_field( $arguments ) {
 			$size = 'size="50"';
 			if (isset($arguments['title']))
 				$title = $arguments['title'];
+			if (isset($arguments['value']))
+			    $value = $arguments['value'];
 			echo '<label for="'.$arguments['uid'].'"><strong>'.$title.'</strong></label><input name="'.$arguments['uid'].'" id="'.$arguments['uid'].'" type="'.$arguments['type'].'" value="' . $value . '" ' . $size . ' ' .  $selected . ' />';
 			break;
 		case "checkbox":
@@ -983,7 +1048,12 @@ function setup_settings_field( $arguments ) {
 			    echo '<label for="'.$arguments['uid'].'"><strong>'.$title.'</strong></label>';
 			}
 
-			echo '<input name="'.$arguments['uid'].'" id="'.$arguments['uid'].'" '.$class.' type="'.$arguments['type'].'" ' . $display_value . ' ' . $size . ' ' .  $selected . ' ' . $disabled . '  /><label for="'.$arguments['uid'].'"><strong>'.$arguments['name'].'</strong></label>';
+			echo '<input name="'.$arguments['uid'].'" id="'.$arguments['uid'].'" '.$class.' type="'.$arguments['type'].'" ' . $display_value . ' ' . $size . ' ' .  $selected . ' ' . $disabled . '  />';
+			
+			if (isset($arguments['name'])){
+			    echo '<label for="'.$arguments['id'].'"><strong>'.$arguments['name'].'</strong></label>';    
+			}
+			
 			break;
 		case "textarea":
 			echo '<label for="'.$arguments['uid'].'"><h3><strong>'.$arguments['name'];
@@ -995,11 +1065,15 @@ function setup_settings_field( $arguments ) {
 		case "selectbox":
 			if (isset($arguments['title']))
 				$title = $arguments['title'];
+				
 			echo '<label for="'.$arguments['uid'].'"><strong>'.$title.'</strong></label>';
 			echo '<select name="'.$arguments['uid'].'" id="'.$arguments['uid'].'">';
+			
 			if ($values = $arguments['values']){
 			    foreach ($values as $key=>$value) {
-				echo '<option value="'.$key.'">'.$value.'</option>';
+				?>    
+				<option value="<?php echo $key ?>" <?php selected(get_option($arguments['uid']), $key); ?>><?php echo $value; ?></option>;
+				<?php
 			    }
 			}
 			echo '</select>';

@@ -2,6 +2,16 @@ fieldset { border:2px solid #3c3c3c; padding:25px; }
 fieldset legend { font-weight:bold; font-size:18px; }
 form#ped_settings { margin-top:15px; }
 form#ped_settings .form-table th { display:none; }
-tr.text_option label { margin-right:15px; }
+form#ped_settings .form-table tr.text_option td > label,
+form#ped_settings .form-table tr.select_option td > label,
+form#ped_settings .form-table tr.checkbox_option td > label { width:75px; display:inline-block; }
+form#ped_settings .form-table tr.checkbox_option_nolabel input { margin-left:75px; }
+form#ped_settings .form-table tr.email_option_nolabel input { margin-left:105px; }
+form#ped_settings .form-table tr.input_option td { padding:5px 10px; }
 form#ped_settings input[type=number] { text-align:right; width:60px; }
-span.description { margin-left: 15px; }
+form#ped_settings p.submit { text-align:right; }
+form#ped_settings p.submit input#notify_now { margin-right:10px; }
+span.description { margin-left: 10px; }
+.plugin-footer { border-top:1px solid #3c3c3c; }
+.plugin-footer .right { text-align:right; }
+form#ped_settings, form#event_settings { margin-bottom:25px; }
