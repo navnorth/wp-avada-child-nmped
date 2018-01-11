@@ -12,3 +12,6 @@ form#ped_settings input[type=number] { text-align:right; width:60px; }
 form#ped_settings p.submit { text-align:right; }
 form#ped_settings p.submit input#notify_now { margin-right:10px; }
 span.description { margin-left: 10px; }
+.plugin-footer { border-top:1px solid #3c3c3c; }
+.plugin-footer .right { text-align:right; }
+form#ped_settings, form#event_settings { margin-bottom:25px; }
