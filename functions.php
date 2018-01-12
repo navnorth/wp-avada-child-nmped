@@ -37,6 +37,11 @@ include_once wp_normalize_path( get_stylesheet_directory() . '/includes/shortcod
  */
 include_once wp_normalize_path( get_stylesheet_directory() . '/includes/settings.php' );
 
+/**
+ * Include Custom Class for Out of Date Content List
+ */
+include_once wp_normalize_path( get_stylesheet_directory() . '/includes/classes/out_of_date_list_table.php' );
+
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'avada-stylesheet' ) );
     wp_enqueue_script( 'external-script', get_stylesheet_directory_uri() . '/assets/js/external.js', array( 'jquery', 'underscore' ) );
@@ -821,6 +826,15 @@ function nmped_remove_dashboard_widgets(){
 }
 add_action('wp_dashboard_setup', 'nmped_remove_dashboard_widgets' );
 
+function nmped_out_of_content_dashboard_widget() {
+    wp_add_dashboard_widget(
+	'out_of_content_widget',
+	'Out-Of-Date Content',
+	'out_of_date_content_dashboard_display'
+    );
+}
+add_action( 'wp_dashboard_setup' , 'nmped_out_of_content_dashboard_widget' );
+
 /** Add PED Settings menu **/
 function setup_ped_settings_menu() {
     add_submenu_page( "options-general.php" ,
@@ -1107,3 +1121,4 @@ function setup_settings_field( $arguments ) {
 		echo '</div>';
 	}
 }
+
