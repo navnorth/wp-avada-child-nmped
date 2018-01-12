@@ -38,4 +38,33 @@ function theme_ped_settings() {
     <?php
 }
 
+
+function out_of_date_content_dashboard_display() {
+    $outPosts = new WP_Query(
+		    apply_filters(
+			'widget_post_args' ,
+			array(
+			    'post_type' => array( 'post', 'page' ),
+			    'posts_per_page' => 25 ,
+			    'post_status' => 'publish',
+			    'orderby' => 'modified',
+			    'order' => 'ASC'
+			)
+		    )
+		);
+    ?>
+	<div class="wrap">
+	    <div id="poststuff">
+			<div id="post-body" class="metabox-holder columns-2">
+				<div id="post-body-content">
+					<div class="meta-box-sortables ui-sortable">
+						<form method="post">
+						</form>
+					</div>
+				</div>
+			</div>
+	    </div>
+	</div>
+    <?php
+}
 ?>
