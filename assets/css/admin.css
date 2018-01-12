@@ -15,3 +15,9 @@ span.description { margin-left: 10px; }
 .plugin-footer { border-top:1px solid #3c3c3c; }
 .plugin-footer .right { text-align:right; }
 form#ped_settings, form#event_settings { margin-bottom:25px; }
+#out_of_content_widget form table.wp-list-table thead { display:none; }
+#out_of_content_widget form table.wp-list-table .column-post_title { width:75%; max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+#out_of_content_widget form table.wp-list-table .column-post_modified { width:25%; }
