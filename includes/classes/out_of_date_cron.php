@@ -36,11 +36,45 @@ class NMPED_Notification_Cron {
         
         $email_content = out_of_date_notification($nmPosts->posts);
         
-        $to = get_option('nmped_recipient_emails');
-        $subject = "Out-Of-Date Content Reminder";
-        $headers = array('Content-Type: text/html; charset=UTF-8');
+        if (count($nmPosts->posts)>0) {
         
-        $mail = wp_mail($to, $subject, $email_content, $headers);
+            $recipients = array();
+            
+            // All Editors
+            $all_editors = get_option('nmped_to_all_editors');
+            if ($all_editors){
+                $editors = get_users(array('role'=>'editor'));
+                foreach ($editors as $editor){
+                    $recipients[]  = $editor->user_email;
+                }
+            }
+            
+            // All Division Leads
+            $all_div_leads = get_option('nmped_to_all_division_leads');
+            if ($all_div_leads){
+                $div_leads = get_users(array('role'=>'division_lead'));
+                foreach ($div_leads as $lead){
+                    $recipients[]  = $lead->user_email;
+                }
+            }
+            
+            // additional recipients
+            $to = get_option('nmped_recipient_emails');
+            $to = explode(',', $to);
+            if (is_array($to)) {
+                foreach($to as $email){
+                    $recipients[] = $email;   
+                }
+            }
+            
+            $recipients = array_unique($recipients);
+            
+            $subject = "Out-Of-Date Content Reminder";
+            $headers = array('Content-Type: text/html; charset=UTF-8');
+            
+            $mail = wp_mail($recipients, $subject, $email_content, $headers);
+        
+        }
     }
 }
 ?>

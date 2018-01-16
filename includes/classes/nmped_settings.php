@@ -268,13 +268,13 @@ class NMPED_Settings_Page {
 			
 			if ($values = $arguments['values']){
 			    foreach ($values as $key=>$value) {
-				if ($value!=="") {
+				if (get_option($arguments['uid'])!=="") {
 				?>    
 				<option value="<?php echo $key ?>" <?php selected(get_option($arguments['uid']), $key); ?>><?php echo $value; ?></option>;
 				<?php
 				} else {
 				?>
-				    <option value="<?php echo $key ?>" <?php selected($arguments['default'], $key); ?>><?php echo $value; ?></option>;
+				    <option value="<?php echo $key ?>" default="<?php echo $arguments['default'] ?>" data-value="<?php echo $key; ?>" <?php selected($arguments['default'], $key); ?>><?php echo $value; ?></option>;
 				<?php
 				}
 			    }
@@ -339,7 +339,7 @@ class NMPED_Settings_Page {
 	    ?>
 	    </fieldset>
 	</form>
-	<form method="post" id="notify_now_settings" action="options.php">
+	<!--<form method="post" id="notify_now_settings" action="options.php">
 	    <fieldset>
 		<legend><?php _e( "Out-Of-Date Notify Now" , "wp-avada-child-nmped"); ?></legend>
 		<?php _e( "This feature only sends notification to additional recipients in PED Settings above." , "wp-avada-child-nmped" ); ?></p>
@@ -349,7 +349,7 @@ class NMPED_Settings_Page {
 		submit_button( "Notify Now" );
 	    ?>
 	    </fieldset>
-	</form>
+	</form>-->
 	<form method="post" id="event_settings" action="options.php">
 	    <fieldset>
 		<legend><?php _e( "Event Theme" , "wp-avada-child-nmped"); ?></legend>
