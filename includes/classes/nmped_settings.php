@@ -85,12 +85,13 @@ class NMPED_Settings_Page {
 			'type' => 'selectbox',
 			'class' => 'select_option input_option',
 			'title' =>  __( 'Frequency:', 'wp-avada-child-nmped' ),
-			'values' => array( 'daily' => "Daily", 'weekly' => "Weekly" , 'monthly' => "Monthly" )
+			'values' => array( 'daily' => "Daily", 'weekly' => "Weekly" , 'monthly' => "Monthly" ),
+			'default' => 'weekly'
 		)
 	);
 	
 	//Add Settings field for send to last author
-	add_settings_field(
+	/*add_settings_field(
 		'nmped_to_last_author',
 		'',
 		array($this,'setup_settings_field'),
@@ -104,7 +105,7 @@ class NMPED_Settings_Page {
 			'description' =>  __( 'last author of the page', 'wp-avada-child-nmped' ),
 			'value' => '1'
 		)
-	);
+	);*/
 	
 	//Add Settings field for send to all Editors
 	add_settings_field(
@@ -116,7 +117,8 @@ class NMPED_Settings_Page {
 		array(
 			'uid' => 'nmped_to_all_editors',
 			'type' => 'checkbox',
-			'class' => 'checkbox_option_nolabel input_option',
+			'class' => 'checkbox_option input_option',
+			'title' =>  __( 'Send to:', 'wp-avada-child-nmped' ),
 			'description' =>  __( 'all Editors', 'wp-avada-child-nmped' ),
 		)
 	);
@@ -169,7 +171,7 @@ class NMPED_Settings_Page {
 	register_setting( 'nmped_general_settings' , 'nmped_enable_notification' );
 	register_setting( 'nmped_general_settings' , 'nmped_age_days' );
 	register_setting( 'nmped_general_settings' , 'nmped_notification_frequency' );
-	register_setting( 'nmped_general_settings' , 'nmped_to_last_author' );
+	//register_setting( 'nmped_general_settings' , 'nmped_to_last_author' );
 	register_setting( 'nmped_general_settings' , 'nmped_to_all_editors' );
 	register_setting( 'nmped_general_settings' , 'nmped_to_all_division_leads' );
 	register_setting( 'nmped_general_settings' , 'nmped_to_additional_recipients' );
@@ -202,9 +204,10 @@ class NMPED_Settings_Page {
 	switch($arguments['type']){
 		case "textbox":
 			$size = 'size="50"';
+			
 			if (isset($arguments['title']))
 				$title = $arguments['title'];
-			if (isset($arguments['default']) && !isset($value))
+			if (isset($arguments['default']) && $value=="")
 			    $value = $arguments['default'];
 			echo '<label for="'.$arguments['uid'].'"><strong>'.$title.'</strong></label><input name="'.$arguments['uid'].'" id="'.$arguments['uid'].'" type="'.$arguments['type'].'" value="' . $value . '" ' . $size . ' ' .  $selected . ' />';
 			break;
@@ -259,15 +262,21 @@ class NMPED_Settings_Page {
 		case "selectbox":
 			if (isset($arguments['title']))
 				$title = $arguments['title'];
-				
+			
 			echo '<label for="'.$arguments['uid'].'"><strong>'.$title.'</strong></label>';
 			echo '<select name="'.$arguments['uid'].'" id="'.$arguments['uid'].'">';
 			
 			if ($values = $arguments['values']){
 			    foreach ($values as $key=>$value) {
+				if ($value!=="") {
 				?>    
 				<option value="<?php echo $key ?>" <?php selected(get_option($arguments['uid']), $key); ?>><?php echo $value; ?></option>;
 				<?php
+				} else {
+				?>
+				    <option value="<?php echo $key ?>" <?php selected($arguments['default'], $key); ?>><?php echo $value; ?></option>;
+				<?php
+				}
 			    }
 			}
 			echo '</select>';
@@ -277,8 +286,8 @@ class NMPED_Settings_Page {
 			if (isset($arguments['size']))
 			    $size = 'size="'. $arguments['size'] . '"';
 			    
-			if (isset($arguments['value']))
-			    $value = $arguments['value'];
+			if (isset($arguments['default']) && $value=="")
+			    $value = $arguments['default'];
 			    
 			if (isset($arguments['title']))
 				$title = $arguments['title'];
@@ -310,7 +319,9 @@ class NMPED_Settings_Page {
 	$child_theme = wp_get_theme("wp-avada-child-nmped");
 	
 	if (isset($_GET['settings-updated'])){
-	    $this->setup_cron();
+	    //$this->setup_cron();
+	    
+	    NMPED_Notification_Cron::run();
 	}
 	
 	?>
@@ -323,9 +334,19 @@ class NMPED_Settings_Page {
 		settings_fields( 'nmped_general_settings' );
 		do_settings_sections( 'nmped_settings' );
 		echo "<p class='submit'>";
-		submit_button( "Notify Now" , "secondary", "notify_now", false );
 		submit_button( "Update Settings", "primary", "update_settings", false );
 		echo "</p>";
+	    ?>
+	    </fieldset>
+	</form>
+	<form method="post" id="notify_now_settings" action="options.php">
+	    <fieldset>
+		<legend><?php _e( "Out-Of-Date Notify Now" , "wp-avada-child-nmped"); ?></legend>
+		<?php _e( "This feature only sends notification to additional recipients in PED Settings above." , "wp-avada-child-nmped" ); ?></p>
+		<input type="hidden" name="force_notify" value="1" />
+	    <?php
+		settings_fields( 'nmped_general_settings' );
+		submit_button( "Notify Now" );
 	    ?>
 	    </fieldset>
 	</form>
