@@ -611,6 +611,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .widget_ai1ec_agenda_widget ul.ai1ec-calendar-widget-results li.ai1ec-date .ai1ec-date-events a { font-weight:bold; text-decoration:underline !important; }
     .page #main { padding-bottom:80px; }
     .page.has-sidebar #main { padding-bottom:60px; }
+    .home #main { padding-bottom:0; }
     .page #main .fusion-row { position:relative; }
     .page #main #content .last-updated-date { position:absolute; bottom:0; left:0; margin-bottom:-45px; font-size:0.9em;  }
     .page.has-sidebar #main #content .last-updated-date { margin-bottom:-30px; }
