@@ -73,7 +73,7 @@ class Out_Of_Date_List_Table extends WP_List_Table{
     * Prepare the table with different parameters, pagination, columns and table elements
     */
     function prepare_items() {
-        
+	
         $args = array(
                     'post_type' => array( 'post', 'page' ),
                     'posts_per_page' => 25 ,

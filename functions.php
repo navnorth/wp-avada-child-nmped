@@ -861,6 +861,10 @@ function nmped_add_weekly( $schedules ) {
 	       'interval' => 604800, // 604800 seconds = 1 week
 	       'display' => __( 'Once Weekly' )
        );
+       $schedules['monthly'] = array(
+	       'interval' => 2592000, // 2592000 seconds = 1 month
+	       'display' => __( 'Once Monthly' )
+       );
        return $schedules;
 }
 add_filter( 'cron_schedules', 'nmped_add_weekly' );

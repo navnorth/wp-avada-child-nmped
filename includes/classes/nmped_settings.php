@@ -309,8 +309,9 @@ class NMPED_Settings_Page {
 	
 	$child_theme = wp_get_theme("wp-avada-child-nmped");
 	
-	if (isset($_GET['settings-updated']))
+	if (isset($_GET['settings-updated'])){
 	    $this->setup_cron();
+	}
 	
 	?>
 	<div class="wrap">
