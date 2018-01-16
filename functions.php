@@ -42,6 +42,16 @@ include_once wp_normalize_path( get_stylesheet_directory() . '/includes/settings
  */
 include_once wp_normalize_path( get_stylesheet_directory() . '/includes/classes/out_of_date_list_table.php' );
 
+/**
+ * Include NMPED PED Settings Class
+ */
+include_once wp_normalize_path( get_stylesheet_directory() . '/includes/classes/nmped_settings.php' );
+
+/**
+ * Include NMPED Cron Class
+ */
+include_once wp_normalize_path( get_stylesheet_directory() . '/includes/classes/out_of_date_cron.php' );
+
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'avada-stylesheet' ) );
     wp_enqueue_script( 'external-script', get_stylesheet_directory_uri() . '/assets/js/external.js', array( 'jquery', 'underscore' ) );
@@ -835,290 +845,33 @@ function nmped_out_of_content_dashboard_widget() {
 }
 add_action( 'wp_dashboard_setup' , 'nmped_out_of_content_dashboard_widget' );
 
-/** Add PED Settings menu **/
-function setup_ped_settings_menu() {
-    add_submenu_page( "options-general.php" ,
-			"PED Settings" ,
-			"PED Settings" ,
-			"manage_options" ,
-			"ped-settings" ,
-			"theme_ped_settings"
-		     );
+if (is_admin()){
+    $nmped_settings = new NMPED_Settings_Page();
 }
-add_action( 'admin_menu' , 'setup_ped_settings_menu' );
-
-/** Register PED Settings **/
-function register_ped_settings() {
-    //Create General Section
-    add_settings_section(
-	    'nmped_general_settings',
-	    '',
-	    'nmped_general_settings_callback',
-	    'nmped_settings'
-    );
-    
-    //Add Settings field for Enable notification
-    add_settings_field(
-	    'nmped_enable_notification',
-	    '',
-	    'setup_settings_field',
-	    'nmped_settings',
-	    'nmped_general_settings',
-	    array(
-		    'uid' => 'nmped_enable_notification',
-		    'type' => 'checkbox',
-		    'class' => 'notification_option',
-		    'name' =>  __( 'Enable automated notifications of out-of-date content', 'wp-avada-child-nmped' ),
-		    'value' => '1'
-	    )
-    );
-    
-    //Add Settings field for Content Age
-    add_settings_field(
-	    'nmped_age_days',
-	    '',
-	    'setup_settings_field',
-	    'nmped_settings',
-	    'nmped_general_settings',
-	    array(
-		    'uid' => 'nmped_age_days',
-		    'type' => 'number',
-		    'size' => 3,
-		    'class' => 'text_option input_option',
-		    'title' =>  __( 'Age:', 'wp-avada-child-nmped' ),
-		    'description' => __( 'days since last modified' , 'wp-avada-child-nmped' ),
-		    'value' => 90
-	    )
-    );
-    
-    //Add Settings field for Frequency
-    add_settings_field(
-	    'nmped_notification_frequency',
-	    '',
-	    'setup_settings_field',
-	    'nmped_settings',
-	    'nmped_general_settings',
-	    array(
-		    'uid' => 'nmped_notification_frequency',
-		    'type' => 'selectbox',
-		    'class' => 'select_option input_option',
-		    'title' =>  __( 'Frequency:', 'wp-avada-child-nmped' ),
-		    'values' => array( 'daily' => "Daily", 'weekly' => "Weekly" , 'monthly' => "Monthly" )
-	    )
-    );
-    
-    //Add Settings field for send to last author
-    add_settings_field(
-	    'nmped_to_last_author',
-	    '',
-	    'setup_settings_field',
-	    'nmped_settings',
-	    'nmped_general_settings',
-	    array(
-		    'uid' => 'nmped_to_last_author',
-		    'type' => 'checkbox',
-		    'class' => 'checkbox_option input_option',
-		    'title' =>  __( 'Send to:', 'wp-avada-child-nmped' ),
-		    'description' =>  __( 'last author of the page', 'wp-avada-child-nmped' ),
-		    'value' => '1'
-	    )
-    );
-    
-    //Add Settings field for send to all Editors
-    add_settings_field(
-	    'nmped_to_all_editors',
-	    '',
-	    'setup_settings_field',
-	    'nmped_settings',
-	    'nmped_general_settings',
-	    array(
-		    'uid' => 'nmped_to_all_editors',
-		    'type' => 'checkbox',
-		    'class' => 'checkbox_option_nolabel input_option',
-		    'description' =>  __( 'all Editors', 'wp-avada-child-nmped' ),
-	    )
-    );
-    
-    //Add Settings field for send to all Division Leads
-    add_settings_field(
-	    'nmped_to_all_division_leads',
-	    '',
-	    'setup_settings_field',
-	    'nmped_settings',
-	    'nmped_general_settings',
-	    array(
-		    'uid' => 'nmped_to_all_division_leads',
-		    'type' => 'checkbox',
-		    'class' => 'checkbox_option_nolabel input_option',
-		    'description' =>  __( 'all Division Leads', 'wp-avada-child-nmped' ),
-	    )
-    );
-    
-    //Add Settings field for send to additional Recipient(s)
-    add_settings_field(
-	    'nmped_to_additional_recipients',
-	    '',
-	    'setup_settings_field',
-	    'nmped_settings',
-	    'nmped_general_settings',
-	    array(
-		    'uid' => 'nmped_to_additional_recipients',
-		    'type' => 'checkbox',
-		    'class' => 'checkbox_option_nolabel input_option',
-		    'description' =>  __( 'Additional Recipient(s)', 'wp-avada-child-nmped' ),
-	    )
-    );
-    
-    //Add Settings field for Content Age
-    add_settings_field(
-	    'nmped_recipient_emails',
-	    '',
-	    'setup_settings_field',
-	    'nmped_settings',
-	    'nmped_general_settings',
-	    array(
-		    'uid' => 'nmped_recipient_emails',
-		    'type' => 'textbox',
-		    'class' => 'email_option_nolabel input_option',
-		    'value' => 'PEDHelpDesk@state.nm.us'
-	    )
-    );
-    
-    register_setting( 'nmped_general_settings' , 'nmped_enable_notification' );
-    register_setting( 'nmped_general_settings' , 'nmped_age_days' );
-    register_setting( 'nmped_general_settings' , 'nmped_notification_frequency' );
-    register_setting( 'nmped_general_settings' , 'nmped_to_last_author' );
-    register_setting( 'nmped_general_settings' , 'nmped_to_all_editors' );
-    register_setting( 'nmped_general_settings' , 'nmped_to_all_division_leads' );
-    register_setting( 'nmped_general_settings' , 'nmped_to_additional_recipients' );
-}
-add_action ( 'admin_init' , 'register_ped_settings' );
 
 function remove_posts_menu() {
     if (current_user_can('author')) {
 	remove_menu_page('edit.php');
     }
 }
-add_action( 'admin_menu' , 'remove_posts_menu' );
-
-function nmped_general_settings_callback() {}
-
-function setup_settings_field( $arguments ) {
-	$selected = "";
-	$size = "";
-	$class = "";
-	$disabled = "";
-
-	$value = get_option($arguments['uid']);
-
-	if (isset($arguments['indent'])){
-		echo '<div class="indent">';
-	}
-
-	if (isset($arguments['class'])) {
-		$class = $arguments['class'];
-		$class = " class='".$class."' ";
-	}
-
-	if (isset($arguments['pre_html'])) {
-		echo $arguments['pre_html'];
-	}
-
-	switch($arguments['type']){
-		case "textbox":
-			$size = 'size="50"';
-			if (isset($arguments['title']))
-				$title = $arguments['title'];
-			if (isset($arguments['value']))
-			    $value = $arguments['value'];
-			echo '<label for="'.$arguments['uid'].'"><strong>'.$title.'</strong></label><input name="'.$arguments['uid'].'" id="'.$arguments['uid'].'" type="'.$arguments['type'].'" value="' . $value . '" ' . $size . ' ' .  $selected . ' />';
-			break;
-		case "checkbox":
-		case "radio":
-			$display_value = "";
-			$selected = "";
-
-			if ($value=="1" || $value=="on"){
-				$selected = "checked='checked'";
-				$display_value = "value='1'";
-			} elseif ($value===false){
-				$selected = "";
-				if (isset($arguments['default'])) {
-					if ($arguments['default']==true){
-						$selected = "checked='checked'";
-					}
-				}
-			} else {
-				$selected = "";
-			}
-
-			if (isset($arguments['disabled'])){
-				if ($arguments['disabled']==true)
-					$disabled = " disabled";
-			}
-			
-			if (isset($arguments['title'])){
-			    $title = $arguments['title'];
-			    echo '<label for="'.$arguments['uid'].'"><strong>'.$title.'</strong></label>';
-			}
-
-			echo '<input name="'.$arguments['uid'].'" id="'.$arguments['uid'].'" '.$class.' type="'.$arguments['type'].'" ' . $display_value . ' ' . $size . ' ' .  $selected . ' ' . $disabled . '  />';
-			
-			if (isset($arguments['name'])){
-			    echo '<label for="'.$arguments['id'].'"><strong>'.$arguments['name'].'</strong></label>';    
-			}
-			
-			break;
-		case "textarea":
-			echo '<label for="'.$arguments['uid'].'"><h3><strong>'.$arguments['name'];
-			if (isset($arguments['inline_description']))
-				echo '<span class="inline-desc">'.$arguments['inline_description'].'</span>';
-			echo '</strong></h3></label>';
-			echo '<textarea name="'.$arguments['uid'].'" id="'.$arguments['uid'].'" rows="10">' . $value . '</textarea>';
-			break;
-		case "selectbox":
-			if (isset($arguments['title']))
-				$title = $arguments['title'];
-				
-			echo '<label for="'.$arguments['uid'].'"><strong>'.$title.'</strong></label>';
-			echo '<select name="'.$arguments['uid'].'" id="'.$arguments['uid'].'">';
-			
-			if ($values = $arguments['values']){
-			    foreach ($values as $key=>$value) {
-				?>    
-				<option value="<?php echo $key ?>" <?php selected(get_option($arguments['uid']), $key); ?>><?php echo $value; ?></option>;
-				<?php
-			    }
-			}
-			echo '</select>';
-			break;
-		default:
-			$size = 'size="50"';
-			if (isset($arguments['size']))
-			    $size = 'size="'. $arguments['size'] . '"';
-			    
-			if (isset($arguments['value']))
-			    $value = $arguments['value'];
-			    
-			if (isset($arguments['title']))
-				$title = $arguments['title'];
-				
-			echo '<label for="'.$arguments['uid'].'"><strong>'.$title.'</strong></label><input name="'.$arguments['uid'].'" id="'.$arguments['uid'].'" type="'.$arguments['type'].'" value="' . $value . '" ' . $size . ' ' .  $selected . ' />';
-			break;
-	}
-
-	//Show Helper Text if specified
-	if (isset($arguments['helper'])) {
-		printf( '<span class="helper"> %s</span>' , $arguments['helper'] );
-	}
-
-	//Show Description if specified
-	if( isset($arguments['description']) ){
-		printf( '<span class="description">%s</span>', $arguments['description'] );
-	}
-
-	if (isset($arguments['indent'])){
-		echo '</div>';
-	}
+add_action( 'admin_menu' , 'remove_posts_menu' ); 
+ 
+function nmped_add_weekly( $schedules ) {
+       $schedules['weekly'] = array(
+	       'interval' => 604800, // 604800 seconds = 1 week
+	       'display' => __( 'Once Weekly' )
+       );
+       return $schedules;
 }
+add_filter( 'cron_schedules', 'nmped_add_weekly' );
 
+/**
+ * NMPED Notification Cron Job
+ * Description
+ */
+function nmped_notification_cron_job()
+{
+    NMPED_Notification_Cron::run();
+}
+// External Content Importer Cron Job Hook
+add_action(NMPED_Settings_Page::$cron_action_hook, "nmped_notification_cron_job");
