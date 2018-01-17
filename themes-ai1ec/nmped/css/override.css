@@ -4,3 +4,7 @@
 .ai1ec-month-view th, .ai1ec-week-view th, .ai1ec-week-view .ai1ec-hour-marker div, .ai1ec-week-view .ai1ec-allday-label, .ai1ec-oneday-view th, .ai1ec-oneday-view .ai1ec-hour-marker div, .ai1ec-oneday-view .ai1ec-allday-label { color:#003366 !important; }
 .ai1ec-field-label { color:#232323 !important; }
 .ai1ec-allday-badge { color:#000000 !important; }
+.ai1ec-agenda-view li { list-style:none !important; }
+ul.ai1ec-date-events { padding-left:0; }
+ul.ai1ec-agenda-view li.ai1ec-date a.ai1ec-date-title:hover,
+.ai1ec-agenda-view .ai1ec-date a.ai1ec-date-title:hover{ outline:2px solid #88a9e0; }
