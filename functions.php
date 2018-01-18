@@ -347,9 +347,6 @@ function hide_fusion_metaboxes() {
 	remove_meta_box( 'pyre_page_options', 'page', 'advanced' );
 	remove_meta_box( 'pyre_post_options', 'post', 'advanced' );
 	remove_meta_box( 'pyre_post_options', 'ai1ec_event', 'advanced' );
-	remove_meta_box( 'fusion_builder_layout', 'page', 'normal' );
-	remove_meta_box( 'fusion_builder_layout', 'post', 'normal' );
-	remove_meta_box( 'fusion_builder_layout', 'ai1ec_event', 'normal' );
     }
     if (current_user_can('author')) {
 	remove_meta_box( 'commentstatusdiv' , 'ai1ec_event' , 'normal' );
@@ -394,6 +391,7 @@ function nmped_hide_menu_options(){
         #toplevel_page_avada,
         #toplevel_page_fusion-builder-options,
         .hide-if-no-customize { display:none; }
+	#fusion_builder_layout { display:none !important; }
         </style>
     <?php
     }
