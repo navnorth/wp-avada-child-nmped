@@ -1,5 +1,9 @@
-fieldset { border:2px solid #3c3c3c; padding:25px; }
-fieldset legend { font-weight:bold; font-size:18px; }
+form#ped_settings fieldset,
+form#event_settings fieldset,
+form#notify_now_settings fieldset{ border:2px solid #3c3c3c; padding:25px; }
+form#ped_settings fieldset legend,
+form#event_settings fieldset legend,
+form#notify_now_settings fieldset legend{ font-weight:bold; font-size:18px; }
 form#ped_settings { margin-top:15px; }
 form#ped_settings .form-table th { display:none; }
 form#ped_settings .form-table tr.text_option td > label,
@@ -11,10 +15,10 @@ form#ped_settings .form-table tr.input_option td { padding:5px 10px; }
 form#ped_settings input[type=number] { text-align:right; width:60px; }
 form#ped_settings p.submit { text-align:right; }
 form#ped_settings p.submit input#notify_now { margin-right:10px; }
-span.description { margin-left: 10px; }
-.plugin-footer { border-top:1px solid #3c3c3c; }
-.plugin-footer .right { text-align:right; }
-form#ped_settings, form#event_settings { margin-bottom:25px; }
+form#ped_settings span.description { margin-left: 10px; }
+form#ped_settings .plugin-footer { border-top:1px solid #3c3c3c; }
+form#ped_settings .plugin-footer .right { text-align:right; }
+form#ped_settings, form#event_settings, form#notify_now_settings { margin-bottom:25px; }
 #out_of_content_widget form table.wp-list-table thead { display:none; }
 #out_of_content_widget form table.wp-list-table .column-post_title { width:75%; max-width: 0;
     overflow: hidden;

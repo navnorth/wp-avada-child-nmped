@@ -73,34 +73,52 @@ class Out_Of_Date_List_Table extends WP_List_Table{
     * Prepare the table with different parameters, pagination, columns and table elements
     */
     function prepare_items() {
-        
+	
         $args = array(
                     'post_type' => array( 'post', 'page' ),
-                    'posts_per_page' => 25 ,
+                    'posts_per_page' => 10 ,
                     'post_status' => 'publish',
                     'orderby' => 'modified',
                     'order' => 'ASC'
                 );
-      
-        /* -- Preparing your query -- */
-   
-        /* -- Pagination parameters -- */
-        $allPosts = new WP_Query(apply_filters(
-                'widget_post_args' ,
-                array(
+	
+	/* -- Preparing your query -- */
+	$age = get_option('nmped_age_days');
+	
+	$sargs = array(
                     'post_type' => array( 'post', 'page' ),
                     'posts_per_page' => -1 ,
                     'post_status' => 'publish',
                     'orderby' => 'modified',
                     'order' => 'ASC'
-                )
+                );
+	
+	if ($age) {
+		$args['date_query'] = array(
+			array(
+				'column' => 'post_modified_gmt',
+				'before' => $age . ' days ago'
+			)
+		    );
+		$sargs['date_query'] = array(
+			array(
+				'column' => 'post_modified_gmt',
+				'before' => $age . ' days ago'
+			)
+		    );
+	}
+	
+        /* -- Pagination parameters -- */
+        $allPosts = new WP_Query(apply_filters(
+                'widget_post_args' ,
+                $sargs
             ));
         
         //Number of elements in your table?
         $totalitems = $allPosts->post_count; //return the total number of affected rows
         
         //How many to display per page?
-        $perpage = 25;
+        $perpage = 10;
         
         //Which page is this?
         $paged = !empty($_GET["paged"]) ? mysql_real_escape_string($_GET["paged"]) : '';
@@ -150,7 +168,9 @@ class Out_Of_Date_List_Table extends WP_List_Table{
                 $author_name = $author->first_name . " " . $author->last_name;
             
             $result->post_author_name = $author_name;
-            $result->post_url = esc_url(get_permalink($result->ID));
+	    $permalink = esc_url(get_permalink($result->ID));
+	    $url = str_replace(home_url(),"",$permalink);
+            $result->post_url = $url;
             $result->author_url = $author_url;
         }
         
