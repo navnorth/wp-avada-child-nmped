@@ -621,6 +621,8 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .ai1ec-allday-badge { color:#000000 !important; }
     .ai1ec-subscribe-dropdown > .ai1ec-subscribe:focus,
     .ai1ec-subscribe-dropdown > .ai1ec-subscribe:hover{ color:#e64900 !important }
+    ul.h-card { padding-left:0; }
+    ul.h-card li { list-style:none !important; }
 
     @media only screen and (max-width: 800px){
         body.has-sidebar #content { width:100% !important; }

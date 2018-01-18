@@ -6,12 +6,12 @@
 
 <a id="ai1ec-event"></a>
 
-<div class="ai1ec-actions">
-	<div class="ai1ec-btn-group-vertical ai1ec-clearfix">
+<ul class="ai1ec-actions">
+	<li class="ai1ec-btn-group-vertical ai1ec-clearfix">
 		{{ back_to_calendar | raw }}
-	</div>
+	</li>
 
-	<div class="ai1ec-btn-group-vertical ai1ec-clearfix">
+	<li class="ai1ec-btn-group-vertical ai1ec-clearfix">
 		{% if ticket_url is not empty %}
 			<a href="{{ ticket_url | e( 'html_attr' ) }}" target="_blank"
 				class="ai1ec-tickets ai1ec-btn ai1ec-btn-sm ai1ec-btn-primary
@@ -32,12 +32,12 @@
 				'text':                   subscribe_buttons_text,
 			} %}
 		{% endif %}
-	</div>
+	</li>
 
 	{% if extra_buttons %}
 		{{ extra_buttons | raw }}
 	{% endif %}
-</div>
+</ul>
 
 {% if map is empty %}
 	{% set col1 = 'ai1ec-col-sm-3' %}

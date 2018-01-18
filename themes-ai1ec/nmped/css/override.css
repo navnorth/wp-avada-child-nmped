@@ -10,3 +10,5 @@ ul.ai1ec-agenda-view li.ai1ec-date a.ai1ec-date-title:hover,
 .ai1ec-agenda-view .ai1ec-date a.ai1ec-date-title:hover{ outline:2px solid #88a9e0; }
 .ai1ec-subscribe-dropdown > .ai1ec-subscribe:focus,
 .ai1ec-subscribe-dropdown > .ai1ec-subscribe:hover{ color:#e64900 !important }
+ul.h-card { padding-left:0; }
+ul.h-card li { list-style:none !important; }
