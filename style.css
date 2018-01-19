@@ -624,6 +624,10 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     ul.h-card { padding-left:0; }
     ul.h-card li { list-style:none !important; }
     .ai1ec-subscribe-dropdown > .ai1ec-subscribe:focus { background: #ebebeb; }
+    .ai1ec-agenda-view .ai1ec-event:focus{border-color:#808080;}
+    .ai1ec-agenda-view .ai1ec-event:focus .ai1ec-event-title{color:#335980;}
+    .ai1ec-agenda-view .ai1ec-event:focus .post-edit-link{opacity:1;filter:alpha(opacity=100);}
+    ul.ai1ec-agenda-view { padding-left:0; }
 
     @media only screen and (max-width: 800px){
         body.has-sidebar #content { width:100% !important; }
