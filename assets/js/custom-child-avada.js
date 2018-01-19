@@ -22,28 +22,6 @@
         if ($('.fusion-blog-archive .fusion-posts-container .fusion-flexslider .flex-direction-nav').length) {
             $('.fusion-blog-archive .fusion-posts-container .fusion-flexslider .flex-direction-nav').empty();
         }
-        
-        if ($('.page.has-sidebar #main #content').height() < $('.page.has-sidebar #main #sidebar').height()) {
-            
-            var contentHeight = $('.page.has-sidebar #main #content').height()
-            var sideHeight = $('.page.has-sidebar #main #sidebar').height()
-            var heightDiff = sideHeight - contentHeight
-            var paddHeight = 80;
-            
-            if (heightDiff>60) {
-                
-                $('.page.has-sidebar #main').css({ 'padding-bottom': '0' })
-                $('.page.has-sidebar #main #content .last-updated-date').css({ 'margin-bottom':'30px' });
-                
-            } else {
-                var paddBottom = paddHeight-heightDiff
-                var marBottom = paddBottom/2
-                
-                $('.page.has-sidebar #main').css({ 'padding-bottom': paddBottom + 'px' })
-                $('.page.has-sidebar #main #content .last-updated-date').css({ 'margin-bottom': marBottom + 'px' });
-                
-            }
-        }
     });
 
     //Missing Visible Focus fixes for when focus on image - adding tabindex
