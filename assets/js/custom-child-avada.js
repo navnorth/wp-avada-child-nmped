@@ -22,6 +22,10 @@
         if ($('.fusion-blog-archive .fusion-posts-container .fusion-flexslider .flex-direction-nav').length) {
             $('.fusion-blog-archive .fusion-posts-container .fusion-flexslider .flex-direction-nav').empty();
         }
+        
+        $(document).on('focus','.ai1ec-tooltip-trigger',function(){
+            $(this).tooltip();
+        })
     });
 
     //Missing Visible Focus fixes for when focus on image - adding tabindex
