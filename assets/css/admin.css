@@ -25,3 +25,4 @@ form#ped_settings, form#event_settings, form#notify_now_settings { margin-bottom
     text-overflow: ellipsis;
     white-space: nowrap; }
 #out_of_content_widget form table.wp-list-table .column-post_modified { width:25%; }
+form#event_settings table.form-table tr.hidden_option { display:none; }

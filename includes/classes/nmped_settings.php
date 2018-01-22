@@ -10,6 +10,8 @@ class NMPED_Settings_Page {
     public static $option_name = "nmped_general_settings";
 
     private static $_setting_title = "PED Settings";
+    
+    private $ai1ec_theme_directory = "";
 
     public function __construct()
     {
@@ -37,6 +39,14 @@ class NMPED_Settings_Page {
 		'',
 		array($this,'nmped_general_settings_callback'),
 		'nmped_settings'
+	);
+	
+	//Create Ai1Ec Section
+	add_settings_section(
+		'nmped_ai1ec_settings',
+		'',
+		array($this,'nmped_ai1ec_settings_callback'),
+		'ai1ec_settings'
 	);
 
 	//Add Settings field for Enable notification
@@ -167,6 +177,21 @@ class NMPED_Settings_Page {
 			'default' => 'PEDHelpDesk@state.nm.us'
 		)
 	);
+	
+	//Add Settings field for Update of Ai1ec
+	add_settings_field(
+		'nmped_update_ai1ec_theme',
+		'',
+		array($this,'setup_settings_field'),
+		'ai1ec_settings',
+		'nmped_ai1ec_settings',
+		array(
+			'uid' => 'nmped_update_ai1ec_theme',
+			'type' => 'hidden',
+			'class' => 'hidden_option',
+			'default' => '1'
+		)
+	);
 
 	register_setting( 'nmped_general_settings' , 'nmped_enable_notification' );
 	register_setting( 'nmped_general_settings' , 'nmped_age_days' );
@@ -176,9 +201,13 @@ class NMPED_Settings_Page {
 	register_setting( 'nmped_general_settings' , 'nmped_to_all_division_leads' );
 	register_setting( 'nmped_general_settings' , 'nmped_to_additional_recipients' );
 	register_setting( 'nmped_general_settings' , 'nmped_recipient_emails' );
+	
+	register_setting( 'nmped_ai1ec_settings' , 'nmped_update_ai1ec_theme' );
     }
 
     public function nmped_general_settings_callback() {}
+    
+    public function nmped_ai1ec_settings_callback() {}
 
     public function setup_settings_field( $arguments ) {
 	$selected = "";
@@ -318,11 +347,19 @@ class NMPED_Settings_Page {
 	}
 
 	$child_theme = wp_get_theme("wp-avada-child-nmped");
-
+	
 	if (isset($_GET['settings-updated'])){
-	    $this->setup_cron();
-
-	    //NMPED_Notification_Cron::run();
+	    
+	    if (get_option('nmped_update_ai1ec_theme')) {
+		
+		$this->update_ai1ec_theme();
+		
+	    } else {
+	    
+		$this->setup_cron();
+    
+		//NMPED_Notification_Cron::run();
+	    }
 	}
 
 	?>
@@ -346,8 +383,8 @@ class NMPED_Settings_Page {
 		<?php _e( "This feature only sends notification to additional recipients in PED Settings above." , "wp-avada-child-nmped" ); ?></p>
 		<input type="hidden" name="force_notify" value="1" />
 	    <?php
-		settings_fields( 'nmped_general_settings' );
-		submit_button( "Notify Now" );
+		//settings_fields( 'nmped_general_settings' );
+		//submit_button( "Notify Now" );
 	    ?>
 	    </fieldset>
 	</form>-->
@@ -356,6 +393,8 @@ class NMPED_Settings_Page {
 		<legend><?php _e( "Event Theme" , "wp-avada-child-nmped"); ?></legend>
 		<p><?php _e( "This feature updates the All-in-One Event Calendar PED theme files in wp-content/themes-ai1ec from the PED Avada child theme directory and flushes the plugin's cache so the changes will appear to end users." , "wp-avada-child-nmped" ); ?></p>
 	    <?php
+		settings_fields( 'nmped_ai1ec_settings' );
+		do_settings_sections( 'ai1ec_settings' );
 		submit_button( "Update AI1EC Theme" );
 	    ?>
 	    </fieldset>
@@ -401,6 +440,83 @@ class NMPED_Settings_Page {
 		}
 	    }
 	}
+    }
+    
+    /**
+     *
+     * Update All-In-One Event Calendar Theme Automatically
+     *
+     **/
+    public function update_ai1ec_theme() {
+	
+	$ai1ectheme_directory = get_home_path() . "wp-content/themes-ai1ec";
+	
+	$theme_ai1ec_directory = get_stylesheet_directory() ."/themes-ai1ec";
+	
+	$this->ai1ec_theme_directory = $ai1ectheme_directory;
+	
+	$this->remove_old_ai1ec_theme_files($ai1ectheme_directory);
+	$this->copy_theme($theme_ai1ec_directory, $ai1ectheme_directory);
+	
+	delete_option('nmped_update_ai1ec_theme');
+	
+    }
+    
+    /**
+     *
+     * Remove old all-in-one event calendar theme
+     *
+     **/
+    function remove_old_ai1ec_theme_files( $dir ) {
+	if (is_dir($dir)) {
+	    $objects = scandir($dir);
+	    foreach($objects as $object) {
+		if ($object != "." && $object != ".."){
+		    if(filetype($dir."/".$object)=="dir") {
+			$this->remove_old_ai1ec_theme_files($dir."/".$object);
+		    } else {
+			unlink($dir."/".$object);
+		    }
+		}
+	    }
+	    reset($objects);
+	    
+	    if ($dir !== $this->ai1ec_theme_directory)
+		rmdir($dir);
+	}
+    }
+    
+    function copy_theme($source, $dest, $permissions = 0755) {
+	// Check for symlinks
+	if (is_link($source)) {
+	    return symlink(readlink($source), $dest);
+	}
+    
+	// Simple copy for a file
+	if (is_file($source)) {
+	    return copy($source, $dest);
+	}
+    
+	// Make destination directory
+	if (!is_dir($dest)) {
+	    mkdir($dest, $permissions);
+	}
+    
+	// Loop through the folder
+	$dir = dir($source);
+	while (false !== $entry = $dir->read()) {
+	    // Skip pointers
+	    if ($entry == '.' || $entry == '..') {
+		continue;
+	    }
+    
+	    // Deep copy directories
+	    $this->copy_theme("$source/$entry", "$dest/$entry", $permissions);
+	}
+    
+	// Clean up
+	$dir->close();
+	return true;
     }
 }
 ?>
