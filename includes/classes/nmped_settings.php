@@ -449,14 +449,15 @@ class NMPED_Settings_Page {
      **/
     public function update_ai1ec_theme() {
 	
-	$ai1ectheme_directory = get_home_path() . "wp-content/themes-ai1ec";
+	$ai1ectheme_directory = wp_normalize_path( get_home_path() . "wp-content/themes-ai1ec" );
 	
-	$theme_ai1ec_directory = get_stylesheet_directory() ."/themes-ai1ec";
+	$theme_ai1ec_directory = wp_normalize_path( get_stylesheet_directory() ."/themes-ai1ec" );
 	
 	$this->ai1ec_theme_directory = $ai1ectheme_directory;
 	
-	$this->remove_old_ai1ec_theme_files($ai1ectheme_directory);
+	$this->remove_old_ai1ec_theme_files($ai1ectheme_directory, $ai1ectheme_directory);
 	$this->copy_theme($theme_ai1ec_directory, $ai1ectheme_directory);
+	$this->clear_theme_cache();
 	
 	delete_option('nmped_update_ai1ec_theme');
 	
@@ -467,13 +468,13 @@ class NMPED_Settings_Page {
      * Remove old all-in-one event calendar theme
      *
      **/
-    function remove_old_ai1ec_theme_files( $dir ) {
+    function remove_old_ai1ec_theme_files( $dir, $topdir ) {
 	if (is_dir($dir)) {
 	    $objects = scandir($dir);
 	    foreach($objects as $object) {
 		if ($object != "." && $object != ".."){
 		    if(filetype($dir."/".$object)=="dir") {
-			$this->remove_old_ai1ec_theme_files($dir."/".$object);
+			$this->remove_old_ai1ec_theme_files($dir."/".$object, $topdir);
 		    } else {
 			unlink($dir."/".$object);
 		    }
@@ -481,11 +482,12 @@ class NMPED_Settings_Page {
 	    }
 	    reset($objects);
 	    
-	    if ($dir !== $this->ai1ec_theme_directory)
+	    if ($dir !== $topdir)
 		rmdir($dir);
 	}
     }
     
+    // Copy ai1ec theme from wp-avada-child-nmped theme to wp-content
     function copy_theme($source, $dest, $permissions = 0755) {
 	// Check for symlinks
 	if (is_link($source)) {
@@ -517,6 +519,26 @@ class NMPED_Settings_Page {
 	// Clean up
 	$dir->close();
 	return true;
+    }
+    
+    //Clear Ai1ec theme cache
+    function clear_theme_cache() {
+	
+	$ai1ec_mu_dir =  WPMU_PLUGIN_DIR . '/all-in-one-event-calendar/';
+	$ai1ec_dir = WP_PLUGIN_DIR . '/all-in-one-event-calendar/';
+	$dir = "";
+	
+	if ( is_file( wp_normalize_path($ai1ec_mu_dir. 'all-in-one-event-calendar.php' ) ) ) 
+	    $dir = $ai1ec_mu_dir;
+	
+	
+	if ( is_file( wp_normalize_path($ai1ec_dir . 'all-in-one-event-calendar.php' ) ) )
+	    $dir = $ai1ec_dir;
+	
+	$ai1ec_plugin_cache = wp_normalize_path( $dir . "cache" );
+	
+	$this->remove_old_ai1ec_theme_files($ai1ec_plugin_cache, $ai1ec_plugin_cache);
+	
     }
 }
 ?>
