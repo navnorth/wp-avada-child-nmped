@@ -168,8 +168,8 @@ class Out_Of_Date_List_Table extends WP_List_Table{
                 $author_name = $author->first_name . " " . $author->last_name;
 
             $result->post_author_name = $author_name;
-	    $permalink = esc_url(get_permalink($result->ID));
-	    $url = str_replace(home_url(),"",$permalink);
+	        $permalink = esc_url(get_permalink($result->ID));
+	        $url = str_replace(home_url(),"",$permalink);
             $result->post_url = $url;
             $result->author_url = $author_url;
         }

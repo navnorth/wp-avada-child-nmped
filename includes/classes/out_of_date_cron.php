@@ -9,7 +9,7 @@ class NMPED_Notification_Cron {
     {
 
     }
-    
+
     /**
      * Run
      * Description
@@ -17,7 +17,7 @@ class NMPED_Notification_Cron {
     public static function run()
     {
         $age = get_option('nmped_age_days');
-        
+
         $args = array(
             'post_type' => array( 'post', 'page' ),
             'posts_per_page' => -1 ,
@@ -31,15 +31,15 @@ class NMPED_Notification_Cron {
             'orderby' => 'modified',
             'order' => 'ASC'
         );
-        
+
         $nmPosts = new WP_Query($args);
-        
-        $email_content = out_of_date_notification($nmPosts->posts);
-        
+
+        $email_content = out_of_date_notification($nmPosts->posts, $age);
+
         if (count($nmPosts->posts)>0) {
-        
+
             $recipients = array();
-            
+
             // All Editors
             $all_editors = get_option('nmped_to_all_editors');
             if ($all_editors){
@@ -48,7 +48,7 @@ class NMPED_Notification_Cron {
                     $recipients[]  = $editor->user_email;
                 }
             }
-            
+
             // All Division Leads
             $all_div_leads = get_option('nmped_to_all_division_leads');
             if ($all_div_leads){
@@ -57,23 +57,23 @@ class NMPED_Notification_Cron {
                     $recipients[]  = $lead->user_email;
                 }
             }
-            
+
             // additional recipients
             $to = get_option('nmped_recipient_emails');
             $to = explode(',', $to);
             if (is_array($to)) {
                 foreach($to as $email){
-                    $recipients[] = $email;   
+                    $recipients[] = $email;
                 }
             }
-            
+
             $recipients = array_unique($recipients);
-            
+
             $subject = "Out-Of-Date Content Reminder";
             $headers = array('Content-Type: text/html; charset=UTF-8');
-            
+
             $mail = wp_mail($recipients, $subject, $email_content, $headers);
-        
+
         }
     }
 }
