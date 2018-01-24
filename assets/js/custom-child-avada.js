@@ -23,9 +23,6 @@
             $('.fusion-blog-archive .fusion-posts-container .fusion-flexslider .flex-direction-nav').empty();
         }
         
-        $(document).on('focus','.ai1ec-tooltip-trigger',function(){
-            $(this).tooltip();
-        })
         $('.ai1ec-category-filter .ai1ec-dropdown-toggle').on('keydown',function(e){
             if (e.which=="13") {
                 e.preventDefault();
@@ -48,6 +45,12 @@
             if (e.which=="13") {
                 e.preventDefault();
                 $('.ai1ec-calendar .ai1ec-subscribe-container  .ai1ec-subscribe-dropdown .ai1ec-dropdown-menu').toggle();
+            }
+        });
+        $('.ai1ec-calendar-view  .ai1ec-agenda-view ul.ai1ec-date-events li.ai1ec-event').on('keydown',function(e){
+            if (e.which=="13") {
+                e.preventDefault();
+                $(this).find('.ai1ec-event-summary').toggle();
             }
         });
     });

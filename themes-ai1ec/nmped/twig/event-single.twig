@@ -109,8 +109,7 @@
 	{% if categories is not empty %}
 		<div class="ai1ec-categories ai1ec-row">
 			<div class="ai1ec-field-label {{ col1 }} ai1ec-col-xs-1">
-				<h2><i class="ai1ec-fa ai1ec-fa-folder-open ai1ec-tooltip-trigger"
-					tabindex="0" title="{{ text_categories | e( 'html_attr' ) }}" alt="{{ text_categories | e( 'html_attr' ) }}"></i> {{ text_categories }}</h2>
+				<h2>{{ text_categories }}:</h2>
 			</div>
 			<div class="ai1ec-field-value {{ col2 }} ai1ec-col-xs-10">
 				{{ categories | raw }}
