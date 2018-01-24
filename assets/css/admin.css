@@ -1,3 +1,4 @@
+body.wp-admin.settings_page_ped-settings .wrap #ped-settings { position:relative; }
 form#ped_settings fieldset,
 form#event_settings fieldset,
 form#notify_now_settings fieldset{ border:2px solid #3c3c3c; padding:25px; }
@@ -5,6 +6,12 @@ form#ped_settings fieldset legend,
 form#event_settings fieldset legend,
 form#notify_now_settings fieldset legend{ font-weight:bold; font-size:18px; }
 form#ped_settings { margin-top:15px; }
+form#notify_now_settings {
+    width: 100px;
+    position: absolute;
+    right: 20px;
+    top: 0px;
+}
 form#ped_settings .form-table th { display:none; }
 form#ped_settings .form-table tr.text_option td > label,
 form#ped_settings .form-table tr.select_option td > label,

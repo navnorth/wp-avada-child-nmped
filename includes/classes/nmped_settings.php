@@ -1,5 +1,7 @@
 <?php
 
+require_once wp_normalize_path( get_stylesheet_directory() . '/includes/classes/out_of_date_cron.php' );
+
 class NMPED_Settings_Page {
     private $_debug = FALSE;
 
@@ -39,6 +41,14 @@ class NMPED_Settings_Page {
 		'',
 		array($this,'nmped_general_settings_callback'),
 		'nmped_settings'
+	);
+	
+	//Create Notify Now section
+	add_settings_section(
+		'nmped_notify_settings',
+		'',
+		array($this,'nmped_notify_settings_callback'),
+		'notify_settings'
 	);
 	
 	//Create Ai1Ec Section
@@ -178,7 +188,7 @@ class NMPED_Settings_Page {
 		)
 	);
 	
-	//Add Settings field for Update of Ai1ec
+	//Add hidden field for Update of Ai1ec
 	add_settings_field(
 		'nmped_update_ai1ec_theme',
 		'',
@@ -187,6 +197,21 @@ class NMPED_Settings_Page {
 		'nmped_ai1ec_settings',
 		array(
 			'uid' => 'nmped_update_ai1ec_theme',
+			'type' => 'hidden',
+			'class' => 'hidden_option',
+			'default' => '1'
+		)
+	);
+	
+	//Add hidden field for Notify Now
+	add_settings_field(
+		'nmped_notify_now',
+		'',
+		array($this,'setup_settings_field'),
+		'notify_settings',
+		'nmped_notify_settings',
+		array(
+			'uid' => 'nmped_notify_now',
 			'type' => 'hidden',
 			'class' => 'hidden_option',
 			'default' => '1'
@@ -203,9 +228,13 @@ class NMPED_Settings_Page {
 	register_setting( 'nmped_general_settings' , 'nmped_recipient_emails' );
 	
 	register_setting( 'nmped_ai1ec_settings' , 'nmped_update_ai1ec_theme' );
+	
+	register_setting( 'nmped_notify_settings' , 'nmped_notify_now' );
     }
 
     public function nmped_general_settings_callback() {}
+    
+    public function nmped_notify_settings_callback() {}
     
     public function nmped_ai1ec_settings_callback() {}
 
@@ -354,6 +383,11 @@ class NMPED_Settings_Page {
 		
 		$this->update_ai1ec_theme();
 		
+	    } elseif (get_option('nmped_notify_now')) {
+		
+		NMPED_Notification_Cron::run();
+		delete_option('nmped_notify_now');
+		
 	    } else {
 	    
 		$this->setup_cron();
@@ -365,29 +399,27 @@ class NMPED_Settings_Page {
 	?>
 	<div class="wrap">
 	<h1><?php _e( "PED Settings", "wp-avada-child-nmped" ); ?></h1>
-	<form method="post" id="ped_settings" action="options.php">
-	    <fieldset>
-		<legend><?php _e( "Out-Of-Date Content Reminder" , "wp-avada-child-nmped"); ?></legend>
-	    <?php
-		settings_fields( 'nmped_general_settings' );
-		do_settings_sections( 'nmped_settings' );
-		echo "<p class='submit'>";
-		submit_button( "Update Settings", "primary", "update_settings", false );
-		echo "</p>";
-	    ?>
-	    </fieldset>
-	</form>
-	<!--<form method="post" id="notify_now_settings" action="options.php">
-	    <fieldset>
-		<legend><?php _e( "Out-Of-Date Notify Now" , "wp-avada-child-nmped"); ?></legend>
-		<?php _e( "This feature only sends notification to additional recipients in PED Settings above." , "wp-avada-child-nmped" ); ?></p>
-		<input type="hidden" name="force_notify" value="1" />
-	    <?php
-		//settings_fields( 'nmped_general_settings' );
-		//submit_button( "Notify Now" );
-	    ?>
-	    </fieldset>
-	</form>-->
+	<div id="ped-settings">
+	    <form method="post" id="ped_settings" action="options.php">
+		<fieldset>
+		    <legend><?php _e( "Out-Of-Date Content Reminder" , "wp-avada-child-nmped"); ?></legend>
+		<?php
+		    settings_fields( 'nmped_general_settings' );
+		    do_settings_sections( 'nmped_settings' );
+		    echo "<p class='submit'>";
+		    submit_button( "Update Settings", "primary", "update_settings", false );
+		    echo "</p>";
+		?>
+		</fieldset>
+	    </form>
+	    <form method="post" id="notify_now_settings" action="options.php">
+		<?php
+		    settings_fields( 'nmped_notify_settings' );
+		    do_settings_sections( 'notify_settings' );
+		    submit_button( "Notify Now" );
+		?>
+	    </form>
+	</div>
 	<form method="post" id="event_settings" action="options.php">
 	    <fieldset>
 		<legend><?php _e( "Event Theme" , "wp-avada-child-nmped"); ?></legend>
