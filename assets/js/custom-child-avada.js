@@ -69,6 +69,18 @@
                 $(this).parent().parent().find('.ai1ec-event-summary').toggle();
             }
         });
+        //
+        $('.ai1ec-single-event .ai1ec-actions  .ai1ec-subscribe-dropdown .ai1ec-dropdown-toggle').on('keydown',function(e){
+            if (e.which=="13") {
+                e.preventDefault();
+                $('.ai1ec-single-event .ai1ec-actions  .ai1ec-subscribe-dropdown .ai1ec-dropdown-menu').toggle();
+            }
+        });
+        $('.ai1ec-single-event .ai1ec-actions  .ai1ec-subscribe-dropdown .ai1ec-dropdown-menu a').on('keydown',function(e){
+            if (e.which=="13") {
+                $('.ai1ec-single-event .ai1ec-actions  .ai1ec-subscribe-dropdown .ai1ec-dropdown-menu').toggle();
+            }
+        });
     });
 
     //Missing Visible Focus fixes for when focus on image - adding tabindex
