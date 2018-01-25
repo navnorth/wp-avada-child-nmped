@@ -382,15 +382,23 @@ class NMPED_Settings_Page {
 	    if (get_option('nmped_update_ai1ec_theme')) {
 		
 		$this->update_ai1ec_theme();
+		$message = "<p>AI1EC Theme files have been updated.<br/>
+			    NOTE: You must also click <em>Save</em> on the <a href='".admin_url('edit.php?post_type=ai1ec_event&page=all-in-one-event-calendar-edit-css')."'>Calendar Theme Options</a> page to refresh the plugin cache.</p>";
+		$type = "success";
 		
 	    } elseif (get_option('nmped_notify_now')) {
 		
 		NMPED_Notification_Cron::run();
 		delete_option('nmped_notify_now');
+		$message = "Notification has been sent.";
+		$type = "success";
 		
 	    } else {
 	    
 		$this->setup_cron();
+		
+		$message = "Settings saved.";
+		$type = "success";
     
 		//NMPED_Notification_Cron::run();
 	    }
@@ -399,6 +407,11 @@ class NMPED_Settings_Page {
 	?>
 	<div class="wrap">
 	<h1><?php _e( "PED Settings", "wp-avada-child-nmped" ); ?></h1>
+	<?php if ($message) { ?>
+	<div class="notice notice-<?php echo esc_attr($type); ?> is-dismissible">
+	    <p><?php echo $message; ?></p>
+	</div>
+	<?php } ?>
 	<div id="ped-settings">
 	    <form method="post" id="ped_settings" action="options.php">
 		<fieldset>
@@ -489,7 +502,7 @@ class NMPED_Settings_Page {
 	
 	$this->remove_old_ai1ec_theme_files($ai1ectheme_directory, $ai1ectheme_directory);
 	$this->copy_theme($theme_ai1ec_directory, $ai1ectheme_directory);
-	$this->clear_theme_cache();
+	//$this->clear_theme_cache();
 	
 	delete_option('nmped_update_ai1ec_theme');
 	
