@@ -12,7 +12,7 @@ class NMPED_Settings_Page {
     public static $option_name = "nmped_general_settings";
 
     private static $_setting_title = "PED Settings";
-    
+
     private $ai1ec_theme_directory = "";
 
     public function __construct()
@@ -42,7 +42,7 @@ class NMPED_Settings_Page {
 		array($this,'nmped_general_settings_callback'),
 		'nmped_settings'
 	);
-	
+
 	//Create Notify Now section
 	add_settings_section(
 		'nmped_notify_settings',
@@ -50,7 +50,7 @@ class NMPED_Settings_Page {
 		array($this,'nmped_notify_settings_callback'),
 		'notify_settings'
 	);
-	
+
 	//Create Ai1Ec Section
 	add_settings_section(
 		'nmped_ai1ec_settings',
@@ -187,7 +187,7 @@ class NMPED_Settings_Page {
 			'default' => 'PEDHelpDesk@state.nm.us'
 		)
 	);
-	
+
 	//Add hidden field for Update of Ai1ec
 	add_settings_field(
 		'nmped_update_ai1ec_theme',
@@ -202,7 +202,7 @@ class NMPED_Settings_Page {
 			'default' => '1'
 		)
 	);
-	
+
 	//Add hidden field for Notify Now
 	add_settings_field(
 		'nmped_notify_now',
@@ -226,16 +226,16 @@ class NMPED_Settings_Page {
 	register_setting( 'nmped_general_settings' , 'nmped_to_all_division_leads' );
 	register_setting( 'nmped_general_settings' , 'nmped_to_additional_recipients' );
 	register_setting( 'nmped_general_settings' , 'nmped_recipient_emails' );
-	
+
 	register_setting( 'nmped_ai1ec_settings' , 'nmped_update_ai1ec_theme' );
-	
+
 	register_setting( 'nmped_notify_settings' , 'nmped_notify_now' );
     }
 
     public function nmped_general_settings_callback() {}
-    
+
     public function nmped_notify_settings_callback() {}
-    
+
     public function nmped_ai1ec_settings_callback() {}
 
     public function setup_settings_field( $arguments ) {
@@ -376,31 +376,31 @@ class NMPED_Settings_Page {
 	}
 
 	$child_theme = wp_get_theme("wp-avada-child-nmped");
-	
+
 	if (isset($_GET['settings-updated'])){
-	    
+
 	    if (get_option('nmped_update_ai1ec_theme')) {
-		
-		$this->update_ai1ec_theme();
-		$message = "<p>AI1EC Theme files have been updated.<br/>
-			    NOTE: You must also click <em>Save</em> on the <a href='".admin_url('edit.php?post_type=ai1ec_event&page=all-in-one-event-calendar-edit-css')."'>Calendar Theme Options</a> page to refresh the plugin cache.</p>";
-		$type = "success";
-		
+
+			$this->update_ai1ec_theme();
+			$message = "<p>AI1EC Theme files have been updated.<br/>
+				    NOTE: You must also click <em>Save</em> on the <a href='".admin_url('edit.php?post_type=ai1ec_event&page=all-in-one-event-calendar-edit-css')."'>Calendar Theme Options</a> page to refresh the plugin cache.</p>";
+			$type = "success";
+
 	    } elseif (get_option('nmped_notify_now')) {
-		
-		NMPED_Notification_Cron::run();
-		delete_option('nmped_notify_now');
-		$message = "Notification has been sent.";
-		$type = "success";
-		
+
+			NMPED_Notification_Cron::run();
+			delete_option('nmped_notify_now');
+			$message = "Notification has been sent.";
+			$type = "success";
+
 	    } else {
-	    
-		$this->setup_cron();
-		
-		$message = "Settings saved.";
-		$type = "success";
-    
-		//NMPED_Notification_Cron::run();
+
+			$this->setup_cron();
+
+			$message = "Settings saved.";
+			$type = "success";
+
+			//NMPED_Notification_Cron::run();
 	    }
 	}
 
@@ -486,28 +486,28 @@ class NMPED_Settings_Page {
 	    }
 	}
     }
-    
+
     /**
      *
      * Update All-In-One Event Calendar Theme Automatically
      *
      **/
     public function update_ai1ec_theme() {
-	
+
 	$ai1ectheme_directory = wp_normalize_path( get_home_path() . "wp-content/themes-ai1ec" );
-	
+
 	$theme_ai1ec_directory = wp_normalize_path( get_stylesheet_directory() ."/themes-ai1ec" );
-	
+
 	$this->ai1ec_theme_directory = $ai1ectheme_directory;
-	
+
 	$this->remove_old_ai1ec_theme_files($ai1ectheme_directory, $ai1ectheme_directory);
 	$this->copy_theme($theme_ai1ec_directory, $ai1ectheme_directory);
 	//$this->clear_theme_cache();
-	
+
 	delete_option('nmped_update_ai1ec_theme');
-	
+
     }
-    
+
     /**
      *
      * Remove old all-in-one event calendar theme
@@ -526,29 +526,29 @@ class NMPED_Settings_Page {
 		}
 	    }
 	    reset($objects);
-	    
+
 	    if ($dir !== $topdir)
 		rmdir($dir);
 	}
     }
-    
+
     // Copy ai1ec theme from wp-avada-child-nmped theme to wp-content
     function copy_theme($source, $dest, $permissions = 0755) {
 	// Check for symlinks
 	if (is_link($source)) {
 	    return symlink(readlink($source), $dest);
 	}
-    
+
 	// Simple copy for a file
 	if (is_file($source)) {
 	    return copy($source, $dest);
 	}
-    
+
 	// Make destination directory
 	if (!is_dir($dest)) {
 	    mkdir($dest, $permissions);
 	}
-    
+
 	// Loop through the folder
 	$dir = dir($source);
 	while (false !== $entry = $dir->read()) {
@@ -556,34 +556,34 @@ class NMPED_Settings_Page {
 	    if ($entry == '.' || $entry == '..') {
 		continue;
 	    }
-    
+
 	    // Deep copy directories
 	    $this->copy_theme("$source/$entry", "$dest/$entry", $permissions);
 	}
-    
+
 	// Clean up
 	$dir->close();
 	return true;
     }
-    
+
     //Clear Ai1ec theme cache
     function clear_theme_cache() {
-	
+
 	$ai1ec_mu_dir =  WPMU_PLUGIN_DIR . '/all-in-one-event-calendar/';
 	$ai1ec_dir = WP_PLUGIN_DIR . '/all-in-one-event-calendar/';
 	$dir = "";
-	
-	if ( is_file( wp_normalize_path($ai1ec_mu_dir. 'all-in-one-event-calendar.php' ) ) ) 
+
+	if ( is_file( wp_normalize_path($ai1ec_mu_dir. 'all-in-one-event-calendar.php' ) ) )
 	    $dir = $ai1ec_mu_dir;
-	
-	
+
+
 	if ( is_file( wp_normalize_path($ai1ec_dir . 'all-in-one-event-calendar.php' ) ) )
 	    $dir = $ai1ec_dir;
-	
+
 	$ai1ec_plugin_cache = wp_normalize_path( $dir . "cache" );
-	
+
 	$this->remove_old_ai1ec_theme_files($ai1ec_plugin_cache, $ai1ec_plugin_cache);
-	
+
     }
 }
 ?>
