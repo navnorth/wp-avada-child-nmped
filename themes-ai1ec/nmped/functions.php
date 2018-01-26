@@ -54,5 +54,38 @@ function nmped_event_single_args($args, $is_admin){
     
     $args['contact'] = $has_contents ? $contact : '';
     
+    $args['categories'] = get_categories_html($args['post_id']);
+    
     return $args;
+}
+
+function get_categories_html( $post_id ) {
+    $categories = get_the_category($post_id);
+	
+    if (empty($categories))
+        return;
+        
+    foreach ( $categories as &$category ) {
+        
+        $href = site_url('/calendar/cat_ids~'.$category->term_id.'/');
+
+        $class = $data_type = $title = '';
+        if ( $category->description ) {
+            $title = 'title="' .
+                esc_attr( $category->description ) . '" ';
+        }
+
+        $html        = '';
+        $class      .= ' ai1ec-category';
+        $color_style = '';
+
+        $html .= '<a ' . $data_type . ' class="' . $class .
+        ' ai1ec-term-id-' . $category->term_id . ' p-category" ' .
+        $title . $color_style . 'href="' . $href . '">';
+
+        $html .= esc_html( $category->name ) . '</a>';
+        $category = $html;
+    }
+    
+    return implode( ' ', $categories );
 }
