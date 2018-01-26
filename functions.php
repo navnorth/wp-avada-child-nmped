@@ -28,6 +28,11 @@ include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widgets/
 include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widgets/class-nmped-related-posts-widget.php' );
 
 /**
+ * Include NMPED Calendar Events Widget
+ */
+include_once wp_normalize_path( get_stylesheet_directory() . '/includes/widgets/class-nmped-calendar-events-widget.php' );
+
+/**
  * Include NMPED Toggle Class
  */
 include_once wp_normalize_path( get_stylesheet_directory() . '/includes/shortcodes/nmped-toggle.php' );
@@ -198,6 +203,7 @@ add_action( 'widgets_init' , 'load_nmped_widgets' );
 function load_nmped_widgets() {
     register_widget('NMPED_Subpages_Widget');
     register_widget('NMPED_Related_Posts_Widget');
+    register_widget('NMPED_Calendar_Events_Widget');
 }
 
 //replace footer widget titles h4(heading tag) to p
