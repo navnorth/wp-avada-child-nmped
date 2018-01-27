@@ -58,12 +58,14 @@ class NMPED_Notification_Cron {
                 }
             }
 
-            // additional recipients
-            $to = get_option('nmped_recipient_emails');
-            $to = explode(',', $to);
-            if (is_array($to)) {
-                foreach($to as $email){
-                    $recipients[] = $email;
+            if (get_option('nmped_to_additional_recipients')) {
+                // additional recipients
+                $to = get_option('nmped_recipient_emails');
+                $to = explode(',', $to);
+                if (is_array($to)) {
+                    foreach($to as $email){
+                        $recipients[] = $email;
+                    }
                 }
             }
 
