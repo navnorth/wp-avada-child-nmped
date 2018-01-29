@@ -11,7 +11,8 @@
 				{% if date_info.today is not empty %}ai1ec-today{% endif %}">
 				<a class="ai1ec-date-title ai1ec-load-view"
 					href="{{ date_info.href | e('html_attr') }}"
-					{{ data_type | raw }}>
+					{{ data_type | raw }}
+					title="Calendar date {{ date_info.weekday }}, {{ date_info.month }} {{ date_info.day }}, {{ date_info.year }}">
 					<div class="ai1ec-month">{{ date_info.month }}</div>
 					<div class="ai1ec-day">{{ date_info.day }}</div>
 					<div class="ai1ec-weekday">{{ date_info.weekday }}</div>
@@ -33,7 +34,7 @@
 								data-end="{{ event.end }}" tabindex="0">
 
 								<div class="ai1ec-event-header">
-									<div class="ai1ec-event-toggle" tabindex="0">
+									<div class="ai1ec-event-toggle" tabindex="0" title="More Info">
 										<i class="ai1ec-fa ai1ec-fa-minus-circle ai1ec-fa-lg"></i>
 										<i class="ai1ec-fa ai1ec-fa-plus-circle ai1ec-fa-lg"></i>
 									</div>
