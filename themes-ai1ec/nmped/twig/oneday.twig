@@ -19,7 +19,7 @@
 						</div>
 					{% endif %}
 					<a class="ai1ec-load-view" href="{{ day.href | e( 'html_attr' ) }}"
-						{{ data_type | raw }}>
+						{{ data_type | raw }} title="{{ title }}">
 						<span class="ai1ec-weekday-date">{{ day.day }}</span>
 						<span class="ai1ec-weekday-day">{{ day.weekday }}</span>
 					</a>
