@@ -635,6 +635,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .nmped-calendar-widgets li span.post-date { font-size:0.95em; }
     .nmped-calendar-widgets .calendar-link { text-decoration:underline; }
     .nmped-calendar-widgets .calendar-link:hover { color:#ff702e; }
+    .nmped-calendar-page #main #content .last-updated-date { display:none; }
 
     @media only screen and (max-width: 800px){
         body.has-sidebar #content { width:100% !important; }

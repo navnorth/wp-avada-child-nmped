@@ -89,3 +89,15 @@ function get_categories_html( $post_id ) {
     
     return implode( ' ', $categories );
 }
+
+add_filter( 'ai1ec_theme_args_calendar.twig', 'nmped_calendar_args', 10, 2 );
+
+function nmped_calendar_args( $args, $is_admin  ) {
+    add_filter( 'body_class', 'add_calendar_class' );
+    return $args;
+}
+
+function add_calendar_class( $classes ) {
+    $classes[] = "nmped-calendar-page";
+    return $classes;
+}
