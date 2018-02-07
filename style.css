@@ -164,7 +164,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     }
 
     .fusion-main-menu > ul > li > a, .side-nav li a{
-        font-size: 16px !important;
+        font-size: 18px !important;
     }
 
     /*on hover underline links in footer*/
@@ -645,6 +645,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .nmped-calendar-widgets .calendar-link { text-decoration:underline; }
     .nmped-calendar-widgets .calendar-link:hover { color:#e65c1d; }
     .nmped-calendar-page #main #content .last-updated-date { display:none; }
+    .callout--orange .callout__text p { font-weight:bold !important; font-size:14pt !important; }
 
     @media only screen and (max-width: 800px){
         body.has-sidebar #content { width:100% !important; }
