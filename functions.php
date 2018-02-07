@@ -662,6 +662,22 @@ function nmped_action_manage_media_custom_column( $column_name, $post_id ) {
 }
 add_action( 'manage_media_custom_column', 'nmped_action_manage_media_custom_column', 10, 3 );
 
+// add filter for other file types to to Media Library
+function modify_post_mime_types( $post_mime_types ) {
+
+    // select the mime type (e.g. 'application/pdf') then define an array with the label values
+    $post_mime_types['application/pdf'] = array( __( 'PDFs' ), __( 'Manage PDFs' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' ) );
+    $post_mime_types['application/msword'] = array('Word DOC', 'Manage Word DOC', _n_noop('Word DOC <span class="count">(%s)</span>', 'Word DOC <span class="count">(%s)</span>'));
+    $post_mime_types['application/vnd.openxmlformats-officedocument.wordprocessingml.document'] = array('Word DOCX', 'Manage Word DOCX', _n_noop('Word DOCX <span class="count">(%s)</span>', 'Word Docs <span class="count">(%s)</span>'));
+    $post_mime_types['application/msexcel'] = array('Excel XLS', 'Manage Excel XLS', _n_noop('Excel XLS <span class="count">(%s)</span>', 'Excel XLS <span class="count">(%s)</span>'));
+    $post_mime_types['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'] = array('Excel XLSX', 'Manage Excel XLSX', _n_noop('Excel XLSX <span class="count">(%s)</span>', 'Excel XLSX <span class="count">(%s)</span>'));
+
+    return $post_mime_types;
+}
+
+// Add Filter Hook
+add_filter( 'post_mime_types', 'modify_post_mime_types' );
+
 function nmped_enqueue_media_scripts() {
     wp_enqueue_media();
 }
