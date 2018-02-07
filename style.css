@@ -596,7 +596,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     #nmped-search .searchform .search-field input[type=text] { border:1px solid #000000 !important; }
     .hidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
     .side-nav-right .side-nav .arrow:after { content:''; }
-    #wrapper .side-nav li.current_page_item a { border-right:none; border-left:none; color:#b45225; }
+    #wrapper .side-nav li.current_page_item a { border-right:none; border-left:none; }
     #wrapper .side-nav li.current_page_item { border-right-color: #003366; border-left-color: #003366; }
     .side-nav li a { border-bottom:none; }
     ul.side-nav  { border-top:none; border-bottom: 1px solid #e0dede; }
