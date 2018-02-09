@@ -477,11 +477,10 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         color: #003162 !important;
     }
 
-    /*menu icon bar fix
+    /*menu icon bar fix */
     .fusion-icon-bars{
         margin-top: 20px;
     }
-    */
 
     /*Mobile menu expanded fixes*/
     .fusion-mobile-menu .fusion-mobile-nav-item a {
