@@ -322,9 +322,6 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         color: #fff !important;
     }
 
-    /* fit menu in 1024 width */
-    .fusion-main-menu > ul > li{ padding-right: 35px; }
-
     /*breadcrumbs styling for next line */
     .fusion-page-title-bar{
         height: auto !important;
@@ -480,10 +477,11 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         color: #003162 !important;
     }
 
-    /*menu icon bar fix*/
+    /*menu icon bar fix
     .fusion-icon-bars{
         margin-top: 20px;
     }
+    */
 
     /*Mobile menu expanded fixes*/
     .fusion-mobile-menu .fusion-mobile-nav-item a {
@@ -664,3 +662,14 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         #nmped-search h2 { font-size:20px; }
         .page #main #content.full-width .last-updated-date { margin-bottom:-15px; }
     }
+
+    /* fits fir menu for various widths */
+    @media(max-width:1550px) and (min-width:1100px) {
+        .fusion-main-menu > ul > li{ padding-right: 35px !important; }
+    }
+
+    /* fit menu in 1024 width */
+    @media(max-width:1100px) and (min-width:800px) {
+        .fusion-main-menu > ul > li{ padding-right: 15px !important; }
+    }
+
