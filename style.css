@@ -4,7 +4,7 @@ Description:  NMPED child theme for Avada theme
 Author:       Navigation North
 Author URI:   https://www.navigationnorth.com
 Template:     Avada
-Version:      0.3.5
+Version:      0.3.6
 Text Domain:  Avada
 License:      GPL3
 License URI:  https://www.gnu.org/licenses/gpl-3.0.html
@@ -12,12 +12,13 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
 
 /*
   Colors:
-    orange:     #e65c1d
-    dark blue:  #003366
-    blue:       #294179
-    yellow:     #ffeb3b
-    green/teal: #005c5c
-    dark gray:  #808080
+    orange:      #ff5200
+    dark blue:   #003366
+    yellow:      #ffeb3b
+    green/teal:  #005c5c
+    dark gray:   #333333
+    medium gray: #808080
+    light gray:  #f9f9f9
 */
 .wpcf7 .wpcf7-form .wpcf7-submit {
     border-width: 0px !important;
@@ -91,19 +92,19 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     /*}*/
 
     .post-content a:hover{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
         text-decoration: underline !important;
     }
 
     .fusion-posts-container a:hover{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
         text-decoration: underline !important;
     }
 
     /*underline side nav current page link on hover*/
     .side-nav li a:hover{
         text-decoration: underline !important;
-        color: #e65c1d;
+        color: #ff5200;
     }
 
 /* Skip Content Style */
@@ -170,13 +171,13 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
 
     /*on hover underline links in footer*/
     .fusion-widget-area .fusion-footer-widget-column li a:hover{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
         text-decoration: underline !important;
     }
 
     /*when tabbed via keyboard focus link in header menu*/
     .fusion-body .fusion-main-menu li a:focus{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
         outline: none !important;
     }
     .fusion-body .fusion-main-menu li.current_page_item.fusion-dropdown-submenu a:focus{
@@ -184,24 +185,24 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
         outline: none !important;
     }
     .fusion-secondary-menu li a:focus{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
         outline: none !important;
     }
 
     /*when tabbed via keyboard focus link for footer menu*/
     .fusion-widget-area .fusion-footer-widget-column li a:focus{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
         outline: none !important;
         text-decoration: underline;
     }
 
     /*Set hover for submit button*/
     .wpcf7 .wpcf7-form .wpcf7-submit:hover{
-        background: #e65c1d !important;
+        background: #ff5200 !important;
     }
     /*set focus for submit button*/
     .wpcf7 .wpcf7-form .wpcf7-submit:focus{
-        background: #e65c1d !important;
+        background: #ff5200 !important;
     }
 
     /*update home page buttons to have no underline*/
@@ -221,13 +222,13 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
 
     /*breadcrumbs links hover styling*/
     #wrapper .fusion-page-title-bar .fusion-breadcrumbs a:hover{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
         text-decoration: underline !important;
     }
 
     /*breadcrumbs links focus styling*/
     #wrapper .fusion-page-title-bar .fusion-breadcrumbs a:focus{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
         text-decoration: underline !important;
     }
     #wrapper .fusion-page-title-bar .fusion-breadcrumbs span{
@@ -236,21 +237,21 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
 
     /*Nav Menus on hover underline*/
     .fusion-body .fusion-main-menu .current_page_item > a{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
     }
     .fusion-body .fusion-main-menu a:hover{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
         text-decoration: underline !important;
     }
     /*top navigation hover styles - blue bar*/
     .fusion-secondary-menu li a:hover{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
         text-decoration: underline !important;
     }
 
     /*visible focus for links in page - */
     #wrapper #content a:focus{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
         text-decoration: underline !important;
     }
 
@@ -364,14 +365,14 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
 
     /*Search Tab focus fixes when tabbed through keyboard*/
     .fusion-main-menu .fusion-main-menu-search .fusion-main-menu-icon:focus::after{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
         outline: none !important;
         text-decoration: underline !important;
     }
 
     /*Magnifying glass*/
     .searchform .search-table .search-button input[type=submit]:focus{
-        color: #e65c1d;
+        color: #ff5200;
     }
 
     #wrapper .side-nav-widget li a{
@@ -380,18 +381,18 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
 
     /*Image and text below combined for assistive tech*/
     .post-content--v2 a h2:hover{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
         text-decoration: underline !important;
     }
 
     .post-content--v2 a:hover h2{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
         text-decoration: underline !important;
     }
 
     .post-content--v2 a:hover{
         text-decoration: underline !important;
-        color: #e65c1d !important;
+        color: #ff5200 !important;
     }
 
     .post-content--v2 a:focus{
@@ -399,7 +400,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     }
 
     .post-content--v2 a:focus h2{
-        color: #e65c1d !important;
+        color: #ff5200 !important;
         text-decoration: underline !important;
     }
 
@@ -588,7 +589,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     #wrapper .side-nav-widget li ul.children li.page_item { padding-left:0 !important; }
     #wrapper .side-nav-widget li ul.children li.page_item_has_children { padding-left:15px !important; }
     #wrapper .side-nav li a { padding:5px 0; }
-    .sidebar li a:hover, .sidebar li a:focus { color: #e65c1d !important; text-decoration: underline !important; }
+    .sidebar li a:hover, .sidebar li a:focus { color: #ff5200 !important; text-decoration: underline !important; }
     .uppercase { text-transform:uppercase; }
     .center { text-align:center; }
     #nmped-full-search { background-size:cover !important; background-position:top left !important; padding:100px 50px; }
@@ -616,7 +617,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .ai1ec-agenda-view .ai1ec-date a.ai1ec-date-title:hover{ outline:2px solid #88a9e0; }
     .fusion-main-menu .sub-menu.fusion-switched-side { left:-135px !important; }
     .widget_ai1ec_agenda_widget a.ai1ec-calendar-link { border: none; background: none; display: block; font-size: 16px; text-decoration: underline !important; }
-    .widget_ai1ec_agenda_widget a.ai1ec-calendar-link:hover { color: #e65c1d !important; }
+    .widget_ai1ec_agenda_widget a.ai1ec-calendar-link:hover { color: #ff5200 !important; }
     .widget_ai1ec_agenda_widget .ai1ec-subscribe-buttons-widget { float: left; overflow: hidden; margin-top:10px; }
     .widget_ai1ec_agenda_widget a.ai1ec-calendar-link .ai1ec-fa-arrow-right { display:none; }
     .widget_ai1ec_agenda_widget .ai1ec-agenda-widget-view .ai1ec-date { background:none; }
@@ -632,7 +633,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .ai1ec-field-label { color:#232323 !important; }
     .ai1ec-allday-badge { color:#000000 !important; }
     .ai1ec-subscribe-dropdown > .ai1ec-subscribe:focus,
-    .ai1ec-subscribe-dropdown > .ai1ec-subscribe:hover{ color:#e65c1d !important }
+    .ai1ec-subscribe-dropdown > .ai1ec-subscribe:hover{ color:#ff5200 !important }
     ul.h-card { padding-left:0; }
     ul.h-card li { list-style:none !important; }
     .ai1ec-subscribe-dropdown > .ai1ec-subscribe:focus { background: #ebebeb; }
@@ -644,7 +645,7 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
     .nmped-calendar-widgets li a { text-decoration:underline; font-weight:bold; }
     .nmped-calendar-widgets li span.post-date { font-size:0.95em; }
     .nmped-calendar-widgets .calendar-link { text-decoration:underline; }
-    .nmped-calendar-widgets .calendar-link:hover { color:#e65c1d; }
+    .nmped-calendar-widgets .calendar-link:hover { color:#ff5200; }
     .nmped-calendar-page #main #content .last-updated-date { display:none; }
     .callout--orange .callout__text p { font-weight:bold !important; font-size:14pt !important; }
 
